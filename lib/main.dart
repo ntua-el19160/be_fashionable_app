@@ -18,12 +18,79 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
+  @override
+  // ignore: library_private_types_in_public_api
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  String time = "";
+
+  @override
+  void initState() {
+    // ignore: unused_local_variable
+    Timer mytimer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      DateTime timenow = DateTime.now(); //get current date and time
+      // ignore: prefer_interpolation_to_compose_strings
+      time = (24 - timenow.hour).toString() +
+          ":" +
+          (60 - timenow.minute).toString() +
+          ":" +
+          (60 - timenow.second).toString();
+      setState(() {});
+      //mytimer.cancel() //to terminate this timer
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        //body:
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          verticalDirection: VerticalDirection.down,
+          children: [
+            Center(
+                child: Text(
+              time,
+              style: const TextStyle(
+                  fontSize: 30,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold),
+            )),
+            const Center(
+                child: Text(
+              "Time remaining for today's snap!",
+              style: TextStyle(
+                  fontSize: 30,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold),
+            ))
+          ],
+        ),
+        /*Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      time,
+                      style: const TextStyle(
+                          fontSize: 30,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    const Text(
+                      "Time remaining for today's snap!",
+                      style: TextStyle(
+                          fontSize: 30,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
+                    )
+                  ],
+                )),*/
         backgroundColor: const Color.fromARGB(255, 11, 2, 30),
         bottomNavigationBar: BottomAppBar(
             color: const Color.fromARGB(255, 5, 0, 17),
