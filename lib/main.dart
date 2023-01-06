@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-
+import 'dart:async';
 import 'profile.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -12,33 +13,39 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'Be Fashionable',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-      ),
-      home: const TaskListScreenWidget(),
+      home: HomeScreen(),
     );
   }
 }
 
-class TaskListScreenWidget extends StatefulWidget {
-  const TaskListScreenWidget({Key? key}) : super(key:key);
-
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
   @override
-  _TaskListScreenWidgetState createState() => _TaskListScreenWidgetState();
+  // ignore: library_private_types_in_public_api
+  _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _TaskListScreenWidgetState extends State<TaskListScreenWidget> {
+class _HomeScreenState extends State<HomeScreen> {
+  String time = "";
+
+  @override
+  void initState() {
+    // ignore: unused_local_variable
+    Timer mytimer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      DateTime timenow = DateTime.now(); //get current date and time
+      // ignore: prefer_interpolation_to_compose_strings
+      time = (24 - timenow.hour).toString() +
+          ":" +
+          (60 - timenow.minute).toString() +
+          ":" +
+          (60 - timenow.second).toString();
+      setState(() {});
+      //mytimer.cancel() //to terminate this timer
+    });
+    super.initState();
+  }
 
   void _goToProfile () {
     Navigator.of(context).push(MaterialPageRoute(
@@ -48,17 +55,80 @@ class _TaskListScreenWidgetState extends State<TaskListScreenWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Task List'),
-        actions:[
-          IconButton(
-            onPressed: _goToProfile, 
-            icon: const Icon(Icons.person_outline),
-            color: Colors.white,
-            tooltip: 'Go to Profile page',
-            ),
-        ],
-      )
-    );
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          verticalDirection: VerticalDirection.down,
+          children: [
+            Center(
+                child: Text(
+              time,
+              style: const TextStyle(
+                  fontSize: 30,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold),
+            )),
+            const Center(
+                child: Text(
+              "Time remaining for today's snap!",
+              style: TextStyle(
+                  fontSize: 30,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold),
+            ))
+          ],
+        ),
+        /*Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      time,
+                      style: const TextStyle(
+                          fontSize: 30,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    const Text(
+                      "Time remaining for today's snap!",
+                      style: TextStyle(
+                          fontSize: 30,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
+                    )
+                  ],
+                )),*/
+        backgroundColor: const Color.fromARGB(255, 11, 2, 30),
+        bottomNavigationBar: BottomAppBar(
+            color: const Color.fromARGB(255, 5, 0, 17),
+            child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              Padding(
+                  padding: const EdgeInsets.only(right: 40),
+                  child: CircleAvatar(
+                      radius: 30.0,
+                      backgroundColor: Colors.purple,
+                      child: IconButton(
+                        icon: const Icon(color: Colors.white, Icons.today),
+                        onPressed: () {},
+                      ))),
+              Padding(
+                  padding: const EdgeInsets.only(right: 40),
+                  child: CircleAvatar(
+                      radius: 30.0,
+                      backgroundColor: Colors.purple,
+                      child: IconButton(
+                        icon: const Icon(
+                            color: Colors.white, Icons.person_outline),
+                        onPressed: _goToProfile,
+                      ))),
+              CircleAvatar(
+                  radius: 30.0,
+                  backgroundColor: Colors.purple,
+                  child: IconButton(
+                    icon: const Icon(
+                        color: Colors.white, Icons.camera_alt_outlined),
+                    onPressed: () {},
+                  )),
+            ])));
   }
-} 
+}
