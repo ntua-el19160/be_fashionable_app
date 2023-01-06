@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'profile.dart';
 
-
 void main() {
   runApp(const MyApp());
 }
@@ -47,9 +46,9 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
   }
 
-  void _goToProfile () {
-    Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => const ProfileWidget()));
+  void _goToProfile() {
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => const ProfileWidget()));
   }
 
   @override
@@ -108,6 +107,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       radius: 30.0,
                       backgroundColor: Colors.purple,
                       child: IconButton(
+                        tooltip: 'Calendar',
                         icon: const Icon(color: Colors.white, Icons.today),
                         onPressed: () {},
                       ))),
@@ -117,6 +117,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       radius: 30.0,
                       backgroundColor: Colors.purple,
                       child: IconButton(
+                        tooltip: 'Profile',
                         icon: const Icon(
                             color: Colors.white, Icons.person_outline),
                         onPressed: _goToProfile,
@@ -125,6 +126,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   radius: 30.0,
                   backgroundColor: Colors.purple,
                   child: IconButton(
+                    tooltip: 'Camera',
                     icon: const Icon(
                         color: Colors.white, Icons.camera_alt_outlined),
                     onPressed: () {},
