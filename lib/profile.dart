@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'dart:html';
 
 import 'package:flutter/material.dart';
@@ -25,6 +27,7 @@ class MyList extends StatelessWidget {
   }
 }
 
+//Dot for the list
 class MyBullet extends StatelessWidget {
   const MyBullet({super.key});
 
@@ -128,25 +131,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                     fontWeight: FontWeight.normal),
               ),
             ),
-
-            //Achievement List...Start
-            Column(
-              // ignore: prefer_const_literals_to_create_immutables
-              children: <Widget>[
-                const ListTile(
-                  leading: MyBullet(),
-                  title: Text('My first line',
-                      style: TextStyle(color: Colors.white)),
-                ),
-                const ListTile(
-                  leading: MyBullet(),
-                  title: Text('My second line',
-                      style: TextStyle(color: Colors.white)),
-                )
-              ],
-            ),
-            //Achievement List...End
-
+            SizedBox(height: 300.0, child: AchievementList()),
             const Center(
               child: Text(
                 'Streak',
@@ -193,3 +178,121 @@ class _ProfileWidgetState extends State<ProfileWidget> {
             ])));
   }
 }
+
+class AchievementList extends StatefulWidget {
+  const AchievementList({super.key});
+
+  @override
+  State<StatefulWidget> createState() => _AchievementListState();
+}
+
+class _AchievementListState extends State<AchievementList> {
+  final _ach = <Text>[
+    Text('Line 1'),
+    Text('Line 2'),
+    Text('Line 3'),
+    Text('Line 4'),
+    Text('Line 5'),
+    Text('Line 6'),
+    Text('Line 7'),
+    Text('Line 8'),
+    Text('Line 9'),
+    Text('Line 10'),
+    Text('Line 11'),
+    Text('Line 12'),
+    Text('Line 13'),
+    Text('Line 14'),
+    Text('Line 15'),
+    Text('Line 16'),
+    Text('Line 17'),
+    Text('Line 18')
+  ];
+  final _saved = <Text>[];
+  final _biggerFont = const TextStyle(color: Colors.white, fontSize: 18);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+        padding: EdgeInsets.all(16.0),
+        itemBuilder: (context, index) {
+          if (index.isOdd) return Divider();
+
+          final i = index ~/ 2;
+          final alreadySaved = _saved.contains(_ach[i]);
+          return ListTile(
+              leading: MyBullet(),
+              title: Text(
+                _ach[i].toString(),
+                style: _biggerFont,
+              ));
+        });
+  }
+}
+
+/*
+Expanded(
+                child: SizedBox(
+                    height: 800.0,
+                    child: ListView(
+                        shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        padding: const EdgeInsets.symmetric(vertical: 3.0),
+                        children: const <Widget>[
+                          ListTile(
+                              leading: MyBullet(),
+                              title: Text('Line 1',
+                                  style: TextStyle(color: Colors.white))),
+                          ListTile(
+                              leading: MyBullet(),
+                              title: Text('Line 2',
+                                  style: TextStyle(color: Colors.white))),
+                          ListTile(
+                              leading: MyBullet(),
+                              title: Text('Line 3',
+                                  style: TextStyle(color: Colors.white))),
+                          ListTile(
+                              leading: MyBullet(),
+                              title: Text('Line 4',
+                                  style: TextStyle(color: Colors.white))),
+                          ListTile(
+                              leading: MyBullet(),
+                              title: Text('Line 5',
+                                  style: TextStyle(color: Colors.white))),
+                          ListTile(
+                              leading: MyBullet(),
+                              title: Text('Line 6',
+                                  style: TextStyle(color: Colors.white))),
+                          ListTile(
+                              leading: MyBullet(),
+                              title: Text('Line 7',
+                                  style: TextStyle(color: Colors.white))),
+                          ListTile(
+                              leading: MyBullet(),
+                              title: Text('Line 8',
+                                  style: TextStyle(color: Colors.white))),
+                          ListTile(
+                              leading: MyBullet(),
+                              title: Text('Line 9',
+                                  style: TextStyle(color: Colors.white))),
+                          ListTile(
+                              leading: MyBullet(),
+                              title: Text('Line 10',
+                                  style: TextStyle(color: Colors.white))),
+                          ListTile(
+                              leading: MyBullet(),
+                              title: Text('Line 11',
+                                  style: TextStyle(color: Colors.white))),
+                          ListTile(
+                              leading: MyBullet(),
+                              title: Text('Line 12',
+                                  style: TextStyle(color: Colors.white))),
+                          ListTile(
+                              leading: MyBullet(),
+                              title: Text('Line 13',
+                                  style: TextStyle(color: Colors.white))),
+                          ListTile(
+                              leading: MyBullet(),
+                              title: Text('Line 14',
+                                  style: TextStyle(color: Colors.white))),
+                        ]))),
+*/
