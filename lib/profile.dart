@@ -42,6 +42,11 @@ class _ProfileWidgetState extends State<ProfileWidget> {
     super.dispose();
   }
 
+  void _goToCalendar() {
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => const CalendarWidget()));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -202,7 +207,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                       child: IconButton(
                         tooltip: 'Calendar',
                         icon: const Icon(color: Colors.white, Icons.today),
-                        onPressed: () {},
+                        onPressed: _goToCalendar,
                       ))),
               // ignore: prefer_const_constructors
               Padding(

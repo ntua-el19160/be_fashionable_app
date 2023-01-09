@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'profile.dart';
 
 class CalendarWidget extends StatefulWidget {
   const CalendarWidget({Key? key}) : super(key: key);
@@ -9,6 +10,11 @@ class CalendarWidget extends StatefulWidget {
 }
 
 class _CalendarWidgetState extends State<CalendarWidget> {
+  void _goToProfile() {
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => const ProfileWidget()));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,6 +38,40 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                   icon: const Icon(Icons.arrow_back),
                   color: Colors.white,
                   tooltip: 'Back',
-                ))));
+                ))),
+        bottomNavigationBar: BottomAppBar(
+            color: const Color.fromARGB(255, 5, 0, 17),
+            child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              Padding(
+                  padding: const EdgeInsets.only(right: 40),
+                  child: CircleAvatar(
+                      radius: 30.0,
+                      backgroundColor: Colors.purple,
+                      child: IconButton(
+                        tooltip: 'Calendar',
+                        icon: const Icon(color: Colors.white, Icons.today),
+                        onPressed: () {},
+                      ))),
+              Padding(
+                  padding: const EdgeInsets.only(right: 40),
+                  child: CircleAvatar(
+                      radius: 30.0,
+                      backgroundColor: Colors.purple,
+                      child: IconButton(
+                        tooltip: 'Profile',
+                        icon: const Icon(
+                            color: Colors.white, Icons.person_outline),
+                        onPressed: _goToProfile,
+                      ))),
+              CircleAvatar(
+                  radius: 30.0,
+                  backgroundColor: Colors.purple,
+                  child: IconButton(
+                    tooltip: 'Camera',
+                    icon: const Icon(
+                        color: Colors.white, Icons.camera_alt_outlined),
+                    onPressed: () {},
+                  )),
+            ])));
   }
 }
