@@ -1,31 +1,11 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, duplicate_ignore
 
+// ignore: unused_import, avoid_web_libraries_in_flutter
 import 'dart:html';
 
 import 'package:flutter/material.dart';
 
 // import 'main.dart';
-
-class MyList extends StatelessWidget {
-  const MyList({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      // ignore: prefer_const_literals_to_create_immutables
-      children: <Widget>[
-        const ListTile(
-          leading: MyBullet(),
-          title: Text('My first line'),
-        ),
-        const ListTile(
-          leading: MyBullet(),
-          title: Text('My second line'),
-        )
-      ],
-    );
-  }
-}
 
 //Dot for the list
 class MyBullet extends StatelessWidget {
@@ -97,7 +77,8 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                     tooltip: 'About',
                   )),
             ]),
-        body: Column(
+        body: SingleChildScrollView(
+            child: Column(
           children: <Widget>[
             Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -131,20 +112,86 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                     fontWeight: FontWeight.normal),
               ),
             ),
-            SizedBox(height: 300.0, child: AchievementList()),
+            Column(children: const <Widget>[
+              ListTile(
+                  leading: MyBullet(),
+                  title: Text('Upload 5 days in a row',
+                      style: TextStyle(color: Colors.white))),
+              ListTile(
+                  leading: MyBullet(),
+                  title: Text('Uplaod 10 days in a row',
+                      style: TextStyle(color: Colors.white))),
+              ListTile(
+                  leading: MyBullet(),
+                  title: Text('Uplaod 50 days in a row',
+                      style: TextStyle(color: Colors.white))),
+              ListTile(
+                  leading: MyBullet(),
+                  title: Text('Uplaod 100 days in a row',
+                      style: TextStyle(color: Colors.white))),
+              ListTile(
+                  leading: MyBullet(),
+                  title: Text('Uplaod 5 days in total',
+                      style: TextStyle(color: Colors.white))),
+              ListTile(
+                  leading: MyBullet(),
+                  title: Text('Uplaod 10 days in total',
+                      style: TextStyle(color: Colors.white))),
+              ListTile(
+                  leading: MyBullet(),
+                  title: Text('Uplaod 50 days in total',
+                      style: TextStyle(color: Colors.white))),
+              ListTile(
+                  leading: MyBullet(),
+                  title: Text('Uplaod 100 days in total',
+                      style: TextStyle(color: Colors.white))),
+              ListTile(
+                  leading: MyBullet(),
+                  title: Text('Upload 1 outfit for every occasion',
+                      style: TextStyle(color: Colors.white))),
+              ListTile(
+                  leading: MyBullet(),
+                  title: Text('Upload 1 outfit with each item',
+                      style: TextStyle(color: Colors.white))),
+              ListTile(
+                  leading: MyBullet(),
+                  title: Text('Share 1 outfit with your friends',
+                      style: TextStyle(color: Colors.white))),
+              ListTile(
+                  leading: MyBullet(),
+                  title: Text('Share 5 outfits with your friends',
+                      style: TextStyle(color: Colors.white))),
+              ListTile(
+                  leading: MyBullet(),
+                  title: Text('Upload 5 different outfits',
+                      style: TextStyle(color: Colors.white))),
+              ListTile(
+                  leading: MyBullet(),
+                  title: Text('Upload 10 different outfits',
+                      style: TextStyle(color: Colors.white))),
+            ]),
             const Center(
               child: Text(
                 'Streak',
+                style: TextStyle(
+                    fontSize: 30,
+                    color: Colors.white,
+                    fontWeight: FontWeight.normal),
+              ),
+            ),
+            Center(
+              child: Text(
+                'You have X days Streak!',
                 style: TextStyle(
                     fontSize: 20,
                     color: Colors.white,
                     fontWeight: FontWeight.normal),
               ),
             ),
-            // Κείμενο για τρέχον streak
+            SizedBox(height: 200.0, width: 100.0)
             // Κάποιο γραφικό
           ],
-        ),
+        )),
         bottomNavigationBar: BottomAppBar(
             color: const Color.fromARGB(255, 5, 0, 17),
             child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -178,121 +225,3 @@ class _ProfileWidgetState extends State<ProfileWidget> {
             ])));
   }
 }
-
-class AchievementList extends StatefulWidget {
-  const AchievementList({super.key});
-
-  @override
-  State<StatefulWidget> createState() => _AchievementListState();
-}
-
-class _AchievementListState extends State<AchievementList> {
-  final _ach = <Text>[
-    Text('Line 1'),
-    Text('Line 2'),
-    Text('Line 3'),
-    Text('Line 4'),
-    Text('Line 5'),
-    Text('Line 6'),
-    Text('Line 7'),
-    Text('Line 8'),
-    Text('Line 9'),
-    Text('Line 10'),
-    Text('Line 11'),
-    Text('Line 12'),
-    Text('Line 13'),
-    Text('Line 14'),
-    Text('Line 15'),
-    Text('Line 16'),
-    Text('Line 17'),
-    Text('Line 18')
-  ];
-  final _saved = <Text>[];
-  final _biggerFont = const TextStyle(color: Colors.white, fontSize: 18);
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-        padding: EdgeInsets.all(16.0),
-        itemBuilder: (context, index) {
-          if (index.isOdd) return Divider();
-
-          final i = index ~/ 2;
-          final alreadySaved = _saved.contains(_ach[i]);
-          return ListTile(
-              leading: MyBullet(),
-              title: Text(
-                _ach[i].toString(),
-                style: _biggerFont,
-              ));
-        });
-  }
-}
-
-/*
-Expanded(
-                child: SizedBox(
-                    height: 800.0,
-                    child: ListView(
-                        shrinkWrap: true,
-                        scrollDirection: Axis.horizontal,
-                        padding: const EdgeInsets.symmetric(vertical: 3.0),
-                        children: const <Widget>[
-                          ListTile(
-                              leading: MyBullet(),
-                              title: Text('Line 1',
-                                  style: TextStyle(color: Colors.white))),
-                          ListTile(
-                              leading: MyBullet(),
-                              title: Text('Line 2',
-                                  style: TextStyle(color: Colors.white))),
-                          ListTile(
-                              leading: MyBullet(),
-                              title: Text('Line 3',
-                                  style: TextStyle(color: Colors.white))),
-                          ListTile(
-                              leading: MyBullet(),
-                              title: Text('Line 4',
-                                  style: TextStyle(color: Colors.white))),
-                          ListTile(
-                              leading: MyBullet(),
-                              title: Text('Line 5',
-                                  style: TextStyle(color: Colors.white))),
-                          ListTile(
-                              leading: MyBullet(),
-                              title: Text('Line 6',
-                                  style: TextStyle(color: Colors.white))),
-                          ListTile(
-                              leading: MyBullet(),
-                              title: Text('Line 7',
-                                  style: TextStyle(color: Colors.white))),
-                          ListTile(
-                              leading: MyBullet(),
-                              title: Text('Line 8',
-                                  style: TextStyle(color: Colors.white))),
-                          ListTile(
-                              leading: MyBullet(),
-                              title: Text('Line 9',
-                                  style: TextStyle(color: Colors.white))),
-                          ListTile(
-                              leading: MyBullet(),
-                              title: Text('Line 10',
-                                  style: TextStyle(color: Colors.white))),
-                          ListTile(
-                              leading: MyBullet(),
-                              title: Text('Line 11',
-                                  style: TextStyle(color: Colors.white))),
-                          ListTile(
-                              leading: MyBullet(),
-                              title: Text('Line 12',
-                                  style: TextStyle(color: Colors.white))),
-                          ListTile(
-                              leading: MyBullet(),
-                              title: Text('Line 13',
-                                  style: TextStyle(color: Colors.white))),
-                          ListTile(
-                              leading: MyBullet(),
-                              title: Text('Line 14',
-                                  style: TextStyle(color: Colors.white))),
-                        ]))),
-*/

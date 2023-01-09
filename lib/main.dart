@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'profile.dart';
+import 'calendar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -78,26 +79,6 @@ class _HomeScreenState extends State<HomeScreen> {
             //Εικόνα-logo εφαρμογής
           ],
         ),
-        /*Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      time,
-                      style: const TextStyle(
-                          fontSize: 30,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    const Text(
-                      "Time remaining for today's snap!",
-                      style: TextStyle(
-                          fontSize: 30,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold),
-                    )
-                  ],
-                )),*/
         backgroundColor: const Color.fromARGB(255, 11, 2, 30),
         bottomNavigationBar: BottomAppBar(
             color: const Color.fromARGB(255, 5, 0, 17),
