@@ -52,6 +52,11 @@ class _HomeScreenState extends State<HomeScreen> {
         .push(MaterialPageRoute(builder: (context) => const ProfileWidget()));
   }
 
+  void _goToCalendar() {
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => const CalendarWidget()));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -91,7 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: IconButton(
                         tooltip: 'Calendar',
                         icon: const Icon(color: Colors.white, Icons.today),
-                        onPressed: () {},
+                        onPressed: _goToCalendar,
                       ))),
               Padding(
                   padding: const EdgeInsets.only(right: 40),
