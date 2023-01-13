@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'profile.dart';
+import 'main.dart';
+//import 'package:table_calendar/table_calendar.dart';
 
 class CalendarWidget extends StatefulWidget {
   const CalendarWidget({Key? key}) : super(key: key);
@@ -13,6 +15,11 @@ class _CalendarWidgetState extends State<CalendarWidget> {
   void _goToProfile() {
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => const ProfileWidget()));
+  }
+
+  void _goToMain() {
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => const MyApp()));
   }
 
   @override
@@ -32,13 +39,21 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                 radius: 30.0,
                 backgroundColor: Colors.purple,
                 child: IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
+                  onPressed: _goToMain,
                   icon: const Icon(Icons.arrow_back),
                   color: Colors.white,
                   tooltip: 'Back',
-                ))),
+                )),
+            actions: <Widget>[
+              Padding(
+                  padding: const EdgeInsets.only(right: 20.0),
+                  child: IconButton(
+                    // Θέλουμε να εμφανίζεται το Info Overlay στο κάτω μέρος
+                    onPressed: () {},
+                    icon: const Icon(Icons.menu),
+                    tooltip: 'Filter',
+                  )),
+            ]),
         bottomNavigationBar: BottomAppBar(
             color: const Color.fromARGB(255, 5, 0, 17),
             child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [

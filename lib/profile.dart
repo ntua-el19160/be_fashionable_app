@@ -2,7 +2,7 @@
 
 // ignore: unused_import, avoid_web_libraries_in_flutter
 import 'dart:html';
-
+import 'main.dart';
 import 'package:flutter/material.dart';
 import 'calendar.dart';
 
@@ -47,6 +47,11 @@ class _ProfileWidgetState extends State<ProfileWidget> {
         .push(MaterialPageRoute(builder: (context) => const CalendarWidget()));
   }
 
+  void _goToMain() {
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => const MyApp()));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,9 +69,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                 radius: 30.0,
                 backgroundColor: Colors.purple,
                 child: IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
+                  onPressed: _goToMain,
                   icon: const Icon(Icons.arrow_back),
                   color: Colors.white,
                   tooltip: 'Back',
