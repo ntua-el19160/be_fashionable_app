@@ -1,10 +1,9 @@
-// ignore_for_file: prefer_const_constructors, duplicate_ignore
-
 // ignore: unused_import, avoid_web_libraries_in_flutter
 import 'dart:html';
 import 'main.dart';
 import 'package:flutter/material.dart';
 import 'calendar.dart';
+import 'camera.dart';
 
 //Dot for the list
 class MyBullet extends StatelessWidget {
@@ -50,6 +49,11 @@ class _ProfileWidgetState extends State<ProfileWidget> {
   void _goToMain() {
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => const MyApp()));
+  }
+
+  void _goToCamera() {
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => const CameraWidget()));
   }
 
   @override
@@ -186,7 +190,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                     fontWeight: FontWeight.normal),
               ),
             ),
-            Center(
+            const Center(
               child: Text(
                 'You have X days Streak!',
                 style: TextStyle(
@@ -195,7 +199,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                     fontWeight: FontWeight.normal),
               ),
             ),
-            SizedBox(height: 200.0, width: 100.0)
+            const SizedBox(height: 200.0, width: 100.0)
             // Κάποιο γραφικό
           ],
         )),
@@ -227,7 +231,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                     tooltip: 'Camera',
                     icon: const Icon(
                         color: Colors.white, Icons.camera_alt_outlined),
-                    onPressed: () {},
+                    onPressed: _goToCamera,
                   )),
             ])));
   }

@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'profile.dart';
 import 'main.dart';
-import 'camera.dart';
+import 'calendar.dart';
 
-class CalendarWidget extends StatefulWidget {
-  const CalendarWidget({Key? key}) : super(key: key);
+class CameraWidget extends StatefulWidget {
+  const CameraWidget({Key? key}) : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
-  _CalendarWidgetState createState() => _CalendarWidgetState();
+  _CameraWidgetState createState() => _CameraWidgetState();
 }
 
-class _CalendarWidgetState extends State<CalendarWidget> {
+class _CameraWidgetState extends State<CameraWidget> {
   void _goToProfile() {
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => const ProfileWidget()));
@@ -22,9 +22,9 @@ class _CalendarWidgetState extends State<CalendarWidget> {
         .push(MaterialPageRoute(builder: (context) => const MyApp()));
   }
 
-  void _goToCamera() {
+  void _goToCalendar() {
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => const CameraWidget()));
+        .push(MaterialPageRoute(builder: (context) => const CalendarWidget()));
   }
 
   @override
@@ -33,7 +33,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
         backgroundColor: const Color.fromARGB(255, 11, 2, 30),
         appBar: AppBar(
             backgroundColor: Colors.transparent,
-            title: const Text('Calendar',
+            title: const Text('Camera',
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 25,
@@ -48,17 +48,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                   icon: const Icon(Icons.arrow_back),
                   color: Colors.white,
                   tooltip: 'Back',
-                )),
-            actions: <Widget>[
-              Padding(
-                  padding: const EdgeInsets.only(right: 20.0),
-                  child: IconButton(
-                    // Θέλουμε να εμφανίζεται το Info Overlay στο κάτω μέρος
-                    onPressed: () {},
-                    icon: const Icon(Icons.menu),
-                    tooltip: 'Filter',
-                  )),
-            ]),
+                ))),
         bottomNavigationBar: BottomAppBar(
             color: const Color.fromARGB(255, 5, 0, 17),
             child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -70,7 +60,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                       child: IconButton(
                         tooltip: 'Calendar',
                         icon: const Icon(color: Colors.white, Icons.today),
-                        onPressed: () {},
+                        onPressed: _goToCalendar,
                       ))),
               Padding(
                   padding: const EdgeInsets.only(right: 40),
@@ -90,7 +80,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                     tooltip: 'Camera',
                     icon: const Icon(
                         color: Colors.white, Icons.camera_alt_outlined),
-                    onPressed: _goToCamera,
+                    onPressed: () {},
                   )),
             ])));
   }
