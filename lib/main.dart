@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'profile.dart';
 import 'calendar.dart';
-import 'camera.dart';
+import 'photo.dart';
 
 void main() {
   runApp(const MyApp());
@@ -58,9 +58,9 @@ class _HomeScreenState extends State<HomeScreen> {
         .push(MaterialPageRoute(builder: (context) => const CalendarWidget()));
   }
 
-  void _goToCamera() {
+  void _goToPhoto() {
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => const CameraWidget()));
+        .push(MaterialPageRoute(builder: (context) => const PhotoWidget()));
   }
 
   @override
@@ -122,7 +122,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     tooltip: 'Camera',
                     icon: const Icon(
                         color: Colors.white, Icons.camera_alt_outlined),
-                    onPressed: _goToCamera,
+                    onPressed: _goToPhoto,
                   )),
             ])));
   }

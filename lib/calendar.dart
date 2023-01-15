@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'profile.dart';
 import 'main.dart';
-import 'camera.dart';
+import 'photo.dart';
 
 class CalendarWidget extends StatefulWidget {
   const CalendarWidget({Key? key}) : super(key: key);
@@ -22,9 +22,9 @@ class _CalendarWidgetState extends State<CalendarWidget> {
         .push(MaterialPageRoute(builder: (context) => const MyApp()));
   }
 
-  void _goToCamera() {
+  void _goToPhoto() {
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => const CameraWidget()));
+        .push(MaterialPageRoute(builder: (context) => const PhotoWidget()));
   }
 
   @override
@@ -90,7 +90,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                     tooltip: 'Camera',
                     icon: const Icon(
                         color: Colors.white, Icons.camera_alt_outlined),
-                    onPressed: _goToCamera,
+                    onPressed: _goToPhoto,
                   )),
             ])));
   }

@@ -3,7 +3,7 @@ import 'dart:html';
 import 'main.dart';
 import 'package:flutter/material.dart';
 import 'calendar.dart';
-import 'camera.dart';
+import 'photo.dart';
 
 //Dot for the list
 class MyBullet extends StatelessWidget {
@@ -51,9 +51,9 @@ class _ProfileWidgetState extends State<ProfileWidget> {
         .push(MaterialPageRoute(builder: (context) => const MyApp()));
   }
 
-  void _goToCamera() {
+  void _goToPhoto() {
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => const CameraWidget()));
+        .push(MaterialPageRoute(builder: (context) => const PhotoWidget()));
   }
 
   @override
@@ -231,7 +231,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                     tooltip: 'Camera',
                     icon: const Icon(
                         color: Colors.white, Icons.camera_alt_outlined),
-                    onPressed: _goToCamera,
+                    onPressed: _goToPhoto,
                   )),
             ])));
   }
