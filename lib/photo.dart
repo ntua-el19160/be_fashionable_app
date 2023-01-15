@@ -25,15 +25,14 @@ class _PhotoWidgetState extends State<PhotoWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 11, 2, 30),
-      appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          title: const Text('Calendar',
+      appBar: AppBar(backgroundColor: Colors.transparent,
+          /*title: const Text('Calendar',
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 25,
                   fontWeight: FontWeight.bold)),
           centerTitle: true,
-          automaticallyImplyLeading: false,
+          automaticallyImplyLeading: false,*/
           actions: <Widget>[
             Padding(
                 padding: const EdgeInsets.only(right: 20.0),

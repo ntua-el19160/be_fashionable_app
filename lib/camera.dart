@@ -49,6 +49,31 @@ class _CameraWidgetState extends State<CameraWidget> {
                   color: Colors.white,
                   tooltip: 'Back',
                 ))),
+        body: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              const SizedBox(height: 600, width: 200),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  FloatingActionButton.extended(
+                    // ignore: prefer_const_constructors
+                    label: Text('Add Location',
+                        // ignore: prefer_const_constructors
+                        style: TextStyle(color: Colors.black)),
+                    backgroundColor: Colors.grey,
+                    icon: const Icon(
+                      color: Colors.black,
+                      Icons.add_location,
+                      size: 24.0,
+                    ),
+                    onPressed: () {},
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
         bottomNavigationBar: BottomAppBar(
             color: const Color.fromARGB(255, 5, 0, 17),
             child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
