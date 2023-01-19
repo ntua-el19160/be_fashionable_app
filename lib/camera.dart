@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_literals_to_create_immutables
+
 import 'package:flutter/material.dart';
 import 'profile.dart';
 import 'main.dart';
@@ -53,10 +55,10 @@ class _CameraWidgetState extends State<CameraWidget> {
           child: Column(
             children: <Widget>[
               const SizedBox(height: 600, width: 200),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  FloatingActionButton.extended(
+              Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 80),
+                  child: FloatingActionButton.extended(
                     // ignore: prefer_const_constructors
                     label: Text('Add Location',
                         // ignore: prefer_const_constructors
@@ -69,7 +71,223 @@ class _CameraWidgetState extends State<CameraWidget> {
                     ),
                     onPressed: () {},
                   ),
-                ],
+                )
+              ]),
+              const Padding(
+                  padding: EdgeInsets.only(left: 80),
+                  child: Text('Add Tags',
+                      style: TextStyle(color: Colors.white, fontSize: 28))),
+              SizedBox(
+                height: 50,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(right: 60),
+                      child: TextButton(
+                        onPressed: () {},
+                        style: TextButton.styleFrom(
+                            foregroundColor: Colors.black,
+                            elevation: 2,
+                            backgroundColor: Colors.grey),
+                        child: const Text(
+                          'Work',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 60),
+                      child: TextButton(
+                        onPressed: () {},
+                        style: TextButton.styleFrom(
+                            foregroundColor: Colors.black,
+                            elevation: 2,
+                            backgroundColor: Colors.grey),
+                        child: const Text(
+                          'Gym',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 60),
+                      child: TextButton(
+                        onPressed: () {},
+                        style: TextButton.styleFrom(
+                            foregroundColor: Colors.black,
+                            elevation: 2,
+                            backgroundColor: Colors.grey),
+                        child: const Text(
+                          'College',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 60),
+                      child: TextButton(
+                        onPressed: () {},
+                        style: TextButton.styleFrom(
+                            foregroundColor: Colors.black,
+                            elevation: 2,
+                            backgroundColor: Colors.grey),
+                        child: const Text(
+                          'Walk',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 60),
+                      child: TextButton(
+                        onPressed: () {},
+                        style: TextButton.styleFrom(
+                            foregroundColor: Colors.black,
+                            elevation: 2,
+                            backgroundColor: Colors.grey),
+                        child: const Text(
+                          'Night Out',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 60),
+                      child: TextButton(
+                        onPressed: () {},
+                        style: TextButton.styleFrom(
+                            foregroundColor: Colors.black,
+                            elevation: 2,
+                            backgroundColor: Colors.grey),
+                        child: const Text(
+                          'Shopping',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 60),
+                      child: TextButton(
+                        onPressed: () {},
+                        style: TextButton.styleFrom(
+                            foregroundColor: Colors.black,
+                            elevation: 2,
+                            backgroundColor: Colors.grey),
+                        child: const Text(
+                          'School',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 50,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(right: 60),
+                      child: TextButton(
+                        onPressed: () {},
+                        style: TextButton.styleFrom(
+                            foregroundColor: Colors.black,
+                            elevation: 2,
+                            backgroundColor: Colors.grey),
+                        child: const Text(
+                          'Work',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 60),
+                      child: TextButton(
+                        onPressed: () {},
+                        style: TextButton.styleFrom(
+                            foregroundColor: Colors.black,
+                            elevation: 2,
+                            backgroundColor: Colors.grey),
+                        child: const Text(
+                          'Shirt',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 60),
+                      child: TextButton(
+                        onPressed: () {},
+                        style: TextButton.styleFrom(
+                            foregroundColor: Colors.black,
+                            elevation: 2,
+                            backgroundColor: Colors.grey),
+                        child: const Text(
+                          'Jeans',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 60),
+                      child: TextButton(
+                        onPressed: () {},
+                        style: TextButton.styleFrom(
+                            foregroundColor: Colors.black,
+                            elevation: 2,
+                            backgroundColor: Colors.grey),
+                        child: const Text(
+                          'Hoodie',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 60),
+                      child: TextButton(
+                        onPressed: () {},
+                        style: TextButton.styleFrom(
+                            foregroundColor: Colors.black,
+                            elevation: 2,
+                            backgroundColor: Colors.grey),
+                        child: const Text(
+                          'Leggings',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 60),
+                      child: TextButton(
+                        onPressed: () {},
+                        style: TextButton.styleFrom(
+                            foregroundColor: Colors.black,
+                            elevation: 2,
+                            backgroundColor: Colors.grey),
+                        child: const Text(
+                          'Dress',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 60),
+                      child: TextButton(
+                        onPressed: () {},
+                        style: TextButton.styleFrom(
+                            foregroundColor: Colors.black,
+                            elevation: 2,
+                            backgroundColor: Colors.grey),
+                        child: const Text(
+                          'Trousers',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
