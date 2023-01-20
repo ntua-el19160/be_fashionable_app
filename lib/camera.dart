@@ -197,7 +197,7 @@ class _CameraWidgetState extends State<CameraWidget> {
                             elevation: 2,
                             backgroundColor: Colors.grey),
                         child: const Text(
-                          'Work',
+                          'Skirt',
                           style: TextStyle(fontSize: 20),
                         ),
                       ),
@@ -289,6 +289,21 @@ class _CameraWidgetState extends State<CameraWidget> {
                   ],
                 ),
               ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Padding(
+                      padding: const EdgeInsets.only(right: 40),
+                      child: CircleAvatar(
+                          radius: 30.0,
+                          backgroundColor: Colors.purple,
+                          child: IconButton(
+                            tooltip: 'Save Photo',
+                            icon: const Icon(color: Colors.white, Icons.check),
+                            onPressed: _goToCalendar,
+                          ))),
+                ],
+              )
             ],
           ),
         ),
