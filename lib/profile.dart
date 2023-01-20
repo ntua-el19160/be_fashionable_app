@@ -33,6 +33,60 @@ class ProfileWidget extends StatefulWidget {
 }
 
 class _ProfileWidgetState extends State<ProfileWidget> {
+  late OverlayEntry overlayEntry;
+
+  void _showOverlay() {
+    OverlayState? overlayState = Overlay.of(context);
+    overlayEntry = OverlayEntry(builder: (context) {
+      return Positioned(
+        //left: MediaQuery.of(context).size.width * 0.1,
+        top: MediaQuery.of(context).size.height * 0.5,
+        child: Material(
+          color: const Color.fromARGB(255, 11, 2, 30),
+          child: Column(
+            children: <Widget>[
+              Container(
+                width: MediaQuery.of(context).size.width * 0.9,
+                alignment: Alignment.topRight,
+                child: CircleAvatar(
+                  radius: 30.0,
+                  backgroundColor: Colors.purple,
+                  child: Material(
+                    color: Colors.purple,
+                    child: IconButton(
+                      onPressed: () {_removeOverlay(overlayEntry);},
+                      icon: const Icon(Icons.close),
+                      color: Colors.white,
+                      tooltip: 'Close',
+                    )
+                  )
+                )
+              ),
+              const Padding(
+                padding: EdgeInsets.all(10.0)
+              ),
+              Text('Το BeFashionable δημιουργήθηκε από:\nΑνδρέας Λεβής\nandlevis2001@gmail.com\n\nΘεοδώρα Βερναρδάκη\ntheodvern@gmail.com\n\nΧρυσούλα Πανηγυράκη\nchrysoulapan@gmail.com',
+                style: TextStyle(
+                  fontSize: MediaQuery.of(context).size.height * 0.03,
+                  color: Colors.white
+                )
+              ),
+              const Padding(
+                padding: EdgeInsets.all(30.0)
+              ),
+            ],
+          )
+        )
+      );
+    });
+
+    overlayState?.insert(overlayEntry);
+  }
+
+  void _removeOverlay(OverlayEntry entry) {
+    entry.remove();
+  }
+
   final _usernameController = TextEditingController();
 
   @override
@@ -83,12 +137,14 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                   padding: const EdgeInsets.only(right: 20.0),
                   child: IconButton(
                     // Θέλουμε να εμφανίζεται το Info Overlay στο κάτω μέρος
-                    onPressed: () {},
+                    onPressed: _showOverlay,
                     icon: const Icon(Icons.info_outline),
                     tooltip: 'About',
                   )),
             ]),
-        body: SingleChildScrollView(
+        body: GestureDetector(
+          onTap: () {_removeOverlay(overlayEntry);},
+          child: SingleChildScrollView(
             child: Column(
           children: <Widget>[
             Padding(
@@ -202,10 +258,13 @@ class _ProfileWidgetState extends State<ProfileWidget> {
             const SizedBox(height: 200.0, width: 100.0)
             // Κάποιο γραφικό
           ],
-        )),
+        )
+      )
+    ),
         bottomNavigationBar: BottomAppBar(
             color: const Color.fromARGB(255, 5, 0, 17),
-            child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+            child: Row(mainAxisAlignment: MainAxisAlignment.center, 
+            children: [
               Padding(
                   padding: const EdgeInsets.only(right: 40),
                   child: CircleAvatar(
@@ -233,6 +292,9 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                         color: Colors.white, Icons.camera_alt_outlined),
                     onPressed: _goToPhoto,
                   )),
-            ])));
+            ]
+          )
+        )
+      );
   }
 }
