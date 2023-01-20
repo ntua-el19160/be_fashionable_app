@@ -34,9 +34,15 @@ class ProfileWidget extends StatefulWidget {
 
 class _ProfileWidgetState extends State<ProfileWidget> {
   late OverlayEntry overlayEntry;
+  bool overlayDisplayed = false;
 
   void _showOverlay() {
     OverlayState? overlayState = Overlay.of(context);
+    
+    setState(() {
+      overlayDisplayed = true;
+    });
+    
     overlayEntry = OverlayEntry(builder: (context) {
       return Positioned(
         //left: MediaQuery.of(context).size.width * 0.1,
@@ -46,18 +52,21 @@ class _ProfileWidgetState extends State<ProfileWidget> {
           child: Column(
             children: <Widget>[
               Container(
-                width: MediaQuery.of(context).size.width * 0.9,
+                width: MediaQuery.of(context).size.width,
                 alignment: Alignment.topRight,
-                child: CircleAvatar(
-                  radius: 30.0,
-                  backgroundColor: Colors.purple,
-                  child: Material(
-                    color: Colors.purple,
-                    child: IconButton(
-                      onPressed: () {_removeOverlay(overlayEntry);},
-                      icon: const Icon(Icons.close),
-                      color: Colors.white,
-                      tooltip: 'Close',
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 10.0, 20.0, 0),
+                  child: CircleAvatar(
+                    radius: 30.0,
+                    backgroundColor: Colors.purple,
+                    child: Material(
+                      color: Colors.purple,
+                      child: IconButton(
+                        onPressed: () {_removeOverlay(overlayEntry);},
+                        icon: const Icon(Icons.close),
+                        color: Colors.white,
+                        tooltip: 'Close',
+                      )
                     )
                   )
                 )
@@ -101,6 +110,9 @@ class _ProfileWidgetState extends State<ProfileWidget> {
   }
 
   void _goToMain() {
+    if (overlayDisplayed) {
+      _removeOverlay(overlayEntry);
+    }
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => const MyApp()));
   }
@@ -112,8 +124,17 @@ class _ProfileWidgetState extends State<ProfileWidget> {
 
   @override
   Widget build(BuildContext context) {
+
+    Color color ;
+    if (overlayDisplayed) {
+      color = const Color.fromARGB(255, 11, 2, 30).withOpacity(0.75);
+    }
+    else {
+      color = const Color.fromARGB(255, 11, 2, 30);
+    }
+
     return Scaffold(
-        backgroundColor: const Color.fromARGB(255, 11, 2, 30),
+        backgroundColor: color,
         appBar: AppBar(
             backgroundColor: Colors.transparent,
             title: const Text('Profile',
@@ -262,7 +283,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
       )
     ),
         bottomNavigationBar: BottomAppBar(
-            color: const Color.fromARGB(255, 5, 0, 17),
+            color: Colors.transparent,
             child: Row(mainAxisAlignment: MainAxisAlignment.center, 
             children: [
               Padding(
