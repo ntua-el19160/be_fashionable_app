@@ -45,7 +45,6 @@ class _ProfileWidgetState extends State<ProfileWidget> {
     
     overlayEntry = OverlayEntry(builder: (context) {
       return Positioned(
-        //left: MediaQuery.of(context).size.width * 0.1,
         top: MediaQuery.of(context).size.height * 0.5,
         child: Material(
           color: const Color.fromARGB(255, 11, 2, 30),
@@ -62,7 +61,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                     child: Material(
                       color: Colors.purple,
                       child: IconButton(
-                        onPressed: () {_removeOverlay(overlayEntry);},
+                        onPressed: _removeOverlay,
                         icon: const Icon(Icons.close),
                         color: Colors.white,
                         tooltip: 'Close',
@@ -92,8 +91,13 @@ class _ProfileWidgetState extends State<ProfileWidget> {
     overlayState?.insert(overlayEntry);
   }
 
-  void _removeOverlay(OverlayEntry entry) {
-    entry.remove();
+  void _removeOverlay() {
+    if (overlayDisplayed) {
+      overlayEntry.remove();
+      setState(() {
+        overlayDisplayed = false;
+      });
+    }
   }
 
   final _usernameController = TextEditingController();
@@ -110,9 +114,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
   }
 
   void _goToMain() {
-    if (overlayDisplayed) {
-      _removeOverlay(overlayEntry);
-    }
+      _removeOverlay;
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => const MyApp()));
   }
@@ -164,7 +166,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                   )),
             ]),
         body: GestureDetector(
-          onTap: () {_removeOverlay(overlayEntry);},
+          onTap: _removeOverlay,
           child: SingleChildScrollView(
             child: Column(
           children: <Widget>[
