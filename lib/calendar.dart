@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'profile.dart';
 import 'main.dart';
 import 'photo.dart';
+import 'package:paged_vertical_calendar/paged_vertical_calendar.dart';
+import 'package:intl/intl.dart';
 
 class CalendarWidget extends StatefulWidget {
   const CalendarWidget({Key? key}) : super(key: key);
@@ -334,6 +336,16 @@ class _CalendarWidgetState extends State<CalendarWidget> {
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => const PhotoWidget()));
   }
+  
+  Widget weekText(String text) {
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: Text(
+        text,
+        style: TextStyle(color: Colors.grey, fontSize: 10),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -377,6 +389,58 @@ class _CalendarWidgetState extends State<CalendarWidget> {
             ]),
         body: GestureDetector(
           onTap: _removeOverlay,
+          child: PagedVerticalCalendar(
+            monthBuilder: (context, month, year) {
+              return Column(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 20),
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      DateFormat('MMMM yyyy').format(DateTime(year, month)),
+                      style: TextStyle(color: Colors.white, fontSize: 23),
+                    ),
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        weekText('Mon'),
+                        weekText('Tue'),
+                        weekText('Wed'),
+                        weekText('Thu'),
+                        weekText('Fri'),
+                        weekText('Sat'),
+                        weekText('Sun'),
+                      ],
+                    ),
+                  ),
+                ],
+              );
+            },
+
+            dayBuilder: (context, date) {
+              return Column(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.only(top: 25.0),
+                    alignment: Alignment.center,
+                    child: Text(
+                      DateFormat('d').format(date),
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ],
+              );
+            },
+            onDayPressed: (day) {
+              //wrong slide but it works
+              _goToPhoto();
+            }
+          ),
         ),
         bottomNavigationBar: BottomAppBar(
             color: Colors.transparent,
