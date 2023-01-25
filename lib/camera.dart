@@ -77,6 +77,7 @@ class _CameraWidgetState extends State<CameraWidget> {
                   padding: EdgeInsets.only(left: 80),
                   child: Text('Add Tags',
                       style: TextStyle(color: Colors.white, fontSize: 28))),
+              const SizedBox(height: 10),
               SizedBox(
                 height: 50,
                 child: ListView(
@@ -183,6 +184,7 @@ class _CameraWidgetState extends State<CameraWidget> {
                   ],
                 ),
               ),
+              const SizedBox(height: 10),
               SizedBox(
                 height: 50,
                 child: ListView(
@@ -289,6 +291,7 @@ class _CameraWidgetState extends State<CameraWidget> {
                   ],
                 ),
               ),
+              const SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
