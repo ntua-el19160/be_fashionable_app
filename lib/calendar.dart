@@ -6,6 +6,7 @@ import 'main.dart';
 import 'photo.dart';
 import 'package:paged_vertical_calendar/paged_vertical_calendar.dart';
 import 'package:intl/intl.dart';
+import 'daydetails.dart';
 
 class CalendarWidget extends StatefulWidget {
   const CalendarWidget({Key? key}) : super(key: key);
@@ -426,19 +427,35 @@ class _CalendarWidgetState extends State<CalendarWidget> {
               return Column(
                 children: [
                   Container(
-                    padding: const EdgeInsets.only(top: 25.0),
-                    alignment: Alignment.center,
-                    child: Text(
-                      DateFormat('d').format(date),
-                      style: TextStyle(color: Colors.white),
+                    //padding: const EdgeInsets.only(top: 50.0),
+                    
+                    //we need to use a boolean 
+                    //filled box if a photo was taken this day
+                    padding: const EdgeInsets.symmetric(vertical: 39, horizontal: 30),
+                    margin: const EdgeInsets.all(1),
+                    decoration: const BoxDecoration(
+                      color: Color.fromARGB(255, 153, 115, 160),
                     ),
+                    alignment: Alignment.center,
+                    //padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 14.0),
+                    child: Center(
+                      child: Text(
+                      DateFormat('d').format(date),
+                      style: const TextStyle(color: Colors.white),
+                    ),),
                   ),
                 ],
               );
             },
             onDayPressed: (day) {
-              //wrong slide but it works
-              _goToPhoto();
+              final details = LocationDetails(
+                date: day,
+              );
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const DayDetails(),
+                  settings: RouteSettings(
+                  arguments: details),),);
             }
           ),
         ),
