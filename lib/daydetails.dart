@@ -46,7 +46,8 @@ class _DayDetailsState extends State<DayDetails> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget> [
-            Image.asset('assets/images/image.png', scale: 2),
+            //need to download image.png
+            //Image.asset('assets/images/image.png', scale: 2),
             Padding( padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 80.0),
             child: Align(
               alignment: Alignment.topRight,
