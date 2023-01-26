@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'profile.dart';
 import 'main.dart';
 import 'calendar.dart';
+import 'daydetails.dart';
 
 class CameraWidget extends StatefulWidget {
   const CameraWidget({Key? key}) : super(key: key);
@@ -303,7 +304,16 @@ class _CameraWidgetState extends State<CameraWidget> {
                         child: IconButton(
                           tooltip: 'Save Photo',
                           icon: const Icon(color: Colors.white, Icons.check),
-                          onPressed: _goToCalendar,
+                          onPressed: () {
+                            final details = LocationDetails(
+                            date: DateTime.now(),
+                            completed: true,
+                            );
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => const CalendarWidget(),
+                                settings: RouteSettings(
+                                arguments: details),),);}
                         ))),
               ],
             )
