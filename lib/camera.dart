@@ -2,8 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'profile.dart';
+import 'achievement.dart';
 import 'main.dart';
 import 'calendar.dart';
+import 'dart:math';
 
 class CameraWidget extends StatefulWidget {
   const CameraWidget({Key? key}) : super(key: key);
@@ -25,8 +27,15 @@ class _CameraWidgetState extends State<CameraWidget> {
   }
 
   void _goToCalendar() {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => const CalendarWidget()));
+    var rng = Random().nextInt(100);
+    if (rng % 3 == 0) {
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => const AchievementWidget()));
+    }
+    else {
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => const CalendarWidget()));
+    }
   }
 
   @override
