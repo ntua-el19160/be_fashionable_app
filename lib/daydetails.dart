@@ -160,31 +160,187 @@ class _DayDetailsState extends State<DayDetails> {
                       tooltip: 'Exit',
                     ))),
           ]),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _showOverlay,
-        backgroundColor: Colors.purple,
-        tooltip: 'Share',
-        child: const Icon(Icons.share),
-      ),
-      body: GestureDetector(
-        onTap: _removeOverlay,
-        child: Container(
-          alignment: const Alignment(0, -0.5),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget> [
-              Image.asset('assets/images/image.png', scale: 2),
-              Padding( padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 80.0),
-              child: Align(
+            body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            //const SizedBox(height: 600, width: 200),
+            const SizedBox(height: 100, width: 200),
+            GestureDetector(
+              onTap: _removeOverlay,
+              child: Container(
+              alignment: const Alignment(0, -0.5),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget> [
+                  //to image.asset prepei na mpei se sxolia
+                  Image.asset('assets/images/image.png', scale: 2),
+                  const SizedBox(height: 200),
+                  ]
+                ),
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                const Padding(padding: EdgeInsets.only(left: 20),
+                child: Align(
+                alignment: Alignment.topLeft,
+                child: Text(
+                  'Location',
+                  style: TextStyle(color: Colors.white, fontSize: 20.0),
+                  ), 
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 20),
+                child: Align(
                 alignment: Alignment.topRight,
                 child: Text(
                   DateFormat('dd/MM/yyyy').format(location.date),
                   style: const TextStyle(color: Colors.white, fontSize: 20.0),
-                  ),
+                  ), 
                 ),
               ),
-            ]       
-          ),
+              
+              ],
+            ),   
+            const SizedBox(height: 50),
+            SizedBox(
+              height: 50,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20, right: 60),
+                    child: TextButton(
+                      onPressed: () {},
+                      style: TextButton.styleFrom(
+                          foregroundColor: Colors.black,
+                          elevation: 2,
+                          backgroundColor: Colors.grey),
+                      child: const Text(
+                        'Work',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 60),
+                    child: TextButton(
+                      onPressed: () {},
+                      style: TextButton.styleFrom(
+                          foregroundColor: Colors.black,
+                          elevation: 2,
+                          backgroundColor: Colors.grey),
+                      child: const Text(
+                        'Gym',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 60),
+                    child: TextButton(
+                      onPressed: () {},
+                      style: TextButton.styleFrom(
+                          foregroundColor: Colors.black,
+                          elevation: 2,
+                          backgroundColor: Colors.grey),
+                      child: const Text(
+                        'College',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 60),
+                    child: TextButton(
+                      onPressed: () {},
+                      style: TextButton.styleFrom(
+                          foregroundColor: Colors.black,
+                          elevation: 2,
+                          backgroundColor: Colors.grey),
+                      child: const Text(
+                        'Walk',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 60),
+                    child: TextButton(
+                      onPressed: () {},
+                      style: TextButton.styleFrom(
+                          foregroundColor: Colors.black,
+                          elevation: 2,
+                          backgroundColor: Colors.grey),
+                      child: const Text(
+                        'Night Out',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 60),
+                    child: TextButton(
+                      onPressed: () {},
+                      style: TextButton.styleFrom(
+                          foregroundColor: Colors.black,
+                          elevation: 2,
+                          backgroundColor: Colors.grey),
+                      child: const Text(
+                        'Shopping',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 60),
+                    child: TextButton(
+                      onPressed: () {},
+                      style: TextButton.styleFrom(
+                          foregroundColor: Colors.black,
+                          elevation: 2,
+                          backgroundColor: Colors.grey),
+                      child: const Text(
+                        'School',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 30),
+            Padding(
+              padding: const EdgeInsets.only(left: 20),
+              child: Align(
+                alignment: Alignment.topLeft,
+                child: FloatingActionButton.extended(
+                  onPressed: () {}, 
+                  label: const Text(
+                    'Add to Favorites!',
+                    style: TextStyle(color: Colors.black)
+                    ),
+                  backgroundColor: const Color.fromARGB(255, 190, 150, 199),
+                ),
+              ),
+            ),
+            const SizedBox(height: 30),
+            Padding(
+              padding: const EdgeInsets.only(right: 20),
+              child: Align(
+                alignment: Alignment.topRight,
+                child: FloatingActionButton(
+                  onPressed: _showOverlay,
+                  backgroundColor: Colors.purple,
+                  tooltip: 'Share',
+                  child: const Icon(Icons.share),
+                ),
+              ),
+            ),
+            const SizedBox(height: 10),   
+          ],
         ),
       ),
     );
