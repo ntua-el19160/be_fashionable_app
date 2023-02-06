@@ -305,7 +305,7 @@ class _CameraWidgetState extends State<CameraWidget> {
                           tooltip: 'Save Photo',
                           icon: const Icon(color: Colors.white, Icons.check),
                           onPressed: () {
-                            final details = LocationDetails(
+                            final details = DateDetails(
                             date: DateTime.now(),
                             completed: true,
                             );
