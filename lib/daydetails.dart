@@ -1,4 +1,4 @@
-import 'dart:html';
+//import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:paged_vertical_calendar/paged_vertical_calendar.dart';
@@ -126,7 +126,7 @@ class _DayDetailsState extends State<DayDetails> {
       });
     }
   }
-  
+
   void _goToCalendar() {
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => const CalendarWidget()));
@@ -134,7 +134,7 @@ class _DayDetailsState extends State<DayDetails> {
 
   @override
   Widget build(BuildContext context) {
-  final location = ModalRoute.of(context)!.settings.arguments as LocationDetails; 
+  final _dateDetails = ModalRoute.of(context)!.settings.arguments as DateDetails; 
 
   Color color ;
     if (overlayDisplayed) {
@@ -159,8 +159,8 @@ class _DayDetailsState extends State<DayDetails> {
                       color: Colors.white,
                       tooltip: 'Exit',
                     ))),
-          ]),
-            body: SingleChildScrollView(
+          ]),   
+      body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
             //const SizedBox(height: 600, width: 200),
@@ -196,7 +196,7 @@ class _DayDetailsState extends State<DayDetails> {
                 child: Align(
                 alignment: Alignment.topRight,
                 child: Text(
-                  DateFormat('dd/MM/yyyy').format(location.date),
+                  DateFormat('dd/MM/yyyy').format(_dateDetails.date),
                   style: const TextStyle(color: Colors.white, fontSize: 20.0),
                   ), 
                 ),
@@ -317,10 +317,23 @@ class _DayDetailsState extends State<DayDetails> {
               child: Align(
                 alignment: Alignment.topLeft,
                 child: FloatingActionButton.extended(
-                  onPressed: () {}, 
-                  label: const Text(
-                    'Add to Favorites!',
-                    style: TextStyle(color: Colors.black)
+                  onPressed: () {
+                    //add this photo to favorites
+                    //metefere sto calendar to context mazi me to updated date_details
+                    if (_dateDetails.favorite == true) {
+                    _dateDetails.favorite = false;
+                    }
+                    else if (_dateDetails.favorite == false) {
+                    _dateDetails.favorite = true;
+                    }
+                    else {
+                      _dateDetails.favorite == true;
+                    }
+                    Navigator.pop(context, _dateDetails);
+                  }, 
+                  label: Text(
+                    _dateDetails.favorite == true ? 'Remove from Favorites' : 'Add to Favorites',
+                    style: const TextStyle(color: Colors.black)
                     ),
                   backgroundColor: const Color.fromARGB(255, 190, 150, 199),
                 ),
@@ -347,10 +360,14 @@ class _DayDetailsState extends State<DayDetails> {
   }
 }
 
-class LocationDetails {
+class DateDetails {
   DateTime date;
+  bool? completed;
+  bool? favorite; 
 
-  LocationDetails ({
+  DateDetails ({
     required this.date,
+    this.completed,
+    this.favorite,
   });
 }
