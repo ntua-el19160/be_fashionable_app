@@ -2,8 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'profile.dart';
+import 'achievement.dart';
 import 'main.dart';
 import 'calendar.dart';
+import 'dart:math';
 import 'daydetails.dart';
 
 class CameraWidget extends StatefulWidget {
@@ -26,8 +28,15 @@ class _CameraWidgetState extends State<CameraWidget> {
   }
 
   void _goToCalendar() {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => const CalendarWidget()));
+    var rng = Random().nextInt(100);
+    if (rng % 3 == 0) {
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => const AchievementWidget()));
+    }
+    else {
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => const CalendarWidget()));
+    }
   }
 
   @override
@@ -305,7 +314,7 @@ class _CameraWidgetState extends State<CameraWidget> {
                           tooltip: 'Save Photo',
                           icon: const Icon(color: Colors.white, Icons.check),
                           onPressed: () {
-                            final details = LocationDetails(
+                            final details = DateDetails(
                             date: DateTime.now(),
                             completed: true,
                             );
