@@ -93,7 +93,12 @@ class _ProfileWidgetState extends State<ProfileWidget> {
   }
 
   void _removeOverlay(OverlayEntry entry) {
-    entry.remove();
+    if (overlayDisplayed) {
+      entry.remove();
+      setState(() {
+        overlayDisplayed = false;
+      });
+    }
   }
 
   final _usernameController = TextEditingController();

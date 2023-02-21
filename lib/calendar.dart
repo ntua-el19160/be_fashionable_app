@@ -21,7 +21,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
   bool overlayDisplayed = false;
 
   //kenh lista apo Datedetails
-  List<DateDetails> _details = <DateDetails>[];
+  final List<DateDetails> _details = <DateDetails>[];
   final Map<DateTime, Color> _colors = {};
 
   void _updateDetails(DateTime day) async {
@@ -81,17 +81,19 @@ class _CalendarWidgetState extends State<CalendarWidget> {
     
     overlayEntry = OverlayEntry(builder: (context) {
       return Positioned(
-        //left: MediaQuery.of(context).size.width * 0.6,
-        //right: MediaQuery.of(context).size.width,
-        left: 100,
-        right: 200,
+        left: MediaQuery.of(context).size.width * 0.6,
         top: AppBar().preferredSize.height,
         child: Material(
           color: const Color.fromARGB(255, 11, 2, 30),
           child: SingleChildScrollView(
             child:
-            Column(children: <Widget>[
-              //const Flexible(child: Text('Occasion', style:TextStyle(color: Colors.white))),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                child: Text('Occasion', style: TextStyle(color: Colors.white))
+              ),
               Row(
                 children: [
                   IconButton(
@@ -190,7 +192,10 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                   const Text('Running', style: TextStyle(color: Colors.white))
                 ],
               ),
-              // Items header
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                child: Text('Items', style: TextStyle(color: Colors.white))
+              ),
               Row(
                 children: [
                   IconButton(
@@ -330,6 +335,18 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                   ),
                   const Text('Favorites only', style: TextStyle(color: Colors.white))
                 ],
+              ),
+               Padding(
+                padding: const EdgeInsets.only(left: 80),
+                child: FloatingActionButton.extended(
+                  label: const Text('Apply Filter',
+                  style: TextStyle(color: Colors.black)),
+                  backgroundColor: Colors.grey,
+                  onPressed: () {
+                    _removeOverlay(overlayEntry);
+                    // Must also pass filters to calendar / render new state 
+                  },
+                ),
               )
             ]
           ),
@@ -341,9 +358,9 @@ class _CalendarWidgetState extends State<CalendarWidget> {
     overlayState?.insert(overlayEntry);
   }
 
-  void _removeOverlay() {
+  void _removeOverlay(OverlayEntry entry) {
     if (overlayDisplayed) {
-      overlayEntry.remove();
+      entry.remove();
       setState(() {
         overlayDisplayed = false;
       });
@@ -351,19 +368,19 @@ class _CalendarWidgetState extends State<CalendarWidget> {
   }
 
   void _goToProfile() {
-      _removeOverlay();
+    _removeOverlay(overlayEntry);
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => const ProfileWidget()));
   }
 
   void _goToMain() {
-      _removeOverlay();
+    _removeOverlay(overlayEntry);
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => const MyApp()));
   }
 
   void _goToPhoto() {
-      _removeOverlay();
+    _removeOverlay(overlayEntry);
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => const PhotoWidget()));
   }
@@ -373,7 +390,7 @@ Widget weekText(String text) {
       padding: const EdgeInsets.all(20.0),
       child: Text(
         text,
-        style: TextStyle(color: Colors.grey, fontSize: 10),
+        style: const TextStyle(color: Colors.grey, fontSize: 10),
       ),
     );
   }
@@ -421,7 +438,7 @@ Widget weekText(String text) {
                   )),
             ]),
         body: GestureDetector(
-          onTap: _removeOverlay,
+          onTap: () {_removeOverlay(overlayEntry);},
           child: PagedVerticalCalendar(
             monthBuilder: (context, month, year) {
               return Column(
