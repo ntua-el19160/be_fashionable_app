@@ -278,8 +278,11 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                     fontWeight: FontWeight.normal),
               ),
             ),
-            const SizedBox(height: 200.0, width: 100.0)
-            // Κάποιο γραφικό
+            //const SizedBox(height: 200.0, width: 100.0),
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: Image.asset('assets/images/fire.png', scale: 3)
+            )
           ],
         )
       )

@@ -80,14 +80,19 @@ class _HomeScreenState extends State<HomeScreen> {
                   fontWeight: FontWeight.bold),
             )),
             const Center(
-                child: Text(
-              "Time remaining for today's snap!",
-              style: TextStyle(
-                  fontSize: 30,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold),
-            ))
-            //Εικόνα-logo εφαρμογής
+                child: Text("Time remaining for today's snap!",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 30,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold
+                  ),
+              )
+            ),
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: Image.asset('assets/images/icon.png', scale: 3)
+            )
           ],
         ),
         backgroundColor: const Color.fromARGB(255, 11, 2, 30),
