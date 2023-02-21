@@ -41,15 +41,12 @@ class _DayDetailsState extends State<DayDetails> {
                   child: CircleAvatar(
                     radius: 30.0,
                     backgroundColor: Colors.purple,
-                    child: Material(
-                      color: Colors.purple,
-                      child: IconButton(
-                        onPressed: _removeOverlay,
+                    child: IconButton(
+                        onPressed: () {_removeOverlay();},
                         icon: const Icon(Icons.close),
                         color: Colors.white,
                         tooltip: 'Close',
                       )
-                    )
                   )
                 )
               ),

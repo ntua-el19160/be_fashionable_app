@@ -81,8 +81,10 @@ class _CalendarWidgetState extends State<CalendarWidget> {
     
     overlayEntry = OverlayEntry(builder: (context) {
       return Positioned(
+        width : MediaQuery.of(context).size.width * 0.4,
         left: MediaQuery.of(context).size.width * 0.6,
         top: AppBar().preferredSize.height,
+        bottom: 0,
         child: Material(
           color: const Color.fromARGB(255, 11, 2, 30),
           child: SingleChildScrollView(
@@ -343,7 +345,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                   style: TextStyle(color: Colors.black)),
                   backgroundColor: Colors.grey,
                   onPressed: () {
-                    _removeOverlay(overlayEntry);
+                    _removeOverlay();
                     // Must also pass filters to calendar / render new state 
                   },
                 ),
@@ -358,9 +360,9 @@ class _CalendarWidgetState extends State<CalendarWidget> {
     overlayState?.insert(overlayEntry);
   }
 
-  void _removeOverlay(OverlayEntry entry) {
+  void _removeOverlay() {
     if (overlayDisplayed) {
-      entry.remove();
+      overlayEntry.remove();
       setState(() {
         overlayDisplayed = false;
       });
@@ -368,19 +370,19 @@ class _CalendarWidgetState extends State<CalendarWidget> {
   }
 
   void _goToProfile() {
-    _removeOverlay(overlayEntry);
+    _removeOverlay();
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => const ProfileWidget()));
   }
 
   void _goToMain() {
-    _removeOverlay(overlayEntry);
+    _removeOverlay();
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => const MyApp()));
   }
 
   void _goToPhoto() {
-    _removeOverlay(overlayEntry);
+    _removeOverlay();
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => const PhotoWidget()));
   }
@@ -438,7 +440,7 @@ Widget weekText(String text) {
                   )),
             ]),
         body: GestureDetector(
-          onTap: () {_removeOverlay(overlayEntry);},
+          onTap: () {_removeOverlay();},
           child: PagedVerticalCalendar(
             monthBuilder: (context, month, year) {
               return Column(

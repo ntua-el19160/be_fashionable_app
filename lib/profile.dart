@@ -1,5 +1,5 @@
 // ignore: unused_import, avoid_web_libraries_in_flutter
-import 'dart:html';
+// import 'dart:html';
 import 'main.dart';
 import 'package:flutter/material.dart';
 import 'calendar.dart';
@@ -45,8 +45,8 @@ class _ProfileWidgetState extends State<ProfileWidget> {
     
     overlayEntry = OverlayEntry(builder: (context) {
       return Positioned(
-        //left: MediaQuery.of(context).size.width * 0.1,
         top: MediaQuery.of(context).size.height * 0.5,
+        bottom: 0,
         child: Material(
           color: const Color.fromARGB(255, 11, 2, 30),
           child: Column(
@@ -59,24 +59,21 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                   child: CircleAvatar(
                     radius: 30.0,
                     backgroundColor: Colors.purple,
-                    child: Material(
-                      color: Colors.purple,
-                      child: IconButton(
-                        onPressed: () {_removeOverlay(overlayEntry);},
+                    child: IconButton(
+                        onPressed: () {_removeOverlay();},
                         icon: const Icon(Icons.close),
                         color: Colors.white,
                         tooltip: 'Close',
                       )
-                    )
                   )
                 )
               ),
               const Padding(
                 padding: EdgeInsets.all(10.0)
               ),
-              Text('Το BeFashionable δημιουργήθηκε από:\nΑνδρέας Λεβής\nandlevis2001@gmail.com\n\nΘεοδώρα Βερναρδάκη\ntheodvern@gmail.com\n\nΧρυσούλα Πανηγυράκη\nchrysoulapan@gmail.com',
+              Text('Το BeFashionable δημιουργήθηκε από:\n\nΑνδρέας Λεβής\nandlevis2001@gmail.com\n\nΘεοδώρα Βερναρδάκη\ntheodvern@gmail.com\n\nΧρυσούλα Πανηγυράκη\nchrysoulapan@gmail.com',
                 style: TextStyle(
-                  fontSize: MediaQuery.of(context).size.height * 0.03,
+                  fontSize: MediaQuery.of(context).size.height * 0.02,
                   color: Colors.white
                 )
               ),
@@ -92,9 +89,9 @@ class _ProfileWidgetState extends State<ProfileWidget> {
     overlayState?.insert(overlayEntry);
   }
 
-  void _removeOverlay(OverlayEntry entry) {
+  void _removeOverlay() {
     if (overlayDisplayed) {
-      entry.remove();
+      overlayEntry.remove();
       setState(() {
         overlayDisplayed = false;
       });
@@ -116,7 +113,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
 
   void _goToMain() {
     if (overlayDisplayed) {
-      _removeOverlay(overlayEntry);
+      _removeOverlay();
     }
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => const MyApp()));
@@ -169,7 +166,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                   )),
             ]),
         body: GestureDetector(
-          onTap: () {_removeOverlay(overlayEntry);},
+          onTap: () {_removeOverlay();},
           child: SingleChildScrollView(
             child: Column(
           children: <Widget>[
