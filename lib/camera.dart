@@ -1,12 +1,14 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import 'profile.dart';
+//import 'profile.dart';
 import 'achievement.dart';
 import 'main.dart';
 import 'calendar.dart';
 import 'dart:math';
 import 'daydetails.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class CameraWidget extends StatefulWidget {
   const CameraWidget({Key? key}) : super(key: key);
@@ -17,26 +19,76 @@ class CameraWidget extends StatefulWidget {
 }
 
 class _CameraWidgetState extends State<CameraWidget> {
-  void _goToProfile() {
+  /*void _goToProfile() {
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => const ProfileWidget()));
-  }
+  }*/
+
+  String locationMessage = 'Add Location';
+  late String lat;
+  late String long;
 
   void _goToMain() {
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => const MyApp()));
+        .push(MaterialPageRoute(builder: (context) => const HomeScreen()));
+  }
+
+  Future<Position> _getCurrentLocation() async {
+    bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      return Future.error('Location services are disabled');
+    }
+
+    LocationPermission permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        return Future.error('Location permissions are denied');
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      return Future.error('Location permissions are permanently denied');
+    }
+
+    return await Geolocator.getCurrentPosition();
   }
 
   void _goToCalendar() {
     var rng = Random().nextInt(100);
     if (rng % 3 == 0) {
-      Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => const AchievementWidget()));
+      Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => const AchievementWidget()));
+    } else {
+      Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => const CalendarWidget()));
     }
-    else {
-      Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => const CalendarWidget()));
-    }
+  }
+
+  void _liveLocation() {
+    LocationSettings locationSettings = const LocationSettings(
+      accuracy: LocationAccuracy.high,
+      distanceFilter: 100,
+    );
+
+    Geolocator.getPositionStream(locationSettings: locationSettings)
+        .listen((Position position) {
+      lat = position.latitude.toString();
+      long = position.longitude.toString();
+
+      setState(() {
+        locationMessage = 'Latitude: $lat , Longitude: $long';
+      });
+    });
+  }
+
+  Future<void> _openMap(String lat, String long) async {
+    String googleURL =
+        'https://www.google.com/maps/search/?api=1&query=$lat,$long';
+
+    await canLaunchUrlString(googleURL)
+        ? await launchUrlString(googleURL)
+        : throw 'Could not launch $googleURL';
   }
 
   @override
@@ -67,10 +119,10 @@ class _CameraWidgetState extends State<CameraWidget> {
             const SizedBox(height: 500, width: 200),
             Row(mainAxisAlignment: MainAxisAlignment.start, children: [
               Padding(
-                padding: const EdgeInsets.only(left: 80),
+                padding: const EdgeInsets.only(left: 40),
                 child: FloatingActionButton.extended(
                   // ignore: prefer_const_constructors
-                  label: Text('Add Location',
+                  label: Text(locationMessage,
                       // ignore: prefer_const_constructors
                       style: TextStyle(color: Colors.black)),
                   backgroundColor: Colors.grey,
@@ -79,14 +131,26 @@ class _CameraWidgetState extends State<CameraWidget> {
                     Icons.add_location,
                     size: 24.0,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    _getCurrentLocation().then((value) {
+                      lat = '${value.latitude}';
+                      long = '${value.longitude}';
+                      setState(() {
+                        locationMessage = 'Latitude: $lat , Longitude: $long';
+                      });
+                      _liveLocation();
+                      _openMap(lat, long);
+                    });
+                  },
                 ),
               )
             ]),
+            const SizedBox(height: 20),
             const Padding(
                 padding: EdgeInsets.only(left: 80),
                 child: Text('Add Tags',
                     style: TextStyle(color: Colors.white, fontSize: 28))),
+            const SizedBox(height: 20),
             SizedBox(
               height: 50,
               child: ListView(
@@ -311,19 +375,21 @@ class _CameraWidgetState extends State<CameraWidget> {
                         radius: 30.0,
                         backgroundColor: Colors.purple,
                         child: IconButton(
-                          tooltip: 'Save Photo',
-                          icon: const Icon(color: Colors.white, Icons.check),
-                          onPressed: () {
-                            final details = DateDetails(
-                            date: DateTime.now(),
-                            completed: true,
-                            );
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => const CalendarWidget(),
-                                settings: RouteSettings(
-                                arguments: details),),);}
-                        ))),
+                            tooltip: 'Save Photo',
+                            icon: const Icon(color: Colors.white, Icons.check),
+                            onPressed: () {
+                              final details = DateDetails(
+                                date: DateTime.now(),
+                                completed: true,
+                              );
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const CalendarWidget(),
+                                  settings: RouteSettings(arguments: details),
+                                ),
+                              );
+                            }))),
               ],
             )
           ],
