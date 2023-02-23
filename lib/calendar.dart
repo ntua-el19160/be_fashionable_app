@@ -81,8 +81,8 @@ class _CalendarWidgetState extends State<CalendarWidget> {
     
     overlayEntry = OverlayEntry(builder: (context) {
       return Positioned(
-        width : MediaQuery.of(context).size.width * 0.4,
-        left: MediaQuery.of(context).size.width * 0.6,
+        width : MediaQuery.of(context).size.width * 0.5,
+        left: MediaQuery.of(context).size.width * 0.5,
         top: AppBar().preferredSize.height,
         bottom: 0,
         child: Material(
@@ -324,6 +324,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                   const Text('Coat', style: TextStyle(color: Colors.white))
                 ],
               ),
+              const Padding(padding: EdgeInsets.all(12)),
               Row(
                 children: [
                   IconButton(
@@ -338,18 +339,25 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                   const Text('Favorites only', style: TextStyle(color: Colors.white))
                 ],
               ),
-               Padding(
-                padding: const EdgeInsets.only(left: 80),
-                child: FloatingActionButton.extended(
-                  label: const Text('Apply Filter',
-                  style: TextStyle(color: Colors.black)),
-                  backgroundColor: Colors.grey,
-                  onPressed: () {
-                    _removeOverlay();
-                    // Must also pass filters to calendar / render new state 
-                  },
-                ),
-              )
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(12),
+                    child: FloatingActionButton.extended(
+                      extendedPadding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                      tooltip: 'Apply selected filters',
+                      label: const Text('Apply Filter',
+                      style: TextStyle(color: Colors.black)),
+                      backgroundColor: const Color.fromARGB(0xFF, 0xD0, 0xBC, 0xFF),
+                      onPressed: () {
+                        _removeOverlay();
+                        // Must also pass filters to calendar / render new state 
+                      },
+                    ),
+                  )
+                ],
+              )  
             ]
           ),
         ),        
@@ -440,7 +448,7 @@ Widget weekText(String text) {
                   )),
             ]),
         body: GestureDetector(
-          onTap: () {_removeOverlay();},
+          onTap: _removeOverlay,
           child: PagedVerticalCalendar(
             monthBuilder: (context, month, year) {
               return Column(
@@ -513,7 +521,8 @@ Widget weekText(String text) {
                   padding: const EdgeInsets.only(right: 40),
                   child: CircleAvatar(
                       radius: 30.0,
-                      backgroundColor: Colors.purple,
+                      // backgroundColor: Colors.purple,
+                      backgroundColor: const Color.fromARGB(0xFF, 0x67, 0x50, 0xA4),
                       child: IconButton(
                         tooltip: 'Calendar',
                         icon: const Icon(color: Colors.white, Icons.today),
@@ -523,7 +532,8 @@ Widget weekText(String text) {
                   padding: const EdgeInsets.only(right: 40),
                   child: CircleAvatar(
                       radius: 30.0,
-                      backgroundColor: Colors.purple,
+                      // backgroundColor: Colors.purple,
+                      backgroundColor: const Color.fromARGB(0xFF, 0x67, 0x50, 0xA4),
                       child: IconButton(
                         tooltip: 'Profile',
                         icon: const Icon(
@@ -532,7 +542,8 @@ Widget weekText(String text) {
                       ))),
               CircleAvatar(
                   radius: 30.0,
-                  backgroundColor: Colors.purple,
+                  // backgroundColor: Colors.purple,
+                  backgroundColor: const Color.fromARGB(0xFF, 0x67, 0x50, 0xA4),
                   child: IconButton(
                     tooltip: 'Camera',
                     icon: const Icon(

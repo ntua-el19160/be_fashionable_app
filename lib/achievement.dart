@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'calendar.dart';
 
 class AchievementWidget extends StatefulWidget {
@@ -12,12 +13,18 @@ class AchievementWidget extends StatefulWidget {
 class _AchievementWidgetState extends State<AchievementWidget> {
   
   void _goToCalendar() {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => const CalendarWidget()));
+    final details = ModalRoute.of(context)!.settings.arguments;
+    Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => const CalendarWidget(),
+            settings: RouteSettings(arguments: details),
+           ),
+        );
   }
 
   @override
   Widget build(BuildContext context) {
+    HapticFeedback.vibrate();
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 11, 2, 30),
       appBar: AppBar(backgroundColor: Colors.transparent,
@@ -35,12 +42,35 @@ class _AchievementWidgetState extends State<AchievementWidget> {
                     ))),
           ]),
       body: Column(
-        children : const <Widget>[
+        mainAxisAlignment: MainAxisAlignment.center,
+        children : <Widget>[
           // Κάποιο γραφιστικό
-          Text('CONGRATULATIONS'),
-          Text('You unlocked x Achievement')
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Padding(
+                padding: EdgeInsets.all(20),
+                child: Text('CONGRATULATIONS', style: TextStyle(
+                  color: Colors.white
+                  )
+                ),
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Padding(
+                padding: EdgeInsets.all(20),
+                child: Text('You unlocked x Achievement', style: TextStyle(
+                  color: Colors.white
+                  )
+                ),
+              )
+            ],
+          )
         ]
-      ),
+      )
     );
   }
 }

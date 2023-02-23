@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'achievement.dart';
 import 'main.dart';
 import 'calendar.dart';
-import 'dart:math';
+// import 'dart:math';
 import 'daydetails.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:url_launcher/url_launcher_string.dart';
@@ -54,14 +54,27 @@ class _CameraWidgetState extends State<CameraWidget> {
     return await Geolocator.getCurrentPosition();
   }
 
-  void _goToCalendar() {
-    var rng = Random().nextInt(100);
+  void _goToNext() {
+    final details = DateDetails(
+      date: DateTime.now(),
+      completed: true,
+    );
+    //var rng = Random().nextInt(100);
+    var rng = 3;
     if (rng % 3 == 0) {
       Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => const AchievementWidget()));
+        MaterialPageRoute(
+          builder: (context) => const AchievementWidget(),
+          settings: RouteSettings(arguments: details),
+        )
+      );
     } else {
-      Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => const CalendarWidget()));
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => const CalendarWidget(),
+            settings: RouteSettings(arguments: details),
+           ),
+        );
     }
   }
 
@@ -377,6 +390,8 @@ class _CameraWidgetState extends State<CameraWidget> {
                         child: IconButton(
                             tooltip: 'Save Photo',
                             icon: const Icon(color: Colors.white, Icons.check),
+                            onPressed:_goToNext,
+                            /*
                             onPressed: () {
                               final details = DateDetails(
                                 date: DateTime.now(),
@@ -389,10 +404,11 @@ class _CameraWidgetState extends State<CameraWidget> {
                                   settings: RouteSettings(arguments: details),
                                 ),
                               );
-                            }))),
+                            }
+                            */
+                            ))),
               ],
-            ),
-            const SizedBox(height: 20)
+            )
           ],
         ),
       ),
