@@ -16,7 +16,7 @@ class _AchievementWidgetState extends State<AchievementWidget> {
     final details = ModalRoute.of(context)!.settings.arguments;
     Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => const CalendarWidget(),
+            builder: (context) => const CalendarWidget(routeName: 'achievements'),
             settings: RouteSettings(arguments: details),
            ),
         );
