@@ -9,7 +9,9 @@ import 'package:intl/intl.dart';
 import 'daydetails.dart';
 
 class CalendarWidget extends StatefulWidget {
-  const CalendarWidget({Key? key}) : super(key: key);
+  //const CalendarWidget({Key? key}) : super(key: key);
+  final String routeName;
+  const CalendarWidget({super.key, required this.routeName});
 
   @override
   // ignore: library_private_types_in_public_api
@@ -19,10 +21,21 @@ class CalendarWidget extends StatefulWidget {
 class _CalendarWidgetState extends State<CalendarWidget> {
   late OverlayEntry overlayEntry;
   bool overlayDisplayed = false;
+  // ignore: non_constant_identifier_names
+  bool FromCamera = false;
 
   //kenh lista apo Datedetails
   final List<DateDetails> _details = <DateDetails>[];
   final Map<DateTime, Color> _colors = {};
+
+  @override
+    void initState() {
+      super.initState();
+      if ((widget.routeName == 'achievements') || (widget.routeName == 'camera')) {
+        FromCamera = true;
+          debugPrint('Route camera');
+      }
+    }
 
   void _updateDetails(DateTime day) async {
     bool favorite = false;
