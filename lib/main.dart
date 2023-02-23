@@ -56,7 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void _goToCalendar() {
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => const CalendarWidget()));
+        .push(MaterialPageRoute(builder: (context) => const CalendarWidget(routeName: 'main')));
   }
 
   void _goToPhoto() {
