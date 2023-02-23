@@ -76,7 +76,7 @@ class _CameraWidgetState extends State<CameraWidget> {
     } else {
       Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (context) => const CalendarWidget(),
+          builder: (context) => const CalendarWidget(routeName: 'camera'),
           settings: RouteSettings(arguments: details),
         ),
       );
