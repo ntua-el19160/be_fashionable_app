@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'camera.dart';
 import 'main.dart';
@@ -45,6 +47,12 @@ class _PhotoWidgetState extends State<PhotoWidget> {
   void dispose() {
     controller.dispose();
     super.dispose();
+  }
+
+  void takepic() async {
+    pictureFile = await controller.takePicture();
+    setState(() {});
+    _goToCamera();
   }
 
   @override
@@ -103,21 +111,26 @@ class _PhotoWidgetState extends State<PhotoWidget> {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ElevatedButton(
-              onPressed: () async {
-                pictureFile = await controller.takePicture();
-                setState(() {});
-              },
-              child: const Text('Capture Image'),
-            ),
-          ),
-          if (pictureFile != null)
+          Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+            CircleAvatar(
+                backgroundColor: Colors.white,
+                child: IconButton(
+                  onPressed: takepic,
+                  /*() async {
+                    pictureFile = await controller.takePicture();
+                    setState(() {});
+                    _goToCamera();
+                  },*/
+                  icon: const Icon(Icons.radio_button_on),
+                  color: Colors.white,
+                  tooltip: 'Take Photo',
+                ))
+          ])
+          /*if (pictureFile != null)
             Image.network(
               pictureFile!.path,
               height: 200,
-            )
+            )*/
         ],
       ),
     );

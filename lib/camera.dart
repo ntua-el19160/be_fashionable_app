@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:camera/camera.dart';
 //import 'profile.dart';
 import 'achievement.dart';
 import 'main.dart';
@@ -62,19 +63,17 @@ class _CameraWidgetState extends State<CameraWidget> {
     //var rng = Random().nextInt(100);
     var rng = 3;
     if (rng % 3 == 0) {
+      Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => const AchievementWidget(),
+        settings: RouteSettings(arguments: details),
+      ));
+    } else {
       Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (context) => const AchievementWidget(),
+          builder: (context) => const CalendarWidget(),
           settings: RouteSettings(arguments: details),
-        )
+        ),
       );
-    } else {
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => const CalendarWidget(),
-            settings: RouteSettings(arguments: details),
-           ),
-        );
     }
   }
 
@@ -130,6 +129,11 @@ class _CameraWidgetState extends State<CameraWidget> {
         child: Column(
           children: <Widget>[
             const SizedBox(height: 500, width: 200),
+            /*if (pictureFile != null)
+            Image.network(
+              pictureFile!.path,
+              height: 200,
+            )*/
             Row(mainAxisAlignment: MainAxisAlignment.start, children: [
               Padding(
                 padding: const EdgeInsets.only(left: 40),
@@ -388,10 +392,10 @@ class _CameraWidgetState extends State<CameraWidget> {
                         radius: 30.0,
                         backgroundColor: Colors.purple,
                         child: IconButton(
-                            tooltip: 'Save Photo',
-                            icon: const Icon(color: Colors.white, Icons.check),
-                            onPressed:_goToNext,
-                            /*
+                          tooltip: 'Save Photo',
+                          icon: const Icon(color: Colors.white, Icons.check),
+                          onPressed: _goToNext,
+                          /*
                             onPressed: () {
                               final details = DateDetails(
                                 date: DateTime.now(),
@@ -406,7 +410,7 @@ class _CameraWidgetState extends State<CameraWidget> {
                               );
                             }
                             */
-                            ))),
+                        ))),
               ],
             )
           ],
