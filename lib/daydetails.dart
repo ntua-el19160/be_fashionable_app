@@ -126,7 +126,7 @@ class _DayDetailsState extends State<DayDetails> {
 
   void _goToCalendar() {
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => const CalendarWidget()));
+        .push(MaterialPageRoute(builder: (context) => const CalendarWidget(routeName: 'daydetails')));
   }
 
   @override
