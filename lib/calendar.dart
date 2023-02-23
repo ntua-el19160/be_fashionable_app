@@ -463,22 +463,19 @@ Widget weekText(String text) {
                     ),
                   ),
 
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: width *0.04),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  Row(
+                      //mainAxisAlignment: MainAxisAlignment.center,
+                      //crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        weekText('Mon'),
-                        weekText('Tue'),
-                        weekText('Wed'),
-                        weekText('Thu'),
-                        weekText('Fri'),
-                        weekText('Sat'),
-                        weekText('Sun'),
+                        Expanded(child: weekText("Mo")),
+                        Expanded(child: weekText("Tu")),
+                        Expanded(child: weekText("We")),
+                        Expanded(child: weekText("Th")),
+                        Expanded(child: weekText("Fri")),
+                        Expanded(child: weekText("Sat")),
+                        Expanded(child: weekText("Su")),
                       ],
                     ),
-                  ),
                 ],
               );
             },
@@ -514,6 +511,18 @@ Widget weekText(String text) {
             }
           ),
         ),
+        /*
+          dayBuilder: (context, date) => Container(
+            alignment: Alignment.center,
+            /*decoration: BoxDecoration(
+              color: const Color.fromARGB(255, 169, 141, 174), 
+            ),*/
+            child: Text(
+              date.day.toString(),
+              style: TextStyle(color: Colors.white),
+            ),
+
+          ),*/
         bottomNavigationBar: BottomAppBar(
             color: Colors.transparent,
             child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
