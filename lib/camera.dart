@@ -391,7 +391,8 @@ class _CameraWidgetState extends State<CameraWidget> {
                               );
                             }))),
               ],
-            )
+            ),
+            const SizedBox(height: 20)
           ],
         ),
       ),
