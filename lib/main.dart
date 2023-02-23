@@ -3,6 +3,7 @@ import 'dart:async';
 import 'profile.dart';
 import 'calendar.dart';
 import 'photo.dart';
+import 'package:camera/camera.dart';
 
 void main() {
   runApp(const MyApp());
@@ -80,19 +81,17 @@ class _HomeScreenState extends State<HomeScreen> {
                   fontWeight: FontWeight.bold),
             )),
             const Center(
-                child: Text("Time remaining for today's snap!",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 30,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold
-                  ),
-              )
-            ),
+                child: Text(
+              "Time remaining for today's snap!",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontSize: 30,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold),
+            )),
             Padding(
-              padding: const EdgeInsets.all(20),
-              child: Image.asset('assets/images/icon.png', scale: 3)
-            )
+                padding: const EdgeInsets.all(20),
+                child: Image.asset('assets/images/icon.png', scale: 3))
           ],
         ),
         backgroundColor: const Color.fromARGB(255, 11, 2, 30),
@@ -127,7 +126,18 @@ class _HomeScreenState extends State<HomeScreen> {
                     tooltip: 'Camera',
                     icon: const Icon(
                         color: Colors.white, Icons.camera_alt_outlined),
-                    onPressed: _goToPhoto,
+                    onPressed: () async {
+                      await availableCameras().then(
+                        (value) => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => PhotoWidget(
+                              cameras: value,
+                            ),
+                          ),
+                        ),
+                      );
+                    },
                   )),
             ])));
   }

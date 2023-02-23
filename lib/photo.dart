@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'camera.dart';
 import 'main.dart';
+import 'package:camera/camera.dart';
 
 class PhotoWidget extends StatefulWidget {
-  const PhotoWidget({Key? key}) : super(key: key);
+  final List<CameraDescription>? cameras;
+  const PhotoWidget({this.cameras, Key? key}) : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
@@ -11,6 +13,9 @@ class PhotoWidget extends StatefulWidget {
 }
 
 class _PhotoWidgetState extends State<PhotoWidget> {
+  late CameraController controller;
+  XFile? pictureFile;
+
   void _goToMain() {
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => const MyApp()));
@@ -22,7 +27,35 @@ class _PhotoWidgetState extends State<PhotoWidget> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    controller = CameraController(
+      widget.cameras![0],
+      ResolutionPreset.max,
+    );
+    controller.initialize().then((_) {
+      if (!mounted) {
+        return;
+      }
+      setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    if (!controller.value.isInitialized) {
+      return const SizedBox(
+        child: Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+    }
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 11, 2, 30),
       appBar: AppBar(backgroundColor: Colors.transparent,
@@ -40,7 +73,7 @@ class _PhotoWidgetState extends State<PhotoWidget> {
                     radius: 30.0,
                     backgroundColor: Colors.purple,
                     child: IconButton(
-                      onPressed: _goToMain,
+                      onPressed: _goToCamera,
                       icon: const Icon(Icons.close),
                       color: Colors.white,
                       tooltip: 'Exit',
@@ -49,7 +82,7 @@ class _PhotoWidgetState extends State<PhotoWidget> {
       body: Column(
         // ignore: prefer_const_literals_to_create_immutables
         children: <Widget>[
-          const SizedBox(width: 200, height: 600),
+          /*const SizedBox(width: 200, height: 600),
           Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
             CircleAvatar(
                 backgroundColor: Colors.white,
@@ -59,7 +92,32 @@ class _PhotoWidgetState extends State<PhotoWidget> {
                   color: Colors.white,
                   tooltip: 'Take Photo',
                 ))
-          ])
+          ])*/
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Center(
+              child: SizedBox(
+                height: 400,
+                width: 400,
+                child: CameraPreview(controller),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ElevatedButton(
+              onPressed: () async {
+                pictureFile = await controller.takePicture();
+                setState(() {});
+              },
+              child: const Text('Capture Image'),
+            ),
+          ),
+          if (pictureFile != null)
+            Image.network(
+              pictureFile!.path,
+              height: 200,
+            )
         ],
       ),
     );
