@@ -23,9 +23,9 @@ class _PhotoWidgetState extends State<PhotoWidget> {
         .push(MaterialPageRoute(builder: (context) => const MyApp()));
   }
 
-  void _goToCamera() {
+  void _goToCamera(XFile photo) {
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => const CameraWidget()));
+        .push(MaterialPageRoute(builder: (_) => CameraWidget(image: photo)));
   }
 
   @override
@@ -49,10 +49,9 @@ class _PhotoWidgetState extends State<PhotoWidget> {
     super.dispose();
   }
 
-  void takepic() async {
-    pictureFile = await controller.takePicture();
-    setState(() {});
-    _goToCamera();
+  void _takePicture() async {
+    final pictureFile = await controller.takePicture();
+    _goToCamera(pictureFile);
   }
 
   @override
@@ -81,7 +80,7 @@ class _PhotoWidgetState extends State<PhotoWidget> {
                     radius: 30.0,
                     backgroundColor: Colors.purple,
                     child: IconButton(
-                      onPressed: _goToCamera,
+                      onPressed: _goToMain,
                       icon: const Icon(Icons.close),
                       color: Colors.white,
                       tooltip: 'Exit',
@@ -115,12 +114,7 @@ class _PhotoWidgetState extends State<PhotoWidget> {
             CircleAvatar(
                 backgroundColor: Colors.white,
                 child: IconButton(
-                  onPressed: takepic,
-                  /*() async {
-                    pictureFile = await controller.takePicture();
-                    setState(() {});
-                    _goToCamera();
-                  },*/
+                  onPressed: _takePicture,
                   icon: const Icon(Icons.radio_button_on),
                   color: Colors.white,
                   tooltip: 'Take Photo',

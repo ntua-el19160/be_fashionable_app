@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import 'package:camera/camera.dart';
-//import 'profile.dart';
+// import 'package:camera/camera.dart';
+// import 'profile.dart';
 import 'achievement.dart';
 import 'main.dart';
 import 'calendar.dart';
@@ -10,9 +10,15 @@ import 'calendar.dart';
 import 'daydetails.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:url_launcher/url_launcher_string.dart';
+import 'dart:io';
 
 class CameraWidget extends StatefulWidget {
-  const CameraWidget({Key? key}) : super(key: key);
+  const CameraWidget({
+    Key? key,
+    required this.image,
+    }) : super(key: key);
+  
+  final image;
 
   @override
   // ignore: library_private_types_in_public_api
@@ -128,12 +134,11 @@ class _CameraWidgetState extends State<CameraWidget> {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            const SizedBox(height: 500, width: 200),
-            /*if (pictureFile != null)
             Image.network(
-              pictureFile!.path,
-              height: 200,
-            )*/
+              widget.image.path, 
+              height: MediaQuery.of(context).size.height * 0.4, 
+              width:MediaQuery.of(context).size.width * 0.8
+            ),
             Row(mainAxisAlignment: MainAxisAlignment.start, children: [
               Padding(
                 padding: const EdgeInsets.only(left: 40),
