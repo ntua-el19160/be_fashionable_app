@@ -108,7 +108,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
 
   void _goToCalendar() {
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => const CalendarWidget()));
+        .push(MaterialPageRoute(builder: (context) => const CalendarWidget(routeName: 'profile')));
   }
 
   void _goToMain() {
