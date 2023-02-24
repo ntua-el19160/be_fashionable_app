@@ -23,6 +23,7 @@ class CalendarWidget extends StatefulWidget {
 class _CalendarWidgetState extends State<CalendarWidget> {
   late OverlayEntry overlayEntry;
   bool overlayDisplayed = false;
+  bool applyFilters = false;
   // ignore: non_constant_identifier_names
   bool FromCamera = false;
 
@@ -90,6 +91,8 @@ class _CalendarWidgetState extends State<CalendarWidget> {
   void _showOverlay() {
     OverlayState? overlayState = Overlay.of(context);
     
+    applyFilters = false;
+    
     setState(() {
       overlayDisplayed = true;
     });
@@ -116,8 +119,9 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                   IconButton(
                     color: Colors.white, 
                     onPressed: () {
-                      _filters[1].selected = !_filters[1].selected;
-                      setState(() {});          
+                      setState(() {_filters[1].selected = !_filters[1].selected; applyFilters = true;});
+                      _removeOverlay();
+                      _showOverlay();          
                     }, 
                     icon: _filters[1].selected ? const Icon(Icons.check_box_outlined) : const Icon(Icons.check_box_outline_blank_outlined),
                     tooltip:  _filters[1].selected ? 'Unselect filter' : 'Select filter',
@@ -130,8 +134,9 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                   IconButton(
                     color: Colors.white, 
                     onPressed: () {
-                      _filters[2].selected = !_filters[2].selected;
-                      setState(() {});          
+                      setState(() {_filters[2].selected = !_filters[2].selected; applyFilters = true;});
+                      _removeOverlay();
+                      _showOverlay();          
                     }, 
                     icon: _filters[2].selected ? const Icon(Icons.check_box_outlined) : const Icon(Icons.check_box_outline_blank_outlined),
                     tooltip:  _filters[2].selected ? 'Unselect filter' : 'Select filter',
@@ -144,8 +149,9 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                   IconButton(
                     color: Colors.white, 
                     onPressed: () {
-                      _filters[3].selected = !_filters[3].selected;
-                      setState(() {});          
+                      setState(() {_filters[3].selected = !_filters[3].selected; applyFilters = true;});
+                      _removeOverlay();
+                      _showOverlay();          
                     }, 
                     icon: _filters[3].selected ? const Icon(Icons.check_box_outlined) : const Icon(Icons.check_box_outline_blank_outlined),
                     tooltip:  _filters[3].selected ? 'Unselect filter' : 'Select filter',
@@ -158,8 +164,9 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                   IconButton(
                     color: Colors.white, 
                     onPressed: () {
-                      _filters[4].selected = !_filters[4].selected;
-                      setState(() {});          
+                      setState(() {_filters[4].selected = !_filters[4].selected; applyFilters = true;});
+                      _removeOverlay();
+                      _showOverlay();          
                     }, 
                     icon: _filters[4].selected ? const Icon(Icons.check_box_outlined) : const Icon(Icons.check_box_outline_blank_outlined),
                     tooltip:  _filters[4].selected ? 'Unselect filter' : 'Select filter',
@@ -172,8 +179,9 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                   IconButton(
                     color: Colors.white, 
                     onPressed: () {
-                      _filters[5].selected = !_filters[5].selected;
-                      setState(() {});          
+                      setState(() {_filters[5].selected = !_filters[5].selected; applyFilters = true;});
+                      _removeOverlay();
+                      _showOverlay();          
                     }, 
                     icon: _filters[5].selected ? const Icon(Icons.check_box_outlined) : const Icon(Icons.check_box_outline_blank_outlined),
                     tooltip:  _filters[5].selected ? 'Unselect filter' : 'Select filter',
@@ -186,8 +194,9 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                   IconButton(
                     color: Colors.white, 
                     onPressed: () {
-                      _filters[6].selected = !_filters[6].selected;
-                      setState(() {});          
+                      setState(() {_filters[6].selected = !_filters[6].selected; applyFilters = true;});
+                      _removeOverlay();
+                      _showOverlay();          
                     }, 
                     icon: _filters[6].selected ? const Icon(Icons.check_box_outlined) : const Icon(Icons.check_box_outline_blank_outlined),
                     tooltip:  _filters[6].selected ? 'Unselect filter' : 'Select filter',
@@ -200,8 +209,9 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                   IconButton(
                     color: Colors.white, 
                     onPressed: () {
-                      _filters[7].selected = !_filters[7].selected;
-                      setState(() {});          
+                      setState(() {_filters[7].selected = !_filters[7].selected; applyFilters = true;});
+                      _removeOverlay();
+                      _showOverlay();          
                     }, 
                     icon: _filters[7].selected ? const Icon(Icons.check_box_outlined) : const Icon(Icons.check_box_outline_blank_outlined),
                     tooltip:  _filters[7].selected ? 'Unselect filter' : 'Select filter',
@@ -218,8 +228,9 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                   IconButton(
                     color: Colors.white, 
                     onPressed: () {
-                      _filters[9].selected = !_filters[9].selected;
-                      setState(() {});          
+                      setState(() {_filters[9].selected = !_filters[9].selected; applyFilters = true;});
+                      _removeOverlay();
+                      _showOverlay();          
                     }, 
                     icon: _filters[9].selected ? const Icon(Icons.check_box_outlined) : const Icon(Icons.check_box_outline_blank_outlined),
                     tooltip:  _filters[9].selected ? 'Unselect filter' : 'Select filter',
@@ -232,8 +243,9 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                   IconButton(
                     color: Colors.white, 
                     onPressed: () {
-                      _filters[10].selected = !_filters[10].selected;
-                      setState(() {});          
+                      setState(() {_filters[10].selected = !_filters[10].selected; applyFilters = true;});
+                      _removeOverlay();
+                      _showOverlay();          
                     }, 
                     icon: _filters[10].selected ? const Icon(Icons.check_box_outlined) : const Icon(Icons.check_box_outline_blank_outlined),
                     tooltip:  _filters[10].selected ? 'Unselect filter' : 'Select filter',
@@ -246,8 +258,9 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                   IconButton(
                     color: Colors.white, 
                     onPressed: () {
-                      _filters[11].selected = !_filters[11].selected;
-                      setState(() {});          
+                      setState(() {_filters[11].selected = !_filters[11].selected; applyFilters = true;});
+                      _removeOverlay();
+                      _showOverlay();          
                     }, 
                     icon: _filters[11].selected ? const Icon(Icons.check_box_outlined) : const Icon(Icons.check_box_outline_blank_outlined),
                     tooltip:  _filters[11].selected ? 'Unselect filter' : 'Select filter',
@@ -260,8 +273,9 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                   IconButton(
                     color: Colors.white, 
                     onPressed: () {
-                      _filters[12].selected = !_filters[12].selected;
-                      setState(() {});          
+                      setState(() {_filters[12].selected = !_filters[12].selected; applyFilters = true;});
+                      _removeOverlay();
+                      _showOverlay();          
                     }, 
                     icon: _filters[12].selected ? const Icon(Icons.check_box_outlined) : const Icon(Icons.check_box_outline_blank_outlined),
                     tooltip:  _filters[12].selected ? 'Unselect filter' : 'Select filter',
@@ -274,8 +288,9 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                   IconButton(
                     color: Colors.white, 
                     onPressed: () {
-                      _filters[13].selected = !_filters[13].selected;
-                      setState(() {});          
+                      setState(() {_filters[13].selected = !_filters[13].selected; applyFilters = true;});
+                      _removeOverlay();
+                      _showOverlay();          
                     }, 
                     icon: _filters[13].selected ? const Icon(Icons.check_box_outlined) : const Icon(Icons.check_box_outline_blank_outlined),
                     tooltip:  _filters[13].selected ? 'Unselect filter' : 'Select filter',
@@ -288,8 +303,9 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                   IconButton(
                     color: Colors.white, 
                     onPressed: () {
-                      _filters[14].selected = !_filters[14].selected;
-                      setState(() {});          
+                      setState(() {_filters[14].selected = !_filters[14].selected; applyFilters = true;});
+                      _removeOverlay();
+                      _showOverlay();          
                     }, 
                     icon: _filters[14].selected ? const Icon(Icons.check_box_outlined) : const Icon(Icons.check_box_outline_blank_outlined),
                     tooltip:  _filters[14].selected ? 'Unselect filter' : 'Select filter',
@@ -302,8 +318,9 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                   IconButton(
                     color: Colors.white, 
                     onPressed: () {
-                      _filters[15].selected = !_filters[15].selected;
-                      setState(() {});          
+                      setState(() {_filters[15].selected = !_filters[15].selected; applyFilters = true;});
+                      _removeOverlay();
+                      _showOverlay();          
                     }, 
                     icon: _filters[15].selected ? const Icon(Icons.check_box_outlined) : const Icon(Icons.check_box_outline_blank_outlined),
                     tooltip:  _filters[15].selected ? 'Unselect filter' : 'Select filter',
@@ -316,8 +333,9 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                   IconButton(
                     color: Colors.white, 
                     onPressed: () {
-                      _filters[16].selected = !_filters[16].selected;
-                      setState(() {});          
+                      setState(() {_filters[16].selected = !_filters[16].selected; applyFilters = true;});
+                      _removeOverlay();
+                      _showOverlay();          
                     }, 
                     icon: _filters[16].selected ? const Icon(Icons.check_box_outlined) : const Icon(Icons.check_box_outline_blank_outlined),
                     tooltip:  _filters[16].selected ? 'Unselect filter' : 'Select filter',
@@ -330,8 +348,9 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                   IconButton(
                     color: Colors.white, 
                     onPressed: () {
-                      _filters[17].selected = !_filters[17].selected;
-                      setState(() {});          
+                      setState(() {_filters[17].selected = !_filters[17].selected; applyFilters = true;});
+                      _removeOverlay();
+                      _showOverlay();          
                     }, 
                     icon: _filters[17].selected ? const Icon(Icons.check_box_outlined) : const Icon(Icons.check_box_outline_blank_outlined),
                     tooltip:  _filters[17].selected ? 'Unselect filter' : 'Select filter',
@@ -345,8 +364,9 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                   IconButton(
                     color: Colors.white, 
                     onPressed: () {
-                      _filters[18].selected = !_filters[18].selected;
-                      setState(() {});          
+                      setState(() {_filters[18].selected = !_filters[18].selected; applyFilters = true;});
+                      _removeOverlay();
+                      _showOverlay();          
                     }, 
                     icon: _filters[18].selected ? const Icon(Icons.check_box_outlined) : const Icon(Icons.check_box_outline_blank_outlined),
                     tooltip:  _filters[18].selected ? 'Unselect filter' : 'Select filter',
@@ -366,6 +386,10 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                       style: TextStyle(color: Colors.black)),
                       backgroundColor: const Color.fromARGB(0xFF, 0xD0, 0xBC, 0xFF),
                       onPressed: () {
+                        for (var i = 0; i < 19; i++ ) {
+                          _filters[i].initiallySelected = _filters[i].selected;
+                        }
+                        applyFilters = true;
                         _removeOverlay();
                         // Must also pass filters to calendar / render new state 
                       },
@@ -385,6 +409,11 @@ class _CalendarWidgetState extends State<CalendarWidget> {
 
   void _removeOverlay() {
     if (overlayDisplayed) {
+      if (!applyFilters) {
+        for (var i = 0; i < 19; i++ ) {
+          _filters[i].selected = _filters[i].initiallySelected;
+        }
+      }
       overlayEntry.remove();
       setState(() {
         overlayDisplayed = false;
@@ -596,10 +625,12 @@ class Filter {
   int? id;
   String title;
   bool selected;
+  bool initiallySelected;
 
   Filter(
       {this.id,
       required this.title,
-      this.selected = false}
+      this.selected = false,
+      this.initiallySelected = false}
   );
 }
