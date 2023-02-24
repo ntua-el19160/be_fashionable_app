@@ -7,6 +7,8 @@ import 'main.dart';
 import 'photo.dart';
 import 'package:intl/intl.dart';
 import 'daydetails.dart';
+import 'package:camera/camera.dart';
+
 
 class CalendarWidget extends StatefulWidget {
   //const CalendarWidget({Key? key}) : super(key: key);
@@ -402,10 +404,18 @@ class _CalendarWidgetState extends State<CalendarWidget> {
         .push(MaterialPageRoute(builder: (context) => const MyApp()));
   }
 
-  void _goToPhoto() {
+  void _goToPhoto() async {
     _removeOverlay();
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => const PhotoWidget()));
+    await availableCameras().then(
+      (value) => Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => PhotoWidget(
+            cameras: value,
+          ),
+        ),
+      ),
+    );
   }
 
 Widget weekText(String text) {
@@ -444,7 +454,7 @@ Widget weekText(String text) {
             automaticallyImplyLeading: false,
             leading: CircleAvatar(
                 radius: 30.0,
-                backgroundColor: Colors.purple,
+                backgroundColor: const Color.fromARGB(0xFF, 0x67, 0x50, 0xA4),
                 child: IconButton(
                   onPressed: _goToMain,
                   icon: const Icon(Icons.arrow_back),
@@ -520,6 +530,7 @@ Widget weekText(String text) {
               );
             },
             onDayPressed: (day) {
+              _removeOverlay();
               _updateDetails(day);
             }
           ),

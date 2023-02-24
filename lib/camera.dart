@@ -10,7 +10,7 @@ import 'calendar.dart';
 import 'daydetails.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:url_launcher/url_launcher_string.dart';
-import 'dart:io';
+// import 'dart:io';
 
 class CameraWidget extends StatefulWidget {
   const CameraWidget({
@@ -124,7 +124,7 @@ class _CameraWidgetState extends State<CameraWidget> {
           automaticallyImplyLeading: false,
           leading: CircleAvatar(
               radius: 30.0,
-              backgroundColor: Colors.purple,
+              backgroundColor: const Color.fromARGB(0xFF, 0x67, 0x50, 0xA4),
               child: IconButton(
                 onPressed: _goToMain,
                 icon: const Icon(Icons.arrow_back),
@@ -136,8 +136,8 @@ class _CameraWidgetState extends State<CameraWidget> {
           children: <Widget>[
             Image.network(
               widget.image.path, 
-              height: MediaQuery.of(context).size.height * 0.4, 
-              width:MediaQuery.of(context).size.width * 0.8
+              // height: MediaQuery.of(context).size.height * 0.4, 
+              // width:MediaQuery.of(context).size.width * 0.8
             ),
             Row(mainAxisAlignment: MainAxisAlignment.start, children: [
               Padding(
@@ -395,7 +395,7 @@ class _CameraWidgetState extends State<CameraWidget> {
                     padding: const EdgeInsets.only(right: 40),
                     child: CircleAvatar(
                         radius: 30.0,
-                        backgroundColor: Colors.purple,
+                        backgroundColor: const Color.fromARGB(0xFF, 0x67, 0x50, 0xA4),
                         child: IconButton(
                           tooltip: 'Save Photo',
                           icon: const Icon(color: Colors.white, Icons.check),
