@@ -125,12 +125,6 @@ class _DayDetailsState extends State<DayDetails> {
     }
   }
 
-  void _goToCalendar() {
-    _removeOverlay();
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => const CalendarWidget(routeName: 'daydetails')));
-  }
-
   @override
   Widget build(BuildContext context) {
   final _dateDetails = ModalRoute.of(context)!.settings.arguments as DateDetails; 
@@ -155,7 +149,11 @@ class _DayDetailsState extends State<DayDetails> {
               radius: 30.0,
               backgroundColor: const Color.fromARGB(0xFF, 0x67, 0x50, 0xA4),
               child: IconButton(
-                onPressed: _goToCalendar,
+                //onPressed: _goToCalendar,
+                onPressed: () {
+                  _removeOverlay();
+                  Navigator.pop(context,_dateDetails);
+                },
                 icon: const Icon(Icons.close),
                 color: Colors.white,
                 tooltip: 'Exit',
@@ -341,7 +339,7 @@ class _DayDetailsState extends State<DayDetails> {
                     _dateDetails.favorite == true ? 'Remove from Favorites' : 'Add to Favorites',
                     style: const TextStyle(color: Colors.black)
                     ),
-                  backgroundColor: const Color.fromARGB(255, 190, 150, 199),
+                  backgroundColor: const Color.fromARGB(255, 208, 188, 255)
                 ),
               ),
             ),
