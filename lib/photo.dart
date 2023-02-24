@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'camera.dart';
 import 'main.dart';
 import 'package:camera/camera.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:path/path.dart' as p;
 
 class PhotoWidget extends StatefulWidget {
   final List<CameraDescription>? cameras;
@@ -16,16 +18,15 @@ class PhotoWidget extends StatefulWidget {
 
 class _PhotoWidgetState extends State<PhotoWidget> {
   late CameraController controller;
-  XFile? pictureFile;
 
   void _goToMain() {
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => const MyApp()));
   }
 
-  void _goToCamera(XFile photo) {
+  void _goToCamera(String path) {
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: (_) => CameraWidget(image: photo)));
+        .push(MaterialPageRoute(builder: (_) => CameraWidget(imagePath: path)));
   }
 
   @override
@@ -50,8 +51,12 @@ class _PhotoWidgetState extends State<PhotoWidget> {
   }
 
   void _takePicture() async {
-    final pictureFile = await controller.takePicture();
-    _goToCamera(pictureFile);
+    final path = p.join(
+      (await getTemporaryDirectory()).path,
+      '${DateTime.now()}.png',
+    );
+    final pictureFile = await controller.takePicture(path);
+    _goToCamera(path);
   }
 
   @override
@@ -64,8 +69,10 @@ class _PhotoWidgetState extends State<PhotoWidget> {
       );
     }
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 11, 2, 30),
-      appBar: AppBar(backgroundColor: Colors.transparent,
+      backgroundColor: const Color(0xFF1C1B1F),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        automaticallyImplyLeading: false,
           /*title: const Text('Calendar',
               style: TextStyle(
                   color: Colors.white,

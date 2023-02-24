@@ -15,10 +15,10 @@ import 'package:url_launcher/url_launcher_string.dart';
 class CameraWidget extends StatefulWidget {
   const CameraWidget({
     Key? key,
-    required this.image,
+    required this.imagePath,
   }) : super(key: key);
 
-  final image;
+  final imagePath;
 
   @override
   // ignore: library_private_types_in_public_api
@@ -127,7 +127,7 @@ class _CameraWidgetState extends State<CameraWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 11, 2, 30),
+      backgroundColor: const Color(0xFF1C1B1F),
       appBar: AppBar(
           backgroundColor: Colors.transparent,
           title: const Text('Camera',
@@ -150,39 +150,48 @@ class _CameraWidgetState extends State<CameraWidget> {
         child: Column(
           children: <Widget>[
             Image.network(
-              widget.image.path,
+              widget.imagePath,
               // height: MediaQuery.of(context).size.height * 0.4,
               // width:MediaQuery.of(context).size.width * 0.8
             ),
             const SizedBox(height: 30),
-            Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 40),
-                child: FloatingActionButton.extended(
-                  // ignore: prefer_const_constructors
-                  label: Text(locationMessage,
-                      // ignore: prefer_const_constructors
-                      style: TextStyle(color: Colors.black)),
-                  backgroundColor: Colors.grey,
-                  icon: const Icon(
-                    color: Colors.black,
-                    Icons.add_location,
-                    size: 24.0,
-                  ),
-                  onPressed: () {
-                    _getCurrentLocation().then((value) {
-                      lat = '${value.latitude}';
-                      long = '${value.longitude}';
-                      setState(() {
-                        locationMessage = 'Latitude: $lat , Longitude: $long';
-                      });
-                      _liveLocation();
-                      _openMap(lat, long);
-                    });
-                  },
-                ),
-              )
-            ]),
+            Row(
+              children: [
+                FittedBox(
+                 fit: BoxFit.scaleDown, 
+                 child:
+                  //Padding(
+                  //  padding: const EdgeInsets.only(left: 10),
+                  //  child: 
+                    FloatingActionButton.extended(
+                      label: FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(locationMessage,
+                        style: const TextStyle(color: Color.fromARGB(0xFF, 0x38, 0x1E, 0x72))
+                        ),
+                      ),
+                      backgroundColor: const Color.fromARGB(0xFF, 0xD0, 0xBC, 0xFF),
+                      icon: const Icon(
+                        color: Color.fromARGB(0xFF, 0x38, 0x1E, 0x72),
+                        Icons.add_location,
+                        size: 24.0,
+                      ),
+                      onPressed: () {
+                        _getCurrentLocation().then((value) {
+                          lat = '${value.latitude}';
+                          long = '${value.longitude}';
+                          setState(() {
+                            locationMessage = 'Lat: $lat , Long: $long';
+                          });
+                          _liveLocation();
+                          //_openMap(lat, long);
+                        });
+                      },
+                    ),   
+                //  )
+                )
+              ]
+            ),
             const SizedBox(height: 30),
             const Padding(
                 padding: EdgeInsets.only(left: 80),
@@ -203,12 +212,15 @@ class _CameraWidgetState extends State<CameraWidget> {
                         });
                       },
                       style: TextButton.styleFrom(
-                          foregroundColor:
-                              (click1 == false) ? Colors.black : Colors.white,
-                          //elevation: 2,
-                          backgroundColor:
-                              (click1 == false) ? Colors.grey : Colors.black,
-                          side: const BorderSide(color: Colors.white)),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        foregroundColor: const Color(0xFFE6E1E5),
+                          //  (click1 == false) ? const Color(0xFFB0A7C0) : Colors.transparent,
+                        //elevation: 2,
+                        backgroundColor:
+                          (click1 == false) ? const Color(0xFFB0A7C0) : Colors.transparent,
+                        side: const BorderSide(color: Color(0xFF938F99))),
                       child: const Text(
                         'Work',
                         style: TextStyle(fontSize: 20),
@@ -229,7 +241,7 @@ class _CameraWidgetState extends State<CameraWidget> {
                           //elevation: 2,
                           backgroundColor:
                               (click2 == false) ? Colors.grey : Colors.black,
-                          side: const BorderSide(color: Colors.white)),
+                          side: const BorderSide(color: Color.fromARGB(0xFF, 0x93, 0x8F, 0x99))),
                       child: const Text(
                         'Gym',
                         style: TextStyle(fontSize: 20),
@@ -250,7 +262,7 @@ class _CameraWidgetState extends State<CameraWidget> {
                           //elevation: 2,
                           backgroundColor:
                               (click3 == false) ? Colors.grey : Colors.black,
-                          side: const BorderSide(color: Colors.white)),
+                          side: const BorderSide(color: Color.fromARGB(0xFF, 0x93, 0x8F, 0x99))),
                       child: const Text(
                         'College',
                         style: TextStyle(fontSize: 20),
@@ -271,7 +283,7 @@ class _CameraWidgetState extends State<CameraWidget> {
                           //elevation: 2,
                           backgroundColor:
                               (click4 == false) ? Colors.grey : Colors.black,
-                          side: const BorderSide(color: Colors.white)),
+                          side: const BorderSide(color: Color.fromARGB(0xFF, 0x93, 0x8F, 0x99))),
                       child: const Text(
                         'Walk',
                         style: TextStyle(fontSize: 20),
@@ -292,7 +304,7 @@ class _CameraWidgetState extends State<CameraWidget> {
                           //elevation: 2,
                           backgroundColor:
                               (click5 == false) ? Colors.grey : Colors.black,
-                          side: const BorderSide(color: Colors.white)),
+                          side: const BorderSide(color: Color.fromARGB(0xFF, 0x93, 0x8F, 0x99))),
                       child: const Text(
                         'Night Out',
                         style: TextStyle(fontSize: 20),
@@ -313,7 +325,7 @@ class _CameraWidgetState extends State<CameraWidget> {
                           //elevation: 2,
                           backgroundColor:
                               (click6 == false) ? Colors.grey : Colors.black,
-                          side: const BorderSide(color: Colors.white)),
+                          side: const BorderSide(color: Color.fromARGB(0xFF, 0x93, 0x8F, 0x99))),
                       child: const Text(
                         'Shopping',
                         style: TextStyle(fontSize: 20),
@@ -334,7 +346,7 @@ class _CameraWidgetState extends State<CameraWidget> {
                           //elevation: 2,
                           backgroundColor:
                               (click7 == false) ? Colors.grey : Colors.black,
-                          side: const BorderSide(color: Colors.white)),
+                          side: const BorderSide(color: Color.fromARGB(0xFF, 0x93, 0x8F, 0x99))),
                       child: const Text(
                         'School',
                         style: TextStyle(fontSize: 20),
@@ -365,7 +377,7 @@ class _CameraWidgetState extends State<CameraWidget> {
                           //elevation: 2,
                           backgroundColor:
                               (click8 == false) ? Colors.grey : Colors.black,
-                          side: const BorderSide(color: Colors.white)),
+                          side: const BorderSide(color: Color.fromARGB(0xFF, 0x93, 0x8F, 0x99))),
                       child: const Text(
                         'Skirt',
                         style: TextStyle(fontSize: 20),
@@ -386,7 +398,7 @@ class _CameraWidgetState extends State<CameraWidget> {
                           //elevation: 2,
                           backgroundColor:
                               (click9 == false) ? Colors.grey : Colors.black,
-                          side: const BorderSide(color: Colors.white)),
+                          side: const BorderSide(color: Color.fromARGB(0xFF, 0x93, 0x8F, 0x99))),
                       child: const Text(
                         'Shirt',
                         style: TextStyle(fontSize: 20),
@@ -407,7 +419,7 @@ class _CameraWidgetState extends State<CameraWidget> {
                           //elevation: 2,
                           backgroundColor:
                               (click10 == false) ? Colors.grey : Colors.black,
-                          side: const BorderSide(color: Colors.white)),
+                          side: const BorderSide(color: Color.fromARGB(0xFF, 0x93, 0x8F, 0x99))),
                       child: const Text(
                         'Jeans',
                         style: TextStyle(fontSize: 20),
@@ -428,7 +440,7 @@ class _CameraWidgetState extends State<CameraWidget> {
                           //elevation: 2,
                           backgroundColor:
                               (click11 == false) ? Colors.grey : Colors.black,
-                          side: const BorderSide(color: Colors.white)),
+                          side: const BorderSide(color: Color.fromARGB(0xFF, 0x93, 0x8F, 0x99))),
                       child: const Text(
                         'Hoodie',
                         style: TextStyle(fontSize: 20),
@@ -449,7 +461,7 @@ class _CameraWidgetState extends State<CameraWidget> {
                           //elevation: 2,
                           backgroundColor:
                               (click12 == false) ? Colors.grey : Colors.black,
-                          side: const BorderSide(color: Colors.white)),
+                          side: const BorderSide(color: Color.fromARGB(0xFF, 0x93, 0x8F, 0x99))),
                       child: const Text(
                         'Leggings',
                         style: TextStyle(fontSize: 20),
@@ -470,7 +482,7 @@ class _CameraWidgetState extends State<CameraWidget> {
                           //elevation: 2,
                           backgroundColor:
                               (click13 == false) ? Colors.grey : Colors.black,
-                          side: const BorderSide(color: Colors.white)),
+                          side: const BorderSide(color: Color.fromARGB(0xFF, 0x93, 0x8F, 0x99))),
                       child: const Text(
                         'Dress',
                         style: TextStyle(fontSize: 20),
@@ -491,7 +503,7 @@ class _CameraWidgetState extends State<CameraWidget> {
                           //elevation: 2,
                           backgroundColor:
                               (click14 == false) ? Colors.grey : Colors.black,
-                          side: const BorderSide(color: Colors.white)),
+                          side: const BorderSide(color: Color.fromARGB(0xFF, 0x93, 0x8F, 0x99))),
                       child: const Text(
                         'Trousers',
                         style: TextStyle(fontSize: 20),
@@ -530,7 +542,9 @@ class _CameraWidgetState extends State<CameraWidget> {
                               );
                             }
                             */
-                        ))),
+                        )
+                      )
+                    ),
               ],
             )
           ],

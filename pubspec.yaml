@@ -42,7 +42,8 @@ dependencies:
   location: ^4.3.0
   geolocator: ^8.2.1
   url_launcher: ^6.1.2
-  camera: ^0.9.4+18
+  camera: 0.5.8+17
+  path_provider: ^2.0.13
   
 dev_dependencies:
   flutter_test:
