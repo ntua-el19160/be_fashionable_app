@@ -59,9 +59,17 @@ class _HomeScreenState extends State<HomeScreen> {
         .push(MaterialPageRoute(builder: (context) => const CalendarWidget(routeName: 'main')));
   }
 
-  void _goToPhoto() {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => const PhotoWidget()));
+  void _goToPhoto() async {
+    await availableCameras().then(
+      (value) => Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => PhotoWidget(
+            cameras: value,
+          ),
+        ),
+      ),
+    );
   }
 
   @override
@@ -91,7 +99,8 @@ class _HomeScreenState extends State<HomeScreen> {
             )),
             Padding(
                 padding: const EdgeInsets.all(20),
-                child: Image.asset('assets/images/icon.png', scale: 3))
+                child: Image.asset('assets/images/icon.png', scale: 3)
+            )
           ],
         ),
         backgroundColor: const Color.fromARGB(255, 11, 2, 30),
@@ -102,7 +111,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: const EdgeInsets.only(right: 40),
                   child: CircleAvatar(
                       radius: 30.0,
-                      backgroundColor: Colors.purple,
+                      backgroundColor: const Color.fromARGB(0xFF, 0x67, 0x50, 0xA4),
                       child: IconButton(
                         tooltip: 'Calendar',
                         icon: const Icon(color: Colors.white, Icons.today),
@@ -112,7 +121,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: const EdgeInsets.only(right: 40),
                   child: CircleAvatar(
                       radius: 30.0,
-                      backgroundColor: Colors.purple,
+                      backgroundColor: const Color.fromARGB(0xFF, 0x67, 0x50, 0xA4),
                       child: IconButton(
                         tooltip: 'Profile',
                         icon: const Icon(
@@ -121,24 +130,17 @@ class _HomeScreenState extends State<HomeScreen> {
                       ))),
               CircleAvatar(
                   radius: 30.0,
-                  backgroundColor: Colors.purple,
+                  backgroundColor: const Color.fromARGB(0xFF, 0x67, 0x50, 0xA4),
                   child: IconButton(
                     tooltip: 'Camera',
                     icon: const Icon(
                         color: Colors.white, Icons.camera_alt_outlined),
-                    onPressed: () async {
-                      await availableCameras().then(
-                        (value) => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => PhotoWidget(
-                              cameras: value,
-                            ),
-                          ),
-                        ),
-                      );
-                    },
-                  )),
-            ])));
+                    onPressed: _goToPhoto,
+                  )
+              ),
+            ]
+          )
+        )
+      );
   }
 }

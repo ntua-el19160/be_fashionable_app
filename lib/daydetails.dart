@@ -1,9 +1,9 @@
 //import 'dart:html';
 
 import 'package:flutter/material.dart';
-import 'package:paged_vertical_calendar/paged_vertical_calendar.dart';
-import 'main.dart';
-import 'photo.dart';
+// import 'package:paged_vertical_calendar/paged_vertical_calendar.dart';
+// import 'main.dart';
+// import 'photo.dart';
 import 'package:intl/intl.dart';
 import 'calendar.dart';
 
@@ -40,7 +40,7 @@ class _DayDetailsState extends State<DayDetails> {
                   padding: const EdgeInsets.fromLTRB(0, 10.0, 20.0, 0),
                   child: CircleAvatar(
                     radius: 30.0,
-                    backgroundColor: Colors.purple,
+                    backgroundColor: const Color.fromARGB(0xFF, 0x67, 0x50, 0xA4),
                     child: IconButton(
                         onPressed: () {_removeOverlay();},
                         icon: const Icon(Icons.close),
@@ -143,20 +143,25 @@ class _DayDetailsState extends State<DayDetails> {
 
     return Scaffold(
       backgroundColor: color,
-      appBar: AppBar(backgroundColor: Colors.transparent,
-          actions: <Widget>[
-            Padding(
-                padding: const EdgeInsets.only(right: 20.0),
-                child: CircleAvatar(
-                    radius: 30.0,
-                    backgroundColor: Colors.purple,
-                    child: IconButton(
-                      onPressed: _goToCalendar,
-                      icon: const Icon(Icons.close),
-                      color: Colors.white,
-                      tooltip: 'Exit',
-                    ))),
-          ]),   
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        automaticallyImplyLeading: false,
+        actions: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(right: 20.0),
+            child: CircleAvatar(
+              radius: 30.0,
+              backgroundColor: const Color.fromARGB(0xFF, 0x67, 0x50, 0xA4),
+              child: IconButton(
+                onPressed: _goToCalendar,
+                icon: const Icon(Icons.close),
+                color: Colors.white,
+                tooltip: 'Exit',
+              )
+            )
+          ),
+        ]
+      ),   
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
@@ -343,7 +348,7 @@ class _DayDetailsState extends State<DayDetails> {
                 alignment: Alignment.topRight,
                 child: FloatingActionButton(
                   onPressed: _showOverlay,
-                  backgroundColor: Colors.purple,
+                  backgroundColor: const Color.fromARGB(0xFF, 0x67, 0x50, 0xA4),
                   tooltip: 'Share',
                   child: const Icon(Icons.share),
                 ),

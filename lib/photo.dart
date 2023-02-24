@@ -1,4 +1,4 @@
-import 'dart:ui';
+// import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'camera.dart';
@@ -78,7 +78,7 @@ class _PhotoWidgetState extends State<PhotoWidget> {
                 padding: const EdgeInsets.only(right: 20.0),
                 child: CircleAvatar(
                     radius: 30.0,
-                    backgroundColor: Colors.purple,
+                    backgroundColor: const Color.fromARGB(0xFF, 0x67, 0x50, 0xA4),
                     child: IconButton(
                       onPressed: _goToMain,
                       icon: const Icon(Icons.close),

@@ -4,6 +4,7 @@ import 'main.dart';
 import 'package:flutter/material.dart';
 import 'calendar.dart';
 import 'photo.dart';
+import 'package:camera/camera.dart';
 
 //Dot for the list
 class MyBullet extends StatelessWidget {
@@ -58,7 +59,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                   padding: const EdgeInsets.fromLTRB(0, 10.0, 20.0, 0),
                   child: CircleAvatar(
                     radius: 30.0,
-                    backgroundColor: Colors.purple,
+                    backgroundColor: const Color.fromARGB(0xFF, 0x67, 0x50, 0xA4),
                     child: IconButton(
                         onPressed: () {_removeOverlay();},
                         icon: const Icon(Icons.close),
@@ -119,9 +120,18 @@ class _ProfileWidgetState extends State<ProfileWidget> {
         .push(MaterialPageRoute(builder: (context) => const MyApp()));
   }
 
-  void _goToPhoto() {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => const PhotoWidget()));
+  void _goToPhoto() async {
+    _removeOverlay();
+    await availableCameras().then(
+      (value) => Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => PhotoWidget(
+            cameras: value,
+          ),
+        ),
+      ),
+    );
   }
 
   @override
@@ -148,7 +158,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
             automaticallyImplyLeading: false,
             leading: CircleAvatar(
                 radius: 30.0,
-                backgroundColor: Colors.purple,
+                backgroundColor: const Color.fromARGB(0xFF, 0x67, 0x50, 0xA4),
                 child: IconButton(
                   onPressed: _goToMain,
                   icon: const Icon(Icons.arrow_back),
@@ -295,7 +305,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                   padding: const EdgeInsets.only(right: 40),
                   child: CircleAvatar(
                       radius: 30.0,
-                      backgroundColor: Colors.purple,
+                      backgroundColor: const Color.fromARGB(0xFF, 0x67, 0x50, 0xA4),
                       child: IconButton(
                         tooltip: 'Calendar',
                         icon: const Icon(color: Colors.white, Icons.today),
@@ -306,12 +316,12 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                   padding: const EdgeInsets.only(right: 40),
                   child: const CircleAvatar(
                     radius: 30.0,
-                    backgroundColor: Colors.purple,
+                    backgroundColor: Color.fromARGB(0xFF, 0x67, 0x50, 0xA4),
                     child: Icon(color: Colors.white, Icons.person_outline),
                   )),
               CircleAvatar(
                   radius: 30.0,
-                  backgroundColor: Colors.purple,
+                  backgroundColor: const Color.fromARGB(0xFF, 0x67, 0x50, 0xA4),
                   child: IconButton(
                     tooltip: 'Camera',
                     icon: const Icon(
