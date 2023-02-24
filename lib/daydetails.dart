@@ -29,6 +29,8 @@ class _DayDetailsState extends State<DayDetails> {
     overlayEntry = OverlayEntry(builder: (context) {
       return Positioned(
         top: MediaQuery.of(context).size.height * 0.7,
+        bottom: 0,
+        width: MediaQuery.of(context).size.width,
         child: Material(
           color: const Color.fromARGB(255, 11, 2, 30),
           child: Column(
@@ -56,51 +58,50 @@ class _DayDetailsState extends State<DayDetails> {
               Row(
                 children: <Widget>[
                   Container(
-                    padding: const EdgeInsets.only(right: 40),
-                    width: 100,
-                    height: 100,
+                    padding: const EdgeInsets.only(right: 10),
+                    width: MediaQuery.of(context).size.width * 0.2,
+                    height: MediaQuery.of(context).size.width * 0.2,
                     child:IconButton(
                         onPressed: () {}, 
                         icon: Image.asset('assets/images/facebook.png'),
                     ),
                   ),
                   Container(
-                    padding: const EdgeInsets.only(right: 40),
-                    width: 100,
-                    height: 100,
+                    padding: const EdgeInsets.only(right: 10),
+                    width: MediaQuery.of(context).size.width * 0.2,
+                    height: MediaQuery.of(context).size.width * 0.2,
                     child:IconButton(
                         onPressed: () {}, 
                         icon: Image.asset('assets/images/gmail.png'),
                     ),
                   ),
                   Container(
-                    padding: const EdgeInsets.only(right: 40),
-                    width: 100,
-                    height: 100,
+                    padding: const EdgeInsets.only(right: 10),
+                    width: MediaQuery.of(context).size.width * 0.2,
+                    height: MediaQuery.of(context).size.width * 0.2,
                     child:IconButton(
                         onPressed: () {}, 
                         icon: Image.asset('assets/images/instagram.png'),
                     ),
                   ),
                   Container(
-                    padding: const EdgeInsets.only(right: 40),
-                    width: 100,
-                    height: 100,
+                    padding: const EdgeInsets.only(right: 10),
+                    width: MediaQuery.of(context).size.width * 0.2,
+                    height: MediaQuery.of(context).size.width * 0.2,
                     child:IconButton(
                         onPressed: () {}, 
                         icon: Image.asset('assets/images/messenger.png'),
                     ),
                   ),
                   Container(
-                    padding: const EdgeInsets.only(right: 40),
-                    width: 100,
-                    height: 100,
+                    padding: const EdgeInsets.only(right: 10),
+                    width: MediaQuery.of(context).size.width * 0.2,
+                    height: MediaQuery.of(context).size.width * 0.2,
                     child:IconButton(
                         onPressed: () {}, 
                         icon: Image.asset('assets/images/viber.png'),
                     ),
-                  ),
-                  
+                  ), 
                 ],
               ),
               const Padding(
@@ -125,6 +126,7 @@ class _DayDetailsState extends State<DayDetails> {
   }
 
   void _goToCalendar() {
+    _removeOverlay();
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => const CalendarWidget(routeName: 'daydetails')));
   }
@@ -162,7 +164,10 @@ class _DayDetailsState extends State<DayDetails> {
           ),
         ]
       ),   
-      body: SingleChildScrollView(
+      body: GestureDetector(
+        onTap: _removeOverlay,
+        child:
+          SingleChildScrollView(
         child: Column(
           children: <Widget>[
             //const SizedBox(height: 600, width: 200),
@@ -358,6 +363,7 @@ class _DayDetailsState extends State<DayDetails> {
           ],
         ),
       ),
+    )  
     );
   }
 }
