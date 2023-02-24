@@ -27,13 +27,15 @@ class _AchievementWidgetState extends State<AchievementWidget> {
     HapticFeedback.vibrate();
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 11, 2, 30),
-      appBar: AppBar(backgroundColor: Colors.transparent,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        automaticallyImplyLeading: false,
           actions: <Widget>[
             Padding(
                 padding: const EdgeInsets.only(right: 20.0),
                 child: CircleAvatar(
                     radius: 30.0,
-                    backgroundColor: Colors.purple,
+                    backgroundColor: const Color.fromARGB(0xFF, 0x67, 0x50, 0xA4),
                     child: IconButton(
                       onPressed: _goToCalendar,
                       icon: const Icon(Icons.close),
@@ -44,7 +46,10 @@ class _AchievementWidgetState extends State<AchievementWidget> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children : <Widget>[
-          // Κάποιο γραφιστικό
+          Padding(
+            padding: const EdgeInsets.all(20),
+            child: Image.asset('assets/images/congratulations.png', scale: 2)
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: const [
