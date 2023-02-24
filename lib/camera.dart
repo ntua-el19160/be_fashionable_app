@@ -204,10 +204,10 @@ class _CameraWidgetState extends State<CameraWidget> {
                       },
                       style: TextButton.styleFrom(
                           foregroundColor:
-                              (click1 == false) ? Colors.white : Colors.black,
+                              (click1 == false) ? Colors.black : Colors.white,
                           //elevation: 2,
                           backgroundColor:
-                              (click1 == false) ? Colors.black : Colors.white),
+                              (click1 == false) ? Colors.grey : Colors.black),
                       child: const Text(
                         'Work',
                         style: TextStyle(fontSize: 20),
@@ -224,10 +224,10 @@ class _CameraWidgetState extends State<CameraWidget> {
                       },
                       style: TextButton.styleFrom(
                           foregroundColor:
-                              (click2 == false) ? Colors.white : Colors.black,
+                              (click2 == false) ? Colors.black : Colors.white,
                           //elevation: 2,
                           backgroundColor:
-                              (click2 == false) ? Colors.black : Colors.white),
+                              (click2 == false) ? Colors.grey : Colors.black),
                       child: const Text(
                         'Gym',
                         style: TextStyle(fontSize: 20),
@@ -244,10 +244,10 @@ class _CameraWidgetState extends State<CameraWidget> {
                       },
                       style: TextButton.styleFrom(
                           foregroundColor:
-                              (click3 == false) ? Colors.white : Colors.black,
+                              (click3 == false) ? Colors.black : Colors.white,
                           //elevation: 2,
                           backgroundColor:
-                              (click3 == false) ? Colors.black : Colors.white),
+                              (click3 == false) ? Colors.grey : Colors.black),
                       child: const Text(
                         'College',
                         style: TextStyle(fontSize: 20),
@@ -264,10 +264,10 @@ class _CameraWidgetState extends State<CameraWidget> {
                       },
                       style: TextButton.styleFrom(
                           foregroundColor:
-                              (click4 == false) ? Colors.white : Colors.black,
+                              (click4 == false) ? Colors.black : Colors.white,
                           //elevation: 2,
                           backgroundColor:
-                              (click4 == false) ? Colors.black : Colors.white),
+                              (click4 == false) ? Colors.grey : Colors.black),
                       child: const Text(
                         'Walk',
                         style: TextStyle(fontSize: 20),
@@ -284,10 +284,10 @@ class _CameraWidgetState extends State<CameraWidget> {
                       },
                       style: TextButton.styleFrom(
                           foregroundColor:
-                              (click5 == false) ? Colors.white : Colors.black,
+                              (click5 == false) ? Colors.black : Colors.white,
                           //elevation: 2,
                           backgroundColor:
-                              (click5 == false) ? Colors.black : Colors.white),
+                              (click5 == false) ? Colors.grey : Colors.black),
                       child: const Text(
                         'Night Out',
                         style: TextStyle(fontSize: 20),
@@ -304,10 +304,10 @@ class _CameraWidgetState extends State<CameraWidget> {
                       },
                       style: TextButton.styleFrom(
                           foregroundColor:
-                              (click6 == false) ? Colors.white : Colors.black,
+                              (click6 == false) ? Colors.black : Colors.white,
                           //elevation: 2,
                           backgroundColor:
-                              (click6 == false) ? Colors.black : Colors.white),
+                              (click6 == false) ? Colors.grey : Colors.black),
                       child: const Text(
                         'Shopping',
                         style: TextStyle(fontSize: 20),
@@ -324,10 +324,10 @@ class _CameraWidgetState extends State<CameraWidget> {
                       },
                       style: TextButton.styleFrom(
                           foregroundColor:
-                              (click7 == false) ? Colors.white : Colors.black,
+                              (click7 == false) ? Colors.black : Colors.white,
                           //elevation: 2,
                           backgroundColor:
-                              (click7 == false) ? Colors.black : Colors.white),
+                              (click7 == false) ? Colors.grey : Colors.black),
                       child: const Text(
                         'School',
                         style: TextStyle(fontSize: 20),
@@ -354,10 +354,10 @@ class _CameraWidgetState extends State<CameraWidget> {
                       },
                       style: TextButton.styleFrom(
                           foregroundColor:
-                              (click8 == false) ? Colors.white : Colors.black,
+                              (click8 == false) ? Colors.black : Colors.white,
                           //elevation: 2,
                           backgroundColor:
-                              (click8 == false) ? Colors.black : Colors.white),
+                              (click8 == false) ? Colors.grey : Colors.black),
                       child: const Text(
                         'Skirt',
                         style: TextStyle(fontSize: 20),
@@ -374,10 +374,10 @@ class _CameraWidgetState extends State<CameraWidget> {
                       },
                       style: TextButton.styleFrom(
                           foregroundColor:
-                              (click9 == false) ? Colors.white : Colors.black,
+                              (click9 == false) ? Colors.black : Colors.white,
                           //elevation: 2,
                           backgroundColor:
-                              (click9 == false) ? Colors.black : Colors.white),
+                              (click9 == false) ? Colors.grey : Colors.black),
                       child: const Text(
                         'Shirt',
                         style: TextStyle(fontSize: 20),
@@ -394,10 +394,10 @@ class _CameraWidgetState extends State<CameraWidget> {
                       },
                       style: TextButton.styleFrom(
                           foregroundColor:
-                              (click10 == false) ? Colors.white : Colors.black,
+                              (click10 == false) ? Colors.black : Colors.white,
                           //elevation: 2,
                           backgroundColor:
-                              (click10 == false) ? Colors.black : Colors.white),
+                              (click10 == false) ? Colors.grey : Colors.black),
                       child: const Text(
                         'Jeans',
                         style: TextStyle(fontSize: 20),
@@ -414,10 +414,10 @@ class _CameraWidgetState extends State<CameraWidget> {
                       },
                       style: TextButton.styleFrom(
                           foregroundColor:
-                              (click11 == false) ? Colors.white : Colors.black,
+                              (click11 == false) ? Colors.black : Colors.white,
                           //elevation: 2,
                           backgroundColor:
-                              (click11 == false) ? Colors.black : Colors.white),
+                              (click11 == false) ? Colors.grey : Colors.black),
                       child: const Text(
                         'Hoodie',
                         style: TextStyle(fontSize: 20),
@@ -434,10 +434,10 @@ class _CameraWidgetState extends State<CameraWidget> {
                       },
                       style: TextButton.styleFrom(
                           foregroundColor:
-                              (click12 == false) ? Colors.white : Colors.black,
+                              (click12 == false) ? Colors.black : Colors.white,
                           //elevation: 2,
                           backgroundColor:
-                              (click12 == false) ? Colors.black : Colors.white),
+                              (click12 == false) ? Colors.grey : Colors.black),
                       child: const Text(
                         'Leggings',
                         style: TextStyle(fontSize: 20),
@@ -454,10 +454,10 @@ class _CameraWidgetState extends State<CameraWidget> {
                       },
                       style: TextButton.styleFrom(
                           foregroundColor:
-                              (click13 == false) ? Colors.white : Colors.black,
+                              (click13 == false) ? Colors.black : Colors.white,
                           //elevation: 2,
                           backgroundColor:
-                              (click13 == false) ? Colors.black : Colors.white),
+                              (click13 == false) ? Colors.grey : Colors.black),
                       child: const Text(
                         'Dress',
                         style: TextStyle(fontSize: 20),
@@ -474,10 +474,10 @@ class _CameraWidgetState extends State<CameraWidget> {
                       },
                       style: TextButton.styleFrom(
                           foregroundColor:
-                              (click14 == false) ? Colors.white : Colors.black,
+                              (click14 == false) ? Colors.black : Colors.white,
                           //elevation: 2,
                           backgroundColor:
-                              (click14 == false) ? Colors.black : Colors.white),
+                              (click14 == false) ? Colors.grey : Colors.black),
                       child: const Text(
                         'Trousers',
                         style: TextStyle(fontSize: 20),
