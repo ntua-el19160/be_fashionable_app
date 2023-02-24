@@ -104,22 +104,27 @@ class _PhotoWidgetState extends State<PhotoWidget> {
             padding: const EdgeInsets.all(8.0),
             child: Center(
               child: SizedBox(
-                height: 400,
-                width: 400,
+                height: MediaQuery.of(context).size.height * 0.6,
+                width: MediaQuery.of(context).size.width,
                 child: CameraPreview(controller),
               ),
             ),
           ),
-          Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-            CircleAvatar(
+          const Padding(padding: EdgeInsets.all(20)),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center, 
+            children: <Widget>[
+              CircleAvatar(
                 backgroundColor: Colors.white,
                 child: IconButton(
                   onPressed: _takePicture,
                   icon: const Icon(Icons.radio_button_on),
                   color: Colors.white,
                   tooltip: 'Take Photo',
-                ))
-          ])
+                )
+              )
+            ]
+          )
           /*if (pictureFile != null)
             Image.network(
               pictureFile!.path,
