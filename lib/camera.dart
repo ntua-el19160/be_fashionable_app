@@ -131,23 +131,6 @@ class _CameraWidgetState extends State<CameraWidget> {
   bool click13 = true;
   bool click14 = true;
 
-  final List<Filter> _tags = [
-    Filter(id: 1, title: 'Work'),
-    Filter(id: 2, title: 'Night out'),
-    Filter(id: 3, title: 'College'),
-    Filter(id: 4, title: 'Gym'),
-    Filter(id: 5, title: 'Wedding'),
-    Filter(id: 6, title: 'Walk'),
-    Filter(id: 7, title: 'Running'),
-    Filter(id: 9, title: 'Shirt'),
-    Filter(id: 10, title: 'Dress'),
-    Filter(id: 11, title: 'Jeans'),
-    Filter(id: 12, title: 'Skirt'),
-    Filter(id: 13, title: 'Hoodie'),
-    Filter(id: 14, title: 'Leggings'),
-    Filter(id: 15, title: 'Trousers'),
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -234,9 +217,6 @@ class _CameraWidgetState extends State<CameraWidget> {
                         setState(() {
                           click1 = !click1;
                         });
-                        if (click1 == false) {
-                          _tags[1].selected = true;
-                        }
                       },
                       style: TextButton.styleFrom(
                         shape: RoundedRectangleBorder(
@@ -261,9 +241,6 @@ class _CameraWidgetState extends State<CameraWidget> {
                         setState(() {
                           click2 = !click2;
                         });
-                        if (click2 == false) {
-                          _tags[2].selected = true;
-                        }
                       },
                       style: TextButton.styleFrom(
                           foregroundColor:
@@ -285,9 +262,6 @@ class _CameraWidgetState extends State<CameraWidget> {
                         setState(() {
                           click3 = !click3;
                         });
-                        if (click3 == false) {
-                          _tags[3].selected = true;
-                        }
                       },
                       style: TextButton.styleFrom(
                           foregroundColor:
@@ -309,9 +283,6 @@ class _CameraWidgetState extends State<CameraWidget> {
                         setState(() {
                           click4 = !click4;
                         });
-                        if (click4 == false) {
-                          _tags[4].selected = true;
-                        }
                       },
                       style: TextButton.styleFrom(
                           foregroundColor:
@@ -333,9 +304,6 @@ class _CameraWidgetState extends State<CameraWidget> {
                         setState(() {
                           click5 = !click5;
                         });
-                        if (click5 == false) {
-                          _tags[5].selected = true;
-                        }
                       },
                       style: TextButton.styleFrom(
                           foregroundColor:
@@ -357,9 +325,6 @@ class _CameraWidgetState extends State<CameraWidget> {
                         setState(() {
                           click6 = !click6;
                         });
-                        if (click6 == false) {
-                          _tags[6].selected = true;
-                        }
                       },
                       style: TextButton.styleFrom(
                           foregroundColor:
@@ -381,9 +346,6 @@ class _CameraWidgetState extends State<CameraWidget> {
                         setState(() {
                           click7 = !click7;
                         });
-                        if (click7 == false) {
-                          _tags[7].selected = true;
-                        }
                       },
                       style: TextButton.styleFrom(
                           foregroundColor:
@@ -415,9 +377,6 @@ class _CameraWidgetState extends State<CameraWidget> {
                         setState(() {
                           click8 = !click8;
                         });
-                        if (click8 == false) {
-                          _tags[9].selected = true;
-                        }
                       },
                       style: TextButton.styleFrom(
                           foregroundColor:
@@ -439,9 +398,6 @@ class _CameraWidgetState extends State<CameraWidget> {
                         setState(() {
                           click9 = !click9;
                         });
-                        if (click9 == false) {
-                          _tags[10].selected = true;
-                        }
                       },
                       style: TextButton.styleFrom(
                           foregroundColor:
@@ -463,9 +419,6 @@ class _CameraWidgetState extends State<CameraWidget> {
                         setState(() {
                           click10 = !click10;
                         });
-                        if (click10 == false) {
-                          _tags[11].selected = true;
-                        }
                       },
                       style: TextButton.styleFrom(
                           foregroundColor:
@@ -487,9 +440,6 @@ class _CameraWidgetState extends State<CameraWidget> {
                         setState(() {
                           click11 = !click11;
                         });
-                        if (click11 == false) {
-                          _tags[12].selected = true;
-                        }
                       },
                       style: TextButton.styleFrom(
                           foregroundColor:
@@ -511,9 +461,6 @@ class _CameraWidgetState extends State<CameraWidget> {
                         setState(() {
                           click12 = !click12;
                         });
-                        if (click12 == false) {
-                          _tags[13].selected = true;
-                        }
                       },
                       style: TextButton.styleFrom(
                           foregroundColor:
@@ -535,9 +482,6 @@ class _CameraWidgetState extends State<CameraWidget> {
                         setState(() {
                           click13 = !click13;
                         });
-                        if (click13 == false) {
-                          _tags[14].selected = true;
-                        }
                       },
                       style: TextButton.styleFrom(
                           foregroundColor:
@@ -559,9 +503,6 @@ class _CameraWidgetState extends State<CameraWidget> {
                         setState(() {
                           click14 = !click14;
                         });
-                        if (click14 == false) {
-                          _tags[15].selected = true;
-                        }
                       },
                       style: TextButton.styleFrom(
                           foregroundColor:
