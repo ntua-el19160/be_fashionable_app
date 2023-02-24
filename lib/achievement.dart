@@ -11,71 +11,65 @@ class AchievementWidget extends StatefulWidget {
 }
 
 class _AchievementWidgetState extends State<AchievementWidget> {
-  
   void _goToCalendar() {
     final details = ModalRoute.of(context)!.settings.arguments;
     Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => const CalendarWidget(routeName: 'achievements'),
-            settings: RouteSettings(arguments: details),
-           ),
-        );
+      MaterialPageRoute(
+        builder: (context) => const CalendarWidget(routeName: 'achievements'),
+        settings: RouteSettings(arguments: details),
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     HapticFeedback.vibrate();
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 11, 2, 30),
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        automaticallyImplyLeading: false,
-          actions: <Widget>[
-            Padding(
-                padding: const EdgeInsets.only(right: 20.0),
-                child: CircleAvatar(
-                    radius: 30.0,
-                    backgroundColor: const Color.fromARGB(0xFF, 0x67, 0x50, 0xA4),
-                    child: IconButton(
-                      onPressed: _goToCalendar,
-                      icon: const Icon(Icons.close),
-                      color: Colors.white,
-                      tooltip: 'Exit',
-                    ))),
-          ]),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children : <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(20),
-            child: Image.asset('assets/images/congratulations.png', scale: 2)
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
+        backgroundColor: const Color.fromARGB(255, 11, 2, 30),
+        appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            automaticallyImplyLeading: false,
+            actions: <Widget>[
               Padding(
-                padding: EdgeInsets.all(20),
-                child: Text('CONGRATULATIONS', style: TextStyle(
-                  color: Colors.white
-                  )
-                ),
+                  padding: const EdgeInsets.only(right: 20.0),
+                  child: CircleAvatar(
+                      radius: 30.0,
+                      backgroundColor:
+                          const Color.fromARGB(0xFF, 0x67, 0x50, 0xA4),
+                      child: IconButton(
+                        onPressed: _goToCalendar,
+                        icon: const Icon(Icons.close),
+                        color: Colors.white,
+                        tooltip: 'Exit',
+                      ))),
+            ]),
+        body: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Image.asset('assets/images/congratulations.png',
+                      scale: 2)),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Padding(
+                    padding: EdgeInsets.all(20),
+                    child: Text('CONGRATULATIONS',
+                        style: TextStyle(fontSize: 50, color: Colors.white)),
+                  ),
+                ],
               ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              Padding(
-                padding: EdgeInsets.all(20),
-                child: Text('You unlocked x Achievement', style: TextStyle(
-                  color: Colors.white
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Padding(
+                    padding: EdgeInsets.all(20),
+                    child: Text('You unlocked x Achievement',
+                        style: TextStyle(fontSize: 30, color: Colors.white)),
                   )
-                ),
+                ],
               )
-            ],
-          )
-        ]
-      )
-    );
+            ]));
   }
 }
