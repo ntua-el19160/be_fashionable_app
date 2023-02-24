@@ -39,11 +39,11 @@ class _HomeScreenState extends State<HomeScreen> {
     Timer mytimer = Timer.periodic(const Duration(seconds: 1), (timer) {
       DateTime timenow = DateTime.now(); //get current date and time
       // ignore: prefer_interpolation_to_compose_strings
-      time = (24 - timenow.hour).toString().padLeft(2, '0') +
+      time = (23 - timenow.hour).toString().padLeft(2, '0') +
           ":" +
-          (60 - timenow.minute).toString().padLeft(2, '0') +
+          (59 - timenow.minute).toString().padLeft(2, '0') +
           ":" +
-          (60 - timenow.second).toString().padLeft(2, '0');
+          (59 - timenow.second).toString().padLeft(2, '0');
       setState(() {});
       //mytimer.cancel() //to terminate this timer
     });
