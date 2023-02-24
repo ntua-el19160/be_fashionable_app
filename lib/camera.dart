@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_function_declarations_over_variables
 
 import 'package:flutter/material.dart';
 // import 'package:camera/camera.dart';
@@ -16,8 +16,8 @@ class CameraWidget extends StatefulWidget {
   const CameraWidget({
     Key? key,
     required this.image,
-    }) : super(key: key);
-  
+  }) : super(key: key);
+
   final image;
 
   @override
@@ -109,6 +109,21 @@ class _CameraWidgetState extends State<CameraWidget> {
         : throw 'Could not launch $googleURL';
   }
 
+  bool click1 = true;
+  bool click2 = true;
+  bool click3 = true;
+  bool click4 = true;
+  bool click5 = true;
+  bool click6 = true;
+  bool click7 = true;
+  bool click8 = true;
+  bool click9 = true;
+  bool click10 = true;
+  bool click11 = true;
+  bool click12 = true;
+  bool click13 = true;
+  bool click14 = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -134,11 +149,10 @@ class _CameraWidgetState extends State<CameraWidget> {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            Image.network(
-              widget.image.path, 
-              height: MediaQuery.of(context).size.height * 0.4, 
-              width:MediaQuery.of(context).size.width * 0.8
-            ),
+            Image.network(widget.image.path,
+                height: MediaQuery.of(context).size.height * 0.4,
+                width: MediaQuery.of(context).size.width * 0.8),
+            const SizedBox(height: 30),
             Row(mainAxisAlignment: MainAxisAlignment.start, children: [
               Padding(
                 padding: const EdgeInsets.only(left: 40),
@@ -167,12 +181,12 @@ class _CameraWidgetState extends State<CameraWidget> {
                 ),
               )
             ]),
-            const SizedBox(height: 20),
+            const SizedBox(height: 30),
             const Padding(
                 padding: EdgeInsets.only(left: 80),
                 child: Text('Add Tags',
                     style: TextStyle(color: Colors.white, fontSize: 28))),
-            const SizedBox(height: 20),
+            const SizedBox(height: 30),
             SizedBox(
               height: 50,
               child: ListView(
@@ -180,12 +194,18 @@ class _CameraWidgetState extends State<CameraWidget> {
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.only(right: 60),
-                    child: TextButton(
-                      onPressed: () {},
+                    child: ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          click1 = !click1;
+                        });
+                      },
                       style: TextButton.styleFrom(
-                          foregroundColor: Colors.black,
-                          elevation: 2,
-                          backgroundColor: Colors.grey),
+                          foregroundColor:
+                              (click1 == false) ? Colors.white : Colors.black,
+                          //elevation: 2,
+                          backgroundColor:
+                              (click1 == false) ? Colors.black : Colors.white),
                       child: const Text(
                         'Work',
                         style: TextStyle(fontSize: 20),
@@ -194,12 +214,18 @@ class _CameraWidgetState extends State<CameraWidget> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 60),
-                    child: TextButton(
-                      onPressed: () {},
+                    child: ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          click2 = !click2;
+                        });
+                      },
                       style: TextButton.styleFrom(
-                          foregroundColor: Colors.black,
-                          elevation: 2,
-                          backgroundColor: Colors.grey),
+                          foregroundColor:
+                              (click2 == false) ? Colors.white : Colors.black,
+                          //elevation: 2,
+                          backgroundColor:
+                              (click2 == false) ? Colors.black : Colors.white),
                       child: const Text(
                         'Gym',
                         style: TextStyle(fontSize: 20),
@@ -208,12 +234,18 @@ class _CameraWidgetState extends State<CameraWidget> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 60),
-                    child: TextButton(
-                      onPressed: () {},
+                    child: ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          click3 = !click3;
+                        });
+                      },
                       style: TextButton.styleFrom(
-                          foregroundColor: Colors.black,
-                          elevation: 2,
-                          backgroundColor: Colors.grey),
+                          foregroundColor:
+                              (click3 == false) ? Colors.white : Colors.black,
+                          //elevation: 2,
+                          backgroundColor:
+                              (click3 == false) ? Colors.black : Colors.white),
                       child: const Text(
                         'College',
                         style: TextStyle(fontSize: 20),
@@ -222,12 +254,18 @@ class _CameraWidgetState extends State<CameraWidget> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 60),
-                    child: TextButton(
-                      onPressed: () {},
+                    child: ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          click4 = !click4;
+                        });
+                      },
                       style: TextButton.styleFrom(
-                          foregroundColor: Colors.black,
-                          elevation: 2,
-                          backgroundColor: Colors.grey),
+                          foregroundColor:
+                              (click4 == false) ? Colors.white : Colors.black,
+                          //elevation: 2,
+                          backgroundColor:
+                              (click4 == false) ? Colors.black : Colors.white),
                       child: const Text(
                         'Walk',
                         style: TextStyle(fontSize: 20),
@@ -236,12 +274,18 @@ class _CameraWidgetState extends State<CameraWidget> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 60),
-                    child: TextButton(
-                      onPressed: () {},
+                    child: ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          click5 = !click5;
+                        });
+                      },
                       style: TextButton.styleFrom(
-                          foregroundColor: Colors.black,
-                          elevation: 2,
-                          backgroundColor: Colors.grey),
+                          foregroundColor:
+                              (click5 == false) ? Colors.white : Colors.black,
+                          //elevation: 2,
+                          backgroundColor:
+                              (click5 == false) ? Colors.black : Colors.white),
                       child: const Text(
                         'Night Out',
                         style: TextStyle(fontSize: 20),
@@ -250,12 +294,18 @@ class _CameraWidgetState extends State<CameraWidget> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 60),
-                    child: TextButton(
-                      onPressed: () {},
+                    child: ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          click6 = !click6;
+                        });
+                      },
                       style: TextButton.styleFrom(
-                          foregroundColor: Colors.black,
-                          elevation: 2,
-                          backgroundColor: Colors.grey),
+                          foregroundColor:
+                              (click6 == false) ? Colors.white : Colors.black,
+                          //elevation: 2,
+                          backgroundColor:
+                              (click6 == false) ? Colors.black : Colors.white),
                       child: const Text(
                         'Shopping',
                         style: TextStyle(fontSize: 20),
@@ -264,12 +314,18 @@ class _CameraWidgetState extends State<CameraWidget> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 60),
-                    child: TextButton(
-                      onPressed: () {},
+                    child: ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          click7 = !click7;
+                        });
+                      },
                       style: TextButton.styleFrom(
-                          foregroundColor: Colors.black,
-                          elevation: 2,
-                          backgroundColor: Colors.grey),
+                          foregroundColor:
+                              (click7 == false) ? Colors.white : Colors.black,
+                          //elevation: 2,
+                          backgroundColor:
+                              (click7 == false) ? Colors.black : Colors.white),
                       child: const Text(
                         'School',
                         style: TextStyle(fontSize: 20),
@@ -288,12 +344,18 @@ class _CameraWidgetState extends State<CameraWidget> {
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.only(right: 60),
-                    child: TextButton(
-                      onPressed: () {},
+                    child: ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          click8 = !click8;
+                        });
+                      },
                       style: TextButton.styleFrom(
-                          foregroundColor: Colors.black,
-                          elevation: 2,
-                          backgroundColor: Colors.grey),
+                          foregroundColor:
+                              (click8 == false) ? Colors.white : Colors.black,
+                          //elevation: 2,
+                          backgroundColor:
+                              (click8 == false) ? Colors.black : Colors.white),
                       child: const Text(
                         'Skirt',
                         style: TextStyle(fontSize: 20),
@@ -302,12 +364,18 @@ class _CameraWidgetState extends State<CameraWidget> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 60),
-                    child: TextButton(
-                      onPressed: () {},
+                    child: ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          click9 = !click9;
+                        });
+                      },
                       style: TextButton.styleFrom(
-                          foregroundColor: Colors.black,
-                          elevation: 2,
-                          backgroundColor: Colors.grey),
+                          foregroundColor:
+                              (click9 == false) ? Colors.white : Colors.black,
+                          //elevation: 2,
+                          backgroundColor:
+                              (click9 == false) ? Colors.black : Colors.white),
                       child: const Text(
                         'Shirt',
                         style: TextStyle(fontSize: 20),
@@ -316,12 +384,18 @@ class _CameraWidgetState extends State<CameraWidget> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 60),
-                    child: TextButton(
-                      onPressed: () {},
+                    child: ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          click10 = !click10;
+                        });
+                      },
                       style: TextButton.styleFrom(
-                          foregroundColor: Colors.black,
-                          elevation: 2,
-                          backgroundColor: Colors.grey),
+                          foregroundColor:
+                              (click10 == false) ? Colors.white : Colors.black,
+                          //elevation: 2,
+                          backgroundColor:
+                              (click10 == false) ? Colors.black : Colors.white),
                       child: const Text(
                         'Jeans',
                         style: TextStyle(fontSize: 20),
@@ -330,12 +404,18 @@ class _CameraWidgetState extends State<CameraWidget> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 60),
-                    child: TextButton(
-                      onPressed: () {},
+                    child: ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          click11 = !click11;
+                        });
+                      },
                       style: TextButton.styleFrom(
-                          foregroundColor: Colors.black,
-                          elevation: 2,
-                          backgroundColor: Colors.grey),
+                          foregroundColor:
+                              (click11 == false) ? Colors.white : Colors.black,
+                          //elevation: 2,
+                          backgroundColor:
+                              (click11 == false) ? Colors.black : Colors.white),
                       child: const Text(
                         'Hoodie',
                         style: TextStyle(fontSize: 20),
@@ -344,12 +424,18 @@ class _CameraWidgetState extends State<CameraWidget> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 60),
-                    child: TextButton(
-                      onPressed: () {},
+                    child: ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          click12 = !click12;
+                        });
+                      },
                       style: TextButton.styleFrom(
-                          foregroundColor: Colors.black,
-                          elevation: 2,
-                          backgroundColor: Colors.grey),
+                          foregroundColor:
+                              (click12 == false) ? Colors.white : Colors.black,
+                          //elevation: 2,
+                          backgroundColor:
+                              (click12 == false) ? Colors.black : Colors.white),
                       child: const Text(
                         'Leggings',
                         style: TextStyle(fontSize: 20),
@@ -358,12 +444,18 @@ class _CameraWidgetState extends State<CameraWidget> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 60),
-                    child: TextButton(
-                      onPressed: () {},
+                    child: ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          click13 = !click13;
+                        });
+                      },
                       style: TextButton.styleFrom(
-                          foregroundColor: Colors.black,
-                          elevation: 2,
-                          backgroundColor: Colors.grey),
+                          foregroundColor:
+                              (click13 == false) ? Colors.white : Colors.black,
+                          //elevation: 2,
+                          backgroundColor:
+                              (click13 == false) ? Colors.black : Colors.white),
                       child: const Text(
                         'Dress',
                         style: TextStyle(fontSize: 20),
@@ -372,12 +464,18 @@ class _CameraWidgetState extends State<CameraWidget> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 60),
-                    child: TextButton(
-                      onPressed: () {},
+                    child: ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          click14 = !click14;
+                        });
+                      },
                       style: TextButton.styleFrom(
-                          foregroundColor: Colors.black,
-                          elevation: 2,
-                          backgroundColor: Colors.grey),
+                          foregroundColor:
+                              (click14 == false) ? Colors.white : Colors.black,
+                          //elevation: 2,
+                          backgroundColor:
+                              (click14 == false) ? Colors.black : Colors.white),
                       child: const Text(
                         'Trousers',
                         style: TextStyle(fontSize: 20),
