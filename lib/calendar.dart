@@ -28,7 +28,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
   bool FromCamera = false;
 
   //kenh lista apo Datedetails
-  final List<DateDetails> _details = <DateDetails>[];
+  //final List<DateDetails> _details = <DateDetails>[];
   final Map<DateTime, Color> _colors = {};
 
   @override
@@ -36,13 +36,17 @@ class _CalendarWidgetState extends State<CalendarWidget> {
       super.initState();
       if ((widget.routeName == 'achievements') || (widget.routeName == 'camera')) {
         FromCamera = true;
-          debugPrint('Route camera');
+        debugPrint('Route camera');
       }
     }
 
+  void _newPhoto(DateTime day) {
+    _colors[day] =  const Color.fromARGB(255, 208, 188, 255);
+  }
+
   void _updateDetails(DateTime day) async {
     bool favorite = false;
-    if (_colors[day] == const Color.fromARGB(205, 130, 28, 148)) {
+    if (_colors[day] == const Color.fromARGB(255, 127, 103, 179)) {
       favorite = true;
     }
     final details = DateDetails(
@@ -56,10 +60,10 @@ class _CalendarWidgetState extends State<CalendarWidget> {
         arguments: details),),);
     if (newdetails.favorite == true){
       //_details.add(newdetails);
-      _colors[day] = const Color.fromARGB(205, 130, 28, 148);
+      _colors[day] = const Color.fromARGB(255, 127, 103, 179);
     }
     else {
-      _colors[day] = Colors.transparent;
+      _colors[day] = const Color.fromARGB(255, 208, 188, 255);
     }
     //Redraw the widget
     setState(() {
@@ -462,9 +466,28 @@ Widget weekText(String text) {
   final height = MediaQuery.of(context).size.height;
   final width = MediaQuery.of(context).size.width;
 
+  if (FromCamera == true) {
+    final datedetails = ModalRoute.of(context)!.settings.arguments as DateDetails; 
+    final year = datedetails.date.year;
+    final month = datedetails.date.month;
+    final day2 = datedetails.date.day;
+    //final date = DateTime.utc(year, month, day2);
+    const hour = 0;
+    const minute = 0;
+    const second = 0; 
+    const millisecond = 0;
+    const microsecond = 0;
+    final finaldate = DateTime(year,month, day2, hour, minute, second, millisecond , microsecond);
+    _newPhoto(finaldate);
+    final cor2 = finaldate.toString();
+    debugPrint(cor2);
+    FromCamera = false;
+    debugPrint('get arguments');
+  }
+
     Color color ;
     if (overlayDisplayed) {
-      color = const Color(0xFF1C1B1F).withOpacity(0.75);
+      color = const Color(0xFF1C1B1F).withOpacity(0.75);    
     }
     else {
       color = const Color(0xFF1C1B1F);
@@ -559,12 +582,17 @@ Widget weekText(String text) {
               );
             },
             onDayPressed: (day) {
+              /*final cor = day.toString();
+              DateTime dayint = DateTime.now();
+              final year = dayint.year;
+              final month = dayint.month;
+              final day2 = dayint.day;
+              final date = DateTime.utc(year, month, day2);
+              debugPrint(cor);
+              final cor2 = date.toString();
+              debugPrint(cor2);*/
               _removeOverlay();
-              DateTime now = DateTime.now();
-              DateTime todaysDate = DateTime(now.year, now.month, now.day);
-              if (!day.isAfter(todaysDate)) {
-                _updateDetails(day);
-              }
+              _updateDetails(day);
             }
           ),
         ),
