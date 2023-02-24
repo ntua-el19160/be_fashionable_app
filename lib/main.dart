@@ -55,8 +55,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _goToCalendar() {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => const CalendarWidget(routeName: 'main')));
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => const CalendarWidget(routeName: 'main')));
   }
 
   void _goToPhoto() async {
@@ -76,10 +76,11 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           verticalDirection: VerticalDirection.down,
           children: [
+            const SizedBox(height: 50),
             Center(
                 child: Text(
               time,
@@ -88,19 +89,29 @@ class _HomeScreenState extends State<HomeScreen> {
                   color: Colors.white,
                   fontWeight: FontWeight.bold),
             )),
+            const SizedBox(height: 100),
             const Center(
                 child: Text(
-              "Time remaining for today's snap!",
+              "Time remaining for",
               textAlign: TextAlign.center,
               style: TextStyle(
                   fontSize: 30,
                   color: Colors.white,
                   fontWeight: FontWeight.bold),
             )),
+            const Center(
+                child: Text(
+              "today's snap!",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontSize: 30,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold),
+            )),
+            const SizedBox(height: 20),
             Padding(
                 padding: const EdgeInsets.all(20),
-                child: Image.asset('assets/images/icon.png', scale: 3)
-            )
+                child: Image.asset('assets/images/icon.png', scale: 3))
           ],
         ),
         backgroundColor: const Color.fromARGB(255, 11, 2, 30),
@@ -111,7 +122,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: const EdgeInsets.only(right: 40),
                   child: CircleAvatar(
                       radius: 30.0,
-                      backgroundColor: const Color.fromARGB(0xFF, 0x67, 0x50, 0xA4),
+                      backgroundColor:
+                          const Color.fromARGB(0xFF, 0x67, 0x50, 0xA4),
                       child: IconButton(
                         tooltip: 'Calendar',
                         icon: const Icon(color: Colors.white, Icons.today),
@@ -121,7 +133,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: const EdgeInsets.only(right: 40),
                   child: CircleAvatar(
                       radius: 30.0,
-                      backgroundColor: const Color.fromARGB(0xFF, 0x67, 0x50, 0xA4),
+                      backgroundColor:
+                          const Color.fromARGB(0xFF, 0x67, 0x50, 0xA4),
                       child: IconButton(
                         tooltip: 'Profile',
                         icon: const Icon(
@@ -136,11 +149,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     icon: const Icon(
                         color: Colors.white, Icons.camera_alt_outlined),
                     onPressed: _goToPhoto,
-                  )
-              ),
-            ]
-          )
-        )
-      );
+                  )),
+            ])));
   }
 }
