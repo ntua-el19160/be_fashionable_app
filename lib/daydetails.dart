@@ -32,7 +32,7 @@ class _DayDetailsState extends State<DayDetails> {
         bottom: 0,
         width: MediaQuery.of(context).size.width,
         child: Material(
-          color: const Color.fromARGB(255, 11, 2, 30),
+          color: const Color(0xFF1C1B1F),
           child: Column(
             children: <Widget>[
               Container(
@@ -137,16 +137,16 @@ class _DayDetailsState extends State<DayDetails> {
 
   Color color ;
     if (overlayDisplayed) {
-      color = const Color.fromARGB(255, 11, 2, 30).withOpacity(0.75);
+      color = const Color(0xFF1C1B1F).withOpacity(0.75);
     }
     else {
-      color = const Color.fromARGB(255, 11, 2, 30);
+      color = const Color(0xFF1C1B1F);
     }
 
     return Scaffold(
       backgroundColor: color,
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: color,
         automaticallyImplyLeading: false,
         actions: <Widget>[
           Padding(
@@ -166,8 +166,7 @@ class _DayDetailsState extends State<DayDetails> {
       ),   
       body: GestureDetector(
         onTap: _removeOverlay,
-        child:
-          SingleChildScrollView(
+        child: SingleChildScrollView(
         child: Column(
           children: <Widget>[
             //const SizedBox(height: 600, width: 200),

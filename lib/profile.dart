@@ -49,7 +49,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
         top: MediaQuery.of(context).size.height * 0.5,
         bottom: 0,
         child: Material(
-          color: const Color.fromARGB(255, 11, 2, 30),
+          color: const Color(0xFF1C1B1F),
           child: Column(
             children: <Widget>[
               Container(
@@ -139,16 +139,16 @@ class _ProfileWidgetState extends State<ProfileWidget> {
 
     Color color ;
     if (overlayDisplayed) {
-      color = const Color.fromARGB(255, 11, 2, 30).withOpacity(0.75);
+      color = const Color(0xFF1C1B1F).withOpacity(0.75);
     }
     else {
-      color = const Color.fromARGB(255, 11, 2, 30);
+      color = const Color(0xFF1C1B1F);
     }
 
     return Scaffold(
         backgroundColor: color,
         appBar: AppBar(
-            backgroundColor: Colors.transparent,
+            backgroundColor: color,
             title: const Text('Profile',
                 style: TextStyle(
                     color: Colors.white,
@@ -298,7 +298,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
       )
     ),
         bottomNavigationBar: BottomAppBar(
-            color: Colors.transparent,
+            color: const Color(0xFF1C1B1F),
             child: Row(mainAxisAlignment: MainAxisAlignment.center, 
             children: [
               Padding(

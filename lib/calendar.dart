@@ -104,7 +104,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
         top: AppBar().preferredSize.height,
         bottom: 0,
         child: Material(
-          color: const Color.fromARGB(255, 11, 2, 30),
+          color: const Color(0xFF1C1B1F),
           child: SingleChildScrollView(
             child:
             Column(
@@ -383,7 +383,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                       extendedPadding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                       tooltip: 'Apply selected filters',
                       label: const Text('Apply Filter',
-                      style: TextStyle(color: Colors.black)),
+                      style: TextStyle(color: Color.fromARGB(0xFF, 0x38, 0x1E, 0x72))),
                       backgroundColor: const Color.fromARGB(0xFF, 0xD0, 0xBC, 0xFF),
                       onPressed: () {
                         for (var i = 0; i < 19; i++ ) {
@@ -464,16 +464,16 @@ Widget weekText(String text) {
 
     Color color ;
     if (overlayDisplayed) {
-      color = const Color.fromARGB(255, 11, 2, 30).withOpacity(0.75);
+      color = const Color(0xFF1C1B1F).withOpacity(0.75);
     }
     else {
-      color = const Color.fromARGB(255, 11, 2, 30);
+      color = const Color(0xFF1C1B1F);
     }
 
     return Scaffold(
         backgroundColor: color,
         appBar: AppBar(
-            backgroundColor: Colors.transparent,
+            backgroundColor: color,
             title: const Text('Calendar',
                 style: TextStyle(
                     color: Colors.white,
@@ -560,7 +560,11 @@ Widget weekText(String text) {
             },
             onDayPressed: (day) {
               _removeOverlay();
-              _updateDetails(day);
+              DateTime now = DateTime.now();
+              DateTime todaysDate = DateTime(now.year, now.month, now.day);
+              if (!day.isAfter(todaysDate)) {
+                _updateDetails(day);
+              }
             }
           ),
         ),
@@ -577,7 +581,7 @@ Widget weekText(String text) {
 
           ),*/
         bottomNavigationBar: BottomAppBar(
-            color: Colors.transparent,
+            color: color,
             child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               Padding(
                   padding: const EdgeInsets.only(right: 40),

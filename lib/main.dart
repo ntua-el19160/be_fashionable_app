@@ -15,8 +15,9 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'Be Fashionable',
+      theme: ThemeData(scaffoldBackgroundColor: const Color(0xFF1C1B1F)),
       home: HomeScreen(),
     );
   }
@@ -103,9 +104,9 @@ class _HomeScreenState extends State<HomeScreen> {
             )
           ],
         ),
-        backgroundColor: const Color.fromARGB(255, 11, 2, 30),
+        // backgroundColor: const Color.fromARGB(255, 11, 2, 30),
         bottomNavigationBar: BottomAppBar(
-            color: const Color.fromARGB(255, 5, 0, 17),
+            color: const Color(0xFF1C1B1F),
             child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               Padding(
                   padding: const EdgeInsets.only(right: 40),

@@ -26,9 +26,9 @@ class _AchievementWidgetState extends State<AchievementWidget> {
   Widget build(BuildContext context) {
     HapticFeedback.vibrate();
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 11, 2, 30),
+      backgroundColor: const Color(0xFF1C1B1F),
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: const Color(0xFF1C1B1F),
         automaticallyImplyLeading: false,
           actions: <Widget>[
             Padding(
