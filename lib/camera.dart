@@ -10,15 +10,16 @@ import 'calendar.dart';
 import 'daydetails.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:url_launcher/url_launcher_string.dart';
-// import 'dart:io';
+import 'dart:io';
 
 class CameraWidget extends StatefulWidget {
   const CameraWidget({
     Key? key,
-    required this.image,
+    required this.imagePath,
   }) : super(key: key);
 
-  final image;
+  // ignore: prefer_typing_uninitialized_variables
+  final imagePath;
 
   @override
   // ignore: library_private_types_in_public_api
@@ -95,7 +96,7 @@ class _CameraWidgetState extends State<CameraWidget> {
       long = position.longitude.toString();
 
       setState(() {
-        locationMessage = 'Latitude: $lat , Longitude: $long';
+        locationMessage = 'Lat: $lat , Long: $long';
       });
     });
   }
@@ -115,9 +116,9 @@ final List<bool> _clicks = List.generate(19, (index) => true);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 11, 2, 30),
+      backgroundColor: const Color(0xFF1C1B1F),
       appBar: AppBar(
-          backgroundColor: Colors.transparent,
+          backgroundColor: const Color(0xFF1C1B1F),
           title: const Text('Camera',
               style: TextStyle(
                   color: Colors.white,
@@ -137,10 +138,10 @@ final List<bool> _clicks = List.generate(19, (index) => true);
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            Image.network(
-              widget.image.path,
-              // height: MediaQuery.of(context).size.height * 0.4,
-              // width:MediaQuery.of(context).size.width * 0.8
+            Image.file(
+              File(widget.imagePath),
+              height: MediaQuery.of(context).size.height * 0.4,
+              width:MediaQuery.of(context).size.width * 0.8
             ),
             const SizedBox(height: 30),
             Row(mainAxisAlignment: MainAxisAlignment.start, children: [
@@ -150,10 +151,10 @@ final List<bool> _clicks = List.generate(19, (index) => true);
                   // ignore: prefer_const_constructors
                   label: Text(locationMessage,
                       // ignore: prefer_const_constructors
-                      style: TextStyle(color: Colors.black)),
-                  backgroundColor: const Color(0xFFD0BCFF),
+                      style: const TextStyle(color: Color.fromARGB(0xFF, 0x38, 0x1E, 0x72))),
+                  backgroundColor: const Color.fromARGB(0xFF, 0xD0, 0xBC, 0xFF),
                   icon: const Icon(
-                    color: Colors.black,
+                    color: Color.fromARGB(0xFF, 0x38, 0x1E, 0x72),
                     Icons.add_location,
                     size: 24.0,
                   ),
@@ -162,10 +163,10 @@ final List<bool> _clicks = List.generate(19, (index) => true);
                       lat = '${value.latitude}';
                       long = '${value.longitude}';
                       setState(() {
-                        locationMessage = 'Latitude: $lat , Longitude: $long';
+                        locationMessage = 'Lat: $lat , Long: $long';
                       });
                       _liveLocation();
-                      _openMap(lat, long);
+                      // _openMap(lat, long);
                     });
                   },
                 ),
@@ -197,15 +198,17 @@ final List<bool> _clicks = List.generate(19, (index) => true);
                         });
                       },
                       style: TextButton.styleFrom(
+                          side: const BorderSide(color: Color(0xFF938F99)),
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
+                            borderRadius: BorderRadius.circular(12),
                             side: const BorderSide(color: Colors.grey),
                           ),
-                          foregroundColor:
-                              (_clicks[0] == false) ? Colors.black : Colors.white,
+                          foregroundColor: const Color(0xFFE6E1E5),
+                          // (_clicks[0] == false) ? Colors.black : Colors.white,
                           //elevation: 2,
-                          backgroundColor:
-                              (_clicks[0] == false) ? Colors.grey : Colors.transparent),
+                          backgroundColor: (_clicks[0] == false) ? const Color(0xFFB0A7C0) : Colors.transparent,
+                          // (_clicks[0] == false) ? Colors.grey : Colors.transparent),
+                      ),
                       child: const Text(
                         'Occasion',
                         style: TextStyle(fontSize: 20),

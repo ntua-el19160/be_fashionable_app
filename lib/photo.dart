@@ -1,10 +1,10 @@
-// import 'dart:ui';
+// import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'camera.dart';
 import 'main.dart';
 import 'package:camera/camera.dart';
-import 'package:path_provider/path_provider.dart';
+// import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
 
 class PhotoWidget extends StatefulWidget {
@@ -18,6 +18,8 @@ class PhotoWidget extends StatefulWidget {
 
 class _PhotoWidgetState extends State<PhotoWidget> {
   late CameraController controller;
+  XFile? pictureFile;
+  String path = 'assets/images/image.png';
 
   void _goToMain() {
     Navigator.of(context)
@@ -51,11 +53,8 @@ class _PhotoWidgetState extends State<PhotoWidget> {
   }
 
   void _takePicture() async {
-    final path = p.join(
-      (await getTemporaryDirectory()).path,
-      '${DateTime.now()}.png',
-    );
-    final pictureFile = await controller.takePicture(path);
+    pictureFile = await controller.takePicture();
+    path = p.join("http://", pictureFile!.path);
     _goToCamera(path);
   }
 
@@ -71,7 +70,7 @@ class _PhotoWidgetState extends State<PhotoWidget> {
     return Scaffold(
       backgroundColor: const Color(0xFF1C1B1F),
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: const Color(0xFF1C1B1F),
         automaticallyImplyLeading: false,
           /*title: const Text('Calendar',
               style: TextStyle(
@@ -131,12 +130,14 @@ class _PhotoWidgetState extends State<PhotoWidget> {
                 )
               )
             ]
-          )
-          /*if (pictureFile != null)
-            Image.network(
-              pictureFile!.path,
+          ),
+          /*
+          if (pictureFile != null)
+            Image.file(
+              File(path),
               height: 200,
-            )*/
+            )
+          */
         ],
       ),
     );
