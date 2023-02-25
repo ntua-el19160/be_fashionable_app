@@ -15,10 +15,10 @@ import 'package:url_launcher/url_launcher_string.dart';
 class CameraWidget extends StatefulWidget {
   const CameraWidget({
     Key? key,
-    required this.imagePath,
+    required this.image,
   }) : super(key: key);
 
-  final imagePath;
+  final image;
 
   @override
   // ignore: library_private_types_in_public_api
@@ -67,7 +67,6 @@ class _CameraWidgetState extends State<CameraWidget> {
       completed: true,
     );
     //var rng = Random().nextInt(100);
-    //final List<Filter> tags = _tags;
     var rng = 3;
     if (rng % 3 == 0) {
       Navigator.of(context).push(MaterialPageRoute(
@@ -82,12 +81,6 @@ class _CameraWidgetState extends State<CameraWidget> {
         ),
       );
     }
-    /*Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => const CalendarWidget(routeName: 'tags'),
-        settings: RouteSettings(arguments: tags),
-      ),
-    );*/
   }
 
   void _liveLocation() {
@@ -116,25 +109,13 @@ class _CameraWidgetState extends State<CameraWidget> {
         : throw 'Could not launch $googleURL';
   }
 
-  bool click1 = true;
-  bool click2 = true;
-  bool click3 = true;
-  bool click4 = true;
-  bool click5 = true;
-  bool click6 = true;
-  bool click7 = true;
-  bool click8 = true;
-  bool click9 = true;
-  bool click10 = true;
-  bool click11 = true;
-  bool click12 = true;
-  bool click13 = true;
-  bool click14 = true;
+// List of booleans with 19 elements that are all "true" 
+final List<bool> _clicks = List.generate(19, (index) => true);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF1C1B1F),
+      backgroundColor: const Color.fromARGB(255, 11, 2, 30),
       appBar: AppBar(
           backgroundColor: Colors.transparent,
           title: const Text('Camera',
@@ -157,53 +138,50 @@ class _CameraWidgetState extends State<CameraWidget> {
         child: Column(
           children: <Widget>[
             Image.network(
-              widget.imagePath,
+              widget.image.path,
               // height: MediaQuery.of(context).size.height * 0.4,
               // width:MediaQuery.of(context).size.width * 0.8
             ),
             const SizedBox(height: 30),
+            Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 20),
+                child: FloatingActionButton.extended(
+                  // ignore: prefer_const_constructors
+                  label: Text(locationMessage,
+                      // ignore: prefer_const_constructors
+                      style: TextStyle(color: Colors.black)),
+                  backgroundColor: const Color(0xFFD0BCFF),
+                  icon: const Icon(
+                    color: Colors.black,
+                    Icons.add_location,
+                    size: 24.0,
+                  ),
+                  onPressed: () {
+                    _getCurrentLocation().then((value) {
+                      lat = '${value.latitude}';
+                      long = '${value.longitude}';
+                      setState(() {
+                        locationMessage = 'Latitude: $lat , Longitude: $long';
+                      });
+                      _liveLocation();
+                      _openMap(lat, long);
+                    });
+                  },
+                ),
+              )
+            ]),
+            const SizedBox(height: 30),
             Row(
               children: [
-                FittedBox(
-                 fit: BoxFit.scaleDown, 
-                 child:
-                  //Padding(
-                  //  padding: const EdgeInsets.only(left: 10),
-                  //  child: 
-                    FloatingActionButton.extended(
-                      label: FittedBox(
-                        fit: BoxFit.scaleDown,
-                        child: Text(locationMessage,
-                        style: const TextStyle(color: Color.fromARGB(0xFF, 0x38, 0x1E, 0x72))
-                        ),
-                      ),
-                      backgroundColor: const Color.fromARGB(0xFF, 0xD0, 0xBC, 0xFF),
-                      icon: const Icon(
-                        color: Color.fromARGB(0xFF, 0x38, 0x1E, 0x72),
-                        Icons.add_location,
-                        size: 24.0,
-                      ),
-                      onPressed: () {
-                        _getCurrentLocation().then((value) {
-                          lat = '${value.latitude}';
-                          long = '${value.longitude}';
-                          setState(() {
-                            locationMessage = 'Lat: $lat , Long: $long';
-                          });
-                          _liveLocation();
-                          //_openMap(lat, long);
-                        });
-                      },
-                    ),   
-                //  )
-                )
-              ]
+                const Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.only(right: 20),
+                    child: Text('Add Tags',
+                    textAlign: TextAlign.end,
+                        style: TextStyle(color: Colors.white, fontSize: 28))),
+              )]
             ),
-            const SizedBox(height: 30),
-            const Padding(
-                padding: EdgeInsets.only(left: 80),
-                child: Text('Add Tags',
-                    style: TextStyle(color: Colors.white, fontSize: 28))),
             const SizedBox(height: 30),
             SizedBox(
               height: 50,
@@ -211,23 +189,47 @@ class _CameraWidgetState extends State<CameraWidget> {
                 scrollDirection: Axis.horizontal,
                 children: <Widget>[
                   Padding(
+                    padding: const EdgeInsets.only(left: 20, right: 60),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          _clicks[0] = !_clicks[0];
+                        });
+                      },
+                      style: TextButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            side: const BorderSide(color: Colors.grey),
+                          ),
+                          foregroundColor:
+                              (_clicks[0] == false) ? Colors.black : Colors.white,
+                          //elevation: 2,
+                          backgroundColor:
+                              (_clicks[0] == false) ? Colors.grey : Colors.transparent),
+                      child: const Text(
+                        'Occasion',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  ),
+                  Padding(
                     padding: const EdgeInsets.only(right: 60),
                     child: ElevatedButton(
                       onPressed: () {
                         setState(() {
-                          click1 = !click1;
+                          _clicks[1] = !_clicks[1];
                         });
                       },
                       style: TextButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        foregroundColor: const Color(0xFFE6E1E5),
-                          //  (click1 == false) ? const Color(0xFFB0A7C0) : Colors.transparent,
-                        //elevation: 2,
-                        backgroundColor:
-                          (click1 == false) ? const Color(0xFFB0A7C0) : Colors.transparent,
-                        side: const BorderSide(color: Color(0xFF938F99))),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            side: const BorderSide(color: Colors.grey),
+                          ),
+                          foregroundColor:
+                              (_clicks[1] == false) ? Colors.black : Colors.white,
+                          //elevation: 2,
+                          backgroundColor:
+                              (_clicks[1] == false) ? Colors.grey : Colors.transparent),
                       child: const Text(
                         'Work',
                         style: TextStyle(fontSize: 20),
@@ -239,79 +241,19 @@ class _CameraWidgetState extends State<CameraWidget> {
                     child: ElevatedButton(
                       onPressed: () {
                         setState(() {
-                          click2 = !click2;
+                          _clicks[2] = !_clicks[2];
                         });
                       },
                       style: TextButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            side: const BorderSide(color: Colors.grey),
+                          ),
                           foregroundColor:
-                              (click2 == false) ? Colors.black : Colors.white,
+                              (_clicks[2] == false) ? Colors.black : Colors.white,
                           //elevation: 2,
                           backgroundColor:
-                              (click2 == false) ? Colors.grey : Colors.black,
-                          side: const BorderSide(color: Color.fromARGB(0xFF, 0x93, 0x8F, 0x99))),
-                      child: const Text(
-                        'Gym',
-                        style: TextStyle(fontSize: 20),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 60),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        setState(() {
-                          click3 = !click3;
-                        });
-                      },
-                      style: TextButton.styleFrom(
-                          foregroundColor:
-                              (click3 == false) ? Colors.black : Colors.white,
-                          //elevation: 2,
-                          backgroundColor:
-                              (click3 == false) ? Colors.grey : Colors.black,
-                          side: const BorderSide(color: Color.fromARGB(0xFF, 0x93, 0x8F, 0x99))),
-                      child: const Text(
-                        'College',
-                        style: TextStyle(fontSize: 20),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 60),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        setState(() {
-                          click4 = !click4;
-                        });
-                      },
-                      style: TextButton.styleFrom(
-                          foregroundColor:
-                              (click4 == false) ? Colors.black : Colors.white,
-                          //elevation: 2,
-                          backgroundColor:
-                              (click4 == false) ? Colors.grey : Colors.black,
-                          side: const BorderSide(color: Color.fromARGB(0xFF, 0x93, 0x8F, 0x99))),
-                      child: const Text(
-                        'Walk',
-                        style: TextStyle(fontSize: 20),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 60),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        setState(() {
-                          click5 = !click5;
-                        });
-                      },
-                      style: TextButton.styleFrom(
-                          foregroundColor:
-                              (click5 == false) ? Colors.black : Colors.white,
-                          //elevation: 2,
-                          backgroundColor:
-                              (click5 == false) ? Colors.grey : Colors.black,
-                          side: const BorderSide(color: Color.fromARGB(0xFF, 0x93, 0x8F, 0x99))),
+                              (_clicks[2] == false) ? Colors.grey : Colors.transparent),
                       child: const Text(
                         'Night Out',
                         style: TextStyle(fontSize: 20),
@@ -323,18 +265,21 @@ class _CameraWidgetState extends State<CameraWidget> {
                     child: ElevatedButton(
                       onPressed: () {
                         setState(() {
-                          click6 = !click6;
+                          _clicks[3] = !_clicks[3];
                         });
                       },
                       style: TextButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            side: const BorderSide(color: Colors.grey),
+                          ),
                           foregroundColor:
-                              (click6 == false) ? Colors.black : Colors.white,
+                              (_clicks[3] == false) ? Colors.black : Colors.white,
                           //elevation: 2,
                           backgroundColor:
-                              (click6 == false) ? Colors.grey : Colors.black,
-                          side: const BorderSide(color: Color.fromARGB(0xFF, 0x93, 0x8F, 0x99))),
+                              (_clicks[3] == false) ? Colors.grey : Colors.transparent),
                       child: const Text(
-                        'Shopping',
+                        'College',
                         style: TextStyle(fontSize: 20),
                       ),
                     ),
@@ -344,18 +289,117 @@ class _CameraWidgetState extends State<CameraWidget> {
                     child: ElevatedButton(
                       onPressed: () {
                         setState(() {
-                          click7 = !click7;
+                          _clicks[4] = !_clicks[4];
                         });
                       },
                       style: TextButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            side: const BorderSide(color: Colors.grey),
+                          ),
                           foregroundColor:
-                              (click7 == false) ? Colors.black : Colors.white,
+                              (_clicks[4] == false) ? Colors.black : Colors.white,
                           //elevation: 2,
                           backgroundColor:
-                              (click7 == false) ? Colors.grey : Colors.black,
-                          side: const BorderSide(color: Color.fromARGB(0xFF, 0x93, 0x8F, 0x99))),
+                              (_clicks[4] == false) ? Colors.grey : Colors.transparent),
                       child: const Text(
-                        'School',
+                        'Gym',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 60),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          _clicks[5] = !_clicks[5];
+                        });
+                      },
+                      style: TextButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            side: const BorderSide(color: Colors.grey),
+                          ),
+                          foregroundColor:
+                              (_clicks[5] == false) ? Colors.black : Colors.white,
+                          //elevation: 2,
+                          backgroundColor:
+                              (_clicks[5] == false) ? Colors.grey : Colors.transparent),
+                      child: const Text(
+                        'Wedding',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 60),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          _clicks[6] = !_clicks[6];
+                        });
+                      },
+                      style: TextButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            side: const BorderSide(color: Colors.grey),
+                          ),
+                          foregroundColor:
+                              (_clicks[6] == false) ? Colors.black : Colors.white,
+                          //elevation: 2,
+                          backgroundColor:
+                              (_clicks[6] == false) ? Colors.grey : Colors.transparent),
+                      child: const Text(
+                        'Walk',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 60),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          _clicks[7] = !_clicks[7];
+                        });
+                      },
+                      style: TextButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            side: const BorderSide(color: Colors.grey),
+                          ),
+                          foregroundColor:
+                              (_clicks[7] == false) ? Colors.black : Colors.white,
+                          //elevation: 2,
+                          backgroundColor:
+                              (_clicks[7] == false) ? Colors.grey : Colors.transparent),
+                      child: const Text(
+                        'Running',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 60),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          _clicks[8] = !_clicks[8];
+                        });
+                      },
+                      style: TextButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            side: const BorderSide(color: Colors.grey),
+                          ),
+                          foregroundColor:
+                              (_clicks[8] == false) ? Colors.black : Colors.white,
+                          //elevation: 2,
+                          backgroundColor:
+                              (_clicks[8] == false) ? Colors.grey : Colors.transparent),
+                      child: const Text(
+                        'Items',
                         style: TextStyle(fontSize: 20),
                       ),
                     ),
@@ -371,41 +415,23 @@ class _CameraWidgetState extends State<CameraWidget> {
                 scrollDirection: Axis.horizontal,
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.only(right: 60),
+                    padding: const EdgeInsets.only(left: 20, right: 60),
                     child: ElevatedButton(
                       onPressed: () {
                         setState(() {
-                          click8 = !click8;
+                          _clicks[9] = !_clicks[9];
                         });
                       },
                       style: TextButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            side: const BorderSide(color: Colors.grey),
+                          ),
                           foregroundColor:
-                              (click8 == false) ? Colors.black : Colors.white,
+                              (_clicks[9] == false) ? Colors.black : Colors.white,
                           //elevation: 2,
                           backgroundColor:
-                              (click8 == false) ? Colors.grey : Colors.black,
-                          side: const BorderSide(color: Color.fromARGB(0xFF, 0x93, 0x8F, 0x99))),
-                      child: const Text(
-                        'Skirt',
-                        style: TextStyle(fontSize: 20),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 60),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        setState(() {
-                          click9 = !click9;
-                        });
-                      },
-                      style: TextButton.styleFrom(
-                          foregroundColor:
-                              (click9 == false) ? Colors.black : Colors.white,
-                          //elevation: 2,
-                          backgroundColor:
-                              (click9 == false) ? Colors.grey : Colors.black,
-                          side: const BorderSide(color: Color.fromARGB(0xFF, 0x93, 0x8F, 0x99))),
+                              (_clicks[9] == false) ? Colors.grey : Colors.transparent),
                       child: const Text(
                         'Shirt',
                         style: TextStyle(fontSize: 20),
@@ -417,79 +443,19 @@ class _CameraWidgetState extends State<CameraWidget> {
                     child: ElevatedButton(
                       onPressed: () {
                         setState(() {
-                          click10 = !click10;
+                          _clicks[10] = !_clicks[10];
                         });
                       },
                       style: TextButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            side: const BorderSide(color: Colors.grey),
+                          ),
                           foregroundColor:
-                              (click10 == false) ? Colors.black : Colors.white,
+                              (_clicks[10] == false) ? Colors.black : Colors.white,
                           //elevation: 2,
                           backgroundColor:
-                              (click10 == false) ? Colors.grey : Colors.black,
-                          side: const BorderSide(color: Color.fromARGB(0xFF, 0x93, 0x8F, 0x99))),
-                      child: const Text(
-                        'Jeans',
-                        style: TextStyle(fontSize: 20),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 60),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        setState(() {
-                          click11 = !click11;
-                        });
-                      },
-                      style: TextButton.styleFrom(
-                          foregroundColor:
-                              (click11 == false) ? Colors.black : Colors.white,
-                          //elevation: 2,
-                          backgroundColor:
-                              (click11 == false) ? Colors.grey : Colors.black,
-                          side: const BorderSide(color: Color.fromARGB(0xFF, 0x93, 0x8F, 0x99))),
-                      child: const Text(
-                        'Hoodie',
-                        style: TextStyle(fontSize: 20),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 60),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        setState(() {
-                          click12 = !click12;
-                        });
-                      },
-                      style: TextButton.styleFrom(
-                          foregroundColor:
-                              (click12 == false) ? Colors.black : Colors.white,
-                          //elevation: 2,
-                          backgroundColor:
-                              (click12 == false) ? Colors.grey : Colors.black,
-                          side: const BorderSide(color: Color.fromARGB(0xFF, 0x93, 0x8F, 0x99))),
-                      child: const Text(
-                        'Leggings',
-                        style: TextStyle(fontSize: 20),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 60),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        setState(() {
-                          click13 = !click13;
-                        });
-                      },
-                      style: TextButton.styleFrom(
-                          foregroundColor:
-                              (click13 == false) ? Colors.black : Colors.white,
-                          //elevation: 2,
-                          backgroundColor:
-                              (click13 == false) ? Colors.grey : Colors.black,
-                          side: const BorderSide(color: Color.fromARGB(0xFF, 0x93, 0x8F, 0x99))),
+                              (_clicks[10] == false) ? Colors.grey : Colors.transparent),
                       child: const Text(
                         'Dress',
                         style: TextStyle(fontSize: 20),
@@ -501,18 +467,165 @@ class _CameraWidgetState extends State<CameraWidget> {
                     child: ElevatedButton(
                       onPressed: () {
                         setState(() {
-                          click14 = !click14;
+                          _clicks[11] = !_clicks[11];
                         });
                       },
                       style: TextButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            side: const BorderSide(color: Colors.grey),
+                          ),
                           foregroundColor:
-                              (click14 == false) ? Colors.black : Colors.white,
+                              (_clicks[11] == false) ? Colors.black : Colors.white,
                           //elevation: 2,
                           backgroundColor:
-                              (click14 == false) ? Colors.grey : Colors.black,
-                          side: const BorderSide(color: Color.fromARGB(0xFF, 0x93, 0x8F, 0x99))),
+                              (_clicks[11] == false) ? Colors.grey : Colors.transparent),
+                      child: const Text(
+                        'Jeans',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 60),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          _clicks[12] = !_clicks[12];
+                        });
+                      },
+                      style: TextButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            side: const BorderSide(color: Colors.grey),
+                          ),
+                          foregroundColor:
+                              (_clicks[12] == false) ? Colors.black : Colors.white,
+                          //elevation: 2,
+                          backgroundColor:
+                              (_clicks[12] == false) ? Colors.grey : Colors.transparent),
+                      child: const Text(
+                        'Skirt',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 60),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          _clicks[13] = !_clicks[13];
+                        });
+                      },
+                      style: TextButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            side: const BorderSide(color: Colors.grey),
+                          ),
+                          foregroundColor:
+                              (_clicks[13] == false) ? Colors.black : Colors.white,
+                          //elevation: 2,
+                          backgroundColor:
+                              (_clicks[13] == false) ? Colors.grey : Colors.transparent),
+                      child: const Text(
+                        'Hoodie',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 60),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          _clicks[14] = !_clicks[14];
+                        });
+                      },
+                      style: TextButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            side: const BorderSide(color: Colors.grey),
+                          ),
+                          foregroundColor:
+                              (_clicks[14] == false) ? Colors.black : Colors.white,
+                          //elevation: 2,
+                          backgroundColor:
+                              (_clicks[14] == false) ? Colors.grey : Colors.transparent),
+                      child: const Text(
+                        'Leggings',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 60),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          _clicks[15] = !_clicks[15];
+                        });
+                      },
+                      style: TextButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            side: const BorderSide(color: Colors.grey),
+                          ),
+                          foregroundColor:
+                              (_clicks[15] == false) ? Colors.black : Colors.white,
+                          //elevation: 2,
+                          backgroundColor:
+                              (_clicks[15] == false) ? Colors.grey : Colors.transparent),
                       child: const Text(
                         'Trousers',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 60),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          _clicks[16] = !_clicks[16];
+                        });
+                      },
+                      style: TextButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            side: const BorderSide(color: Colors.grey),
+                          ),
+                          foregroundColor:
+                              (_clicks[16] == false) ? Colors.black : Colors.white,
+                          //elevation: 2,
+                          backgroundColor:
+                              (_clicks[16] == false) ? Colors.grey : Colors.transparent),
+                      child: const Text(
+                        'Blazer',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 60),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          _clicks[17] = !_clicks[17];
+                        });
+                      },
+                      style: TextButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            side: const BorderSide(color: Colors.grey),
+                          ),
+                          foregroundColor:
+                              (_clicks[17] == false) ? Colors.black : Colors.white,
+                          //elevation: 2,
+                          backgroundColor:
+                              (_clicks[17] == false) ? Colors.grey : Colors.transparent),
+                      child: const Text(
+                        'Coat',
                         style: TextStyle(fontSize: 20),
                       ),
                     ),
@@ -549,9 +662,7 @@ class _CameraWidgetState extends State<CameraWidget> {
                               );
                             }
                             */
-                        )
-                      )
-                    ),
+                        ))),
               ],
             )
           ],
