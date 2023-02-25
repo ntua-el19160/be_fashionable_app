@@ -24,8 +24,9 @@ class _CalendarWidgetState extends State<CalendarWidget> {
   late OverlayEntry overlayEntry;
   bool overlayDisplayed = false;
   bool applyFilters = false;
-  // ignore: non_constant_identifier_names
   bool FromCamera = false;
+  bool transferTags = false;
+  late DateDetails datedetails;
 
   //kenh lista apo Datedetails
   //final List<DateDetails> _details = <DateDetails>[];
@@ -36,7 +37,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
       super.initState();
       if ((widget.routeName == 'achievements') || (widget.routeName == 'camera')) {
         FromCamera = true;
-        debugPrint('Route camera');
+        //debugPrint('Route camera');
       }
     }
 
@@ -51,7 +52,9 @@ class _CalendarWidgetState extends State<CalendarWidget> {
     }
     final details = DateDetails(
       date: day,
-      favorite: favorite
+      favorite: favorite,
+      // datedetails exists if we came from achievements or camera page
+      tags: transferTags ? datedetails.tags : null,
     );
     DateDetails newdetails = await Navigator.push(
       context,
@@ -467,7 +470,8 @@ Widget weekText(String text) {
   final width = MediaQuery.of(context).size.width;
 
   if (FromCamera == true) {
-    final datedetails = ModalRoute.of(context)!.settings.arguments as DateDetails; 
+    datedetails = ModalRoute.of(context)!.settings.arguments as DateDetails; 
+    transferTags = true;
     final year = datedetails.date.year;
     final month = datedetails.date.month;
     final day2 = datedetails.date.day;
@@ -479,10 +483,11 @@ Widget weekText(String text) {
     const microsecond = 0;
     final finaldate = DateTime(year,month, day2, hour, minute, second, millisecond , microsecond);
     _newPhoto(finaldate);
-    final cor2 = finaldate.toString();
-    debugPrint(cor2);
+    //final cor2 = finaldate.toString();
+    //final cor = datedetails.tags;
+    //final cor2 = cor.toString();
+    //debugPrint(cor2);
     FromCamera = false;
-    debugPrint('get arguments');
   }
 
     Color color ;
@@ -592,7 +597,11 @@ Widget weekText(String text) {
               final cor2 = date.toString();
               debugPrint(cor2);*/
               _removeOverlay();
-              _updateDetails(day);
+              DateTime now = DateTime.now();
+              DateTime todaysDate = DateTime(now.year, now.month, now.day);
+              if (!day.isAfter(todaysDate)) {
+                _updateDetails(day);
+              }
             }
           ),
         ),

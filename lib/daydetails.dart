@@ -19,13 +19,23 @@ class _DayDetailsState extends State<DayDetails> {
   late OverlayEntry overlayEntry;
   bool overlayDisplayed = false;
 
+  // List with all the Filters
+  final List<String> _strings = [
+    'Occasion','Work', 'Night out','College', 'Gym', 'Wedding','Walk',
+    'Running', 'Items', 'Shirt', 'Dress','Jeans','Skirt','Hoodie',
+    'Leggings','Trousers','Blazer','Coat'
+  ];
+
+  // List of booleans with 18 elements that are all "false" 
+  final List<bool> _tags = List.generate(18, (index) => false);
+
   void _showOverlay() {
     OverlayState? overlayState = Overlay.of(context);
     
     setState(() {
       overlayDisplayed = true;
     });
-    
+  
     overlayEntry = OverlayEntry(builder: (context) {
       return Positioned(
         top: MediaQuery.of(context).size.height * 0.7,
@@ -128,6 +138,14 @@ class _DayDetailsState extends State<DayDetails> {
   @override
   Widget build(BuildContext context) {
   final _dateDetails = ModalRoute.of(context)!.settings.arguments as DateDetails; 
+  bool needspace = false;
+
+  if (_dateDetails.tags != null) {
+    for (int listIndex in _dateDetails.tags!) {
+      _tags[listIndex] = true;
+      needspace = true;
+    }
+  }
 
   Color color ;
     if (overlayDisplayed) {
@@ -208,27 +226,18 @@ class _DayDetailsState extends State<DayDetails> {
               
               ],
             ),   
-            const SizedBox(height: 50),
+            Visibility(
+              visible: needspace,
+              child: const SizedBox(height: 30),),
             SizedBox(
               height: 50,
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20, right: 60),
-                    child: TextButton(
-                      onPressed: () {},
-                      style: TextButton.styleFrom(
-                          foregroundColor: Colors.black,
-                          elevation: 2,
-                          backgroundColor: Colors.grey),
-                      child: const Text(
-                        'Work',
-                        style: TextStyle(fontSize: 20),
-                      ),
-                    ),
-                  ),
-                  Padding(
+                  const Padding(padding: EdgeInsets.only(left: 20)),
+                  Visibility(
+                        visible: _tags[0],
+                        child: Padding(
                     padding: const EdgeInsets.only(right: 60),
                     child: TextButton(
                       onPressed: () {},
@@ -236,13 +245,15 @@ class _DayDetailsState extends State<DayDetails> {
                           foregroundColor: Colors.black,
                           elevation: 2,
                           backgroundColor: Colors.grey),
-                      child: const Text(
-                        'Gym',
-                        style: TextStyle(fontSize: 20),
+                      child: Text(
+                        _strings[0],
+                        style: const TextStyle(fontSize: 20),
                       ),
                     ),
-                  ),
-                  Padding(
+                  ),),
+                  Visibility(
+                        visible: _tags[1],
+                        child: Padding(
                     padding: const EdgeInsets.only(right: 60),
                     child: TextButton(
                       onPressed: () {},
@@ -250,13 +261,15 @@ class _DayDetailsState extends State<DayDetails> {
                           foregroundColor: Colors.black,
                           elevation: 2,
                           backgroundColor: Colors.grey),
-                      child: const Text(
-                        'College',
-                        style: TextStyle(fontSize: 20),
+                      child: Text(
+                        _strings[1],
+                        style: const TextStyle(fontSize: 20),
                       ),
                     ),
-                  ),
-                  Padding(
+                  ),),
+                  Visibility(
+                        visible: _tags[2],
+                        child: Padding(
                     padding: const EdgeInsets.only(right: 60),
                     child: TextButton(
                       onPressed: () {},
@@ -264,13 +277,15 @@ class _DayDetailsState extends State<DayDetails> {
                           foregroundColor: Colors.black,
                           elevation: 2,
                           backgroundColor: Colors.grey),
-                      child: const Text(
-                        'Walk',
-                        style: TextStyle(fontSize: 20),
+                      child: Text(
+                        _strings[2],
+                        style: const TextStyle(fontSize: 20),
                       ),
                     ),
-                  ),
-                  Padding(
+                  ),),
+                  Visibility(
+                        visible: _tags[3],
+                        child: Padding(
                     padding: const EdgeInsets.only(right: 60),
                     child: TextButton(
                       onPressed: () {},
@@ -278,13 +293,15 @@ class _DayDetailsState extends State<DayDetails> {
                           foregroundColor: Colors.black,
                           elevation: 2,
                           backgroundColor: Colors.grey),
-                      child: const Text(
-                        'Night Out',
-                        style: TextStyle(fontSize: 20),
+                      child: Text(
+                        _strings[3],
+                        style: const TextStyle(fontSize: 20),
                       ),
                     ),
-                  ),
-                  Padding(
+                  ),),
+                  Visibility(
+                        visible: _tags[4],
+                        child: Padding(
                     padding: const EdgeInsets.only(right: 60),
                     child: TextButton(
                       onPressed: () {},
@@ -292,13 +309,15 @@ class _DayDetailsState extends State<DayDetails> {
                           foregroundColor: Colors.black,
                           elevation: 2,
                           backgroundColor: Colors.grey),
-                      child: const Text(
-                        'Shopping',
-                        style: TextStyle(fontSize: 20),
+                      child: Text(
+                        _strings[4],
+                        style: const TextStyle(fontSize: 20),
                       ),
                     ),
-                  ),
-                  Padding(
+                  ),),
+                  Visibility(
+                        visible: _tags[5],
+                        child: Padding(
                     padding: const EdgeInsets.only(right: 60),
                     child: TextButton(
                       onPressed: () {},
@@ -306,16 +325,211 @@ class _DayDetailsState extends State<DayDetails> {
                           foregroundColor: Colors.black,
                           elevation: 2,
                           backgroundColor: Colors.grey),
-                      child: const Text(
-                        'School',
-                        style: TextStyle(fontSize: 20),
+                      child: Text(
+                        _strings[5],
+                        style: const TextStyle(fontSize: 20),
                       ),
                     ),
-                  ),
+                  ),),
+                  Visibility(
+                        visible: _tags[6],
+                        child: Padding(
+                    padding: const EdgeInsets.only(right: 60),
+                    child: TextButton(
+                      onPressed: () {},
+                      style: TextButton.styleFrom(
+                          foregroundColor: Colors.black,
+                          elevation: 2,
+                          backgroundColor: Colors.grey),
+                      child: Text(
+                        _strings[6],
+                        style: const TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  ),),
+                  Visibility(
+                        visible: _tags[7],
+                        child: Padding(
+                    padding: const EdgeInsets.only(right: 60),
+                    child: TextButton(
+                      onPressed: () {},
+                      style: TextButton.styleFrom(
+                          foregroundColor: Colors.black,
+                          elevation: 2,
+                          backgroundColor: Colors.grey),
+                      child: Text(
+                        _strings[7],
+                        style: const TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  ),),
+                  Visibility(
+                        visible: _tags[8],
+                        child: Padding(
+                    padding: const EdgeInsets.only(right: 60),
+                    child: TextButton(
+                      onPressed: () {},
+                      style: TextButton.styleFrom(
+                          foregroundColor: Colors.black,
+                          elevation: 2,
+                          backgroundColor: Colors.grey),
+                      child: Text(
+                        _strings[8],
+                        style: const TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  ),),
+                  Visibility(
+                        visible: _tags[9],
+                        child: Padding(
+                    padding: const EdgeInsets.only(right: 60),
+                    child: TextButton(
+                      onPressed: () {},
+                      style: TextButton.styleFrom(
+                          foregroundColor: Colors.black,
+                          elevation: 2,
+                          backgroundColor: Colors.grey),
+                      child: Text(
+                        _strings[9],
+                        style: const TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  ),),
+                  Visibility(
+                        visible: _tags[10],
+                        child: Padding(
+                    padding: const EdgeInsets.only(right: 60),
+                    child: TextButton(
+                      onPressed: () {},
+                      style: TextButton.styleFrom(
+                          foregroundColor: Colors.black,
+                          elevation: 2,
+                          backgroundColor: Colors.grey),
+                      child: Text(
+                        _strings[10],
+                        style: const TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  ),),
+                  Visibility(
+                        visible: _tags[11],
+                        child: Padding(
+                    padding: const EdgeInsets.only(right: 60),
+                    child: TextButton(
+                      onPressed: () {},
+                      style: TextButton.styleFrom(
+                          foregroundColor: Colors.black,
+                          elevation: 2,
+                          backgroundColor: Colors.grey),
+                      child: Text(
+                        _strings[11],
+                        style: const TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  ),),
+                  Visibility(
+                        visible: _tags[12],
+                        child: Padding(
+                    padding: const EdgeInsets.only(right: 60),
+                    child: TextButton(
+                      onPressed: () {},
+                      style: TextButton.styleFrom(
+                          foregroundColor: Colors.black,
+                          elevation: 2,
+                          backgroundColor: Colors.grey),
+                      child: Text(
+                        _strings[12],
+                        style: const TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  ),),
+                  Visibility(
+                        visible: _tags[13],
+                        child: Padding(
+                    padding: const EdgeInsets.only(right: 60),
+                    child: TextButton(
+                      onPressed: () {},
+                      style: TextButton.styleFrom(
+                          foregroundColor: Colors.black,
+                          elevation: 2,
+                          backgroundColor: Colors.grey),
+                      child: Text(
+                        _strings[13],
+                        style: const TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  ),),
+                  Visibility(
+                        visible: _tags[14],
+                        child: Padding(
+                    padding: const EdgeInsets.only(right: 60),
+                    child: TextButton(
+                      onPressed: () {},
+                      style: TextButton.styleFrom(
+                          foregroundColor: Colors.black,
+                          elevation: 2,
+                          backgroundColor: Colors.grey),
+                      child: Text(
+                        _strings[14],
+                        style: const TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  ),),
+                  Visibility(
+                        visible: _tags[15],
+                        child: Padding(
+                    padding: const EdgeInsets.only(right: 60),
+                    child: TextButton(
+                      onPressed: () {},
+                      style: TextButton.styleFrom(
+                          foregroundColor: Colors.black,
+                          elevation: 2,
+                          backgroundColor: Colors.grey),
+                      child: Text(
+                        _strings[15],
+                        style: const TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  ),),
+                  Visibility(
+                        visible: _tags[16],
+                        child: Padding(
+                    padding: const EdgeInsets.only(right: 60),
+                    child: TextButton(
+                      onPressed: () {},
+                      style: TextButton.styleFrom(
+                          foregroundColor: Colors.black,
+                          elevation: 2,
+                          backgroundColor: Colors.grey),
+                      child: Text(
+                        _strings[16],
+                        style: const TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  ),),
+                  Visibility(
+                        visible: _tags[17],
+                        child: Padding(
+                    padding: const EdgeInsets.only(right: 60),
+                    child: TextButton(
+                      onPressed: () {},
+                      style: TextButton.styleFrom(
+                          foregroundColor: Colors.black,
+                          elevation: 2,
+                          backgroundColor: Colors.grey),
+                      child: Text(
+                        _strings[17],
+                        style: const TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  ),),
                 ],
               ),
             ),
-            const SizedBox(height: 30),
+            Visibility(
+              visible: needspace,
+              child: const SizedBox(height: 30),
+            ),
             Padding(
               padding: const EdgeInsets.only(left: 20),
               child: Align(
@@ -369,10 +583,12 @@ class DateDetails {
   DateTime date;
   bool? completed;
   bool? favorite; 
+  List<int>? tags;
 
   DateDetails ({
     required this.date,
     this.completed,
     this.favorite,
+    this.tags,
   });
 }

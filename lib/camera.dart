@@ -63,9 +63,23 @@ class _CameraWidgetState extends State<CameraWidget> {
   }
 
   void _goToNext() {
+    // list of the tags that has been selected
+    // false --> selected, true --> not selected
+
+    // List.generate creates a new list of the same length as _clicks
+    // Then we use .where to filter out the -1 values, which corresponds to 'true' values of _clicks
+    // .toList method is used to convert the iterable to a list
+    // 'selectedTags' list contains the positions of the 'false' booleans from _clicks
+    List<int> selectedTags = List.generate(_clicks.length, (index) {
+      if (_clicks[index] == false) {
+        return index;
+      }
+      return -1;
+    }).where((value) => value != -1).toList();
     final details = DateDetails(
       date: DateTime.now(),
       completed: true,
+      tags: selectedTags,
     );
     //var rng = Random().nextInt(100);
     var rng = 3;
@@ -110,8 +124,8 @@ class _CameraWidgetState extends State<CameraWidget> {
         : throw 'Could not launch $googleURL';
   }
 
-// List of booleans with 19 elements that are all "true" 
-final List<bool> _clicks = List.generate(19, (index) => true);
+// List of booleans with 18 elements that are all "true" 
+final List<bool> _clicks = List.generate(18, (index) => true);
 
   @override
   Widget build(BuildContext context) {
