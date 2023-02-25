@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 // import 'photo.dart';
 import 'package:intl/intl.dart';
 import 'calendar.dart';
+import 'dart:io';
 
 class DayDetails extends StatefulWidget {
   const DayDetails({Key? key}) : super(key: key);
@@ -186,7 +187,7 @@ class _DayDetailsState extends State<DayDetails> {
         child: Column(
           children: <Widget>[
             //const SizedBox(height: 600, width: 200),
-            const SizedBox(height: 100, width: 200),
+            const SizedBox(height: 30),
             GestureDetector(
               onTap: _removeOverlay,
               child: Container(
@@ -195,8 +196,13 @@ class _DayDetailsState extends State<DayDetails> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget> [
                   //to image.asset prepei na mpei se sxolia
-                  Image.asset('assets/images/image.png', scale: 2),
-                  const SizedBox(height: 200),
+                  //Image.asset('assets/images/image.png', scale: 2),
+                  Image.file(
+                    File(_dateDetails.imagePath),
+                      height: MediaQuery.of(context).size.height * 0.45,
+                      width:MediaQuery.of(context).size.width * 0.9
+                  ),
+                  const SizedBox(height: 30),
                   ]
                 ),
               ),
@@ -584,11 +590,13 @@ class DateDetails {
   bool? completed;
   bool? favorite; 
   List<int>? tags;
+  String imagePath;
 
   DateDetails ({
     required this.date,
     this.completed,
     this.favorite,
     this.tags,
+    required this.imagePath
   });
 }

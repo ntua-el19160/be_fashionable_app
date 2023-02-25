@@ -24,7 +24,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
   late OverlayEntry overlayEntry;
   bool overlayDisplayed = false;
   bool applyFilters = false;
-  bool FromCamera = false;
+  bool fromCamera = false;
   bool transferTags = false;
   late DateDetails datedetails;
 
@@ -36,7 +36,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
     void initState() {
       super.initState();
       if ((widget.routeName == 'achievements') || (widget.routeName == 'camera')) {
-        FromCamera = true;
+        fromCamera = true;
         //debugPrint('Route camera');
       }
     }
@@ -55,6 +55,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
       favorite: favorite,
       // datedetails exists if we came from achievements or camera page
       tags: transferTags ? datedetails.tags : null,
+      imagePath: datedetails.imagePath
     );
     DateDetails newdetails = await Navigator.push(
       context,
@@ -469,7 +470,7 @@ Widget weekText(String text) {
   final height = MediaQuery.of(context).size.height;
   final width = MediaQuery.of(context).size.width;
 
-  if (FromCamera == true) {
+  if (fromCamera == true) {
     datedetails = ModalRoute.of(context)!.settings.arguments as DateDetails; 
     transferTags = true;
     final year = datedetails.date.year;
@@ -487,7 +488,7 @@ Widget weekText(String text) {
     //final cor = datedetails.tags;
     //final cor2 = cor.toString();
     //debugPrint(cor2);
-    FromCamera = false;
+    fromCamera = false;
   }
 
     Color color ;
