@@ -33,8 +33,8 @@ class _CameraWidgetState extends State<CameraWidget> {
   }*/
 
   String locationMessage = 'Add Location';
-  late String lat;
-  late String long;
+  String lat = ' ';
+  String long = ' ';
 
   void _goToMain() {
     Navigator.of(context)
@@ -80,7 +80,9 @@ class _CameraWidgetState extends State<CameraWidget> {
       date: DateTime.now(),
       completed: true,
       tags: selectedTags,
-      imagePath: widget.imagePath
+      imagePath: widget.imagePath,
+      lat: lat,
+      long: long
     );
     //var rng = Random().nextInt(100);
     var rng = 3;
