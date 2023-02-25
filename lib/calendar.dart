@@ -55,7 +55,9 @@ class _CalendarWidgetState extends State<CalendarWidget> {
       favorite: favorite,
       // datedetails exists if we came from achievements or camera page
       tags: transferTags ? datedetails.tags : null,
-      imagePath: datedetails.imagePath
+      imagePath: transferTags ? datedetails.imagePath : ' ',
+      lat: transferTags ? datedetails.lat : ' ',
+      long: transferTags ? datedetails.long : ' ',
     );
     DateDetails newdetails = await Navigator.push(
       context,
@@ -227,10 +229,25 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                   const Text('Running', style: TextStyle(color: Colors.white))
                 ],
               ),
-              const Padding(
+              Row(
+                children: [
+                  IconButton(
+                    color: Colors.white, 
+                    onPressed: () {
+                      setState(() {_filters[8].selected = !_filters[8].selected; applyFilters = true;});
+                      _removeOverlay();
+                      _showOverlay();          
+                    }, 
+                    icon: _filters[8].selected ? const Icon(Icons.check_box_outlined) : const Icon(Icons.check_box_outline_blank_outlined),
+                    tooltip:  _filters[8].selected ? 'Unselect filter' : 'Select filter',
+                  ),
+                  const Text('Items', style: TextStyle(color: Colors.white))
+                ],
+              ),
+              /*const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                 child: Text('Items', style: TextStyle(color: Colors.white))
-              ),
+              ),*/
               Row(
                 children: [
                   IconButton(
@@ -475,19 +492,23 @@ Widget weekText(String text) {
     transferTags = true;
     final year = datedetails.date.year;
     final month = datedetails.date.month;
-    final day2 = datedetails.date.day;
+    final day = datedetails.date.day;
     //final date = DateTime.utc(year, month, day2);
     const hour = 0;
     const minute = 0;
     const second = 0; 
     const millisecond = 0;
     const microsecond = 0;
-    final finaldate = DateTime(year,month, day2, hour, minute, second, millisecond , microsecond);
+    final finaldate = DateTime(year,month, day, hour, minute, second, millisecond , microsecond);
     _newPhoto(finaldate);
     //final cor2 = finaldate.toString();
     //final cor = datedetails.tags;
     //final cor2 = cor.toString();
     //debugPrint(cor2);
+    //if (datedetails.lat == ' ') {
+      //debugPrint('Yeah');
+    //}
+    //debugPrint(datedetails.lat);
     fromCamera = false;
   }
 
