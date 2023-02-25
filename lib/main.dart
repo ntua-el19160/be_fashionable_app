@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Be Fashionable',
       theme: ThemeData(scaffoldBackgroundColor: const Color(0xFF1C1B1F)),
-      home: HomeScreen(),
+      home: const HomeScreen(),
     );
   }
 }
