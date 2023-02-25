@@ -108,14 +108,13 @@ class _ProfileWidgetState extends State<ProfileWidget> {
   }
 
   void _goToCalendar() {
+    _removeOverlay();
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => const CalendarWidget(routeName: 'profile')));
   }
 
   void _goToMain() {
-    if (overlayDisplayed) {
-      _removeOverlay();
-    }
+    _removeOverlay();
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => const MyApp()));
   }
