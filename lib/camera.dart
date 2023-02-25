@@ -80,6 +80,7 @@ class _CameraWidgetState extends State<CameraWidget> {
       date: DateTime.now(),
       completed: true,
       tags: selectedTags,
+      imagePath: widget.imagePath
     );
     //var rng = Random().nextInt(100);
     var rng = 3;
@@ -154,11 +155,13 @@ final List<bool> _clicks = List.generate(18, (index) => true);
           children: <Widget>[
             Image.file(
               File(widget.imagePath),
-              height: MediaQuery.of(context).size.height * 0.4,
-              width:MediaQuery.of(context).size.width * 0.8
+              height: MediaQuery.of(context).size.height * 0.45,
+              width:MediaQuery.of(context).size.width * 0.9
             ),
             const SizedBox(height: 30),
-            Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start, 
+              children: [
               Padding(
                 padding: const EdgeInsets.only(left: 20),
                 child: FloatingActionButton.extended(
@@ -191,11 +194,14 @@ final List<bool> _clicks = List.generate(18, (index) => true);
               children: [
                 const Expanded(
                   child: Padding(
-                    padding: EdgeInsets.only(right: 20),
+                    padding: EdgeInsets.only(left: 20),
                     child: Text('Add Tags',
-                    textAlign: TextAlign.end,
-                        style: TextStyle(color: Colors.white, fontSize: 28))),
-              )]
+                    //textAlign: TextAlign.end,
+                      style: TextStyle(color: Colors.white, fontSize: 28)
+                    )
+                  ),
+                )
+              ]
             ),
             const SizedBox(height: 30),
             SizedBox(
@@ -212,16 +218,12 @@ final List<bool> _clicks = List.generate(18, (index) => true);
                         });
                       },
                       style: TextButton.styleFrom(
-                          side: const BorderSide(color: Color(0xFF938F99)),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
-                            side: const BorderSide(color: Colors.grey),
+                            side: const BorderSide(color: Color(0xFF938F99)),
                           ),
                           foregroundColor: const Color(0xFFE6E1E5),
-                          // (_clicks[0] == false) ? Colors.black : Colors.white,
-                          //elevation: 2,
-                          backgroundColor: (_clicks[0] == false) ? const Color(0xFFB0A7C0) : Colors.transparent,
-                          // (_clicks[0] == false) ? Colors.grey : Colors.transparent),
+                          backgroundColor: (_clicks[0] == false) ? const Color(0xFFB0A7C0) : const Color(0xFF1C1B1F),
                       ),
                       child: const Text(
                         'Occasion',
@@ -238,15 +240,13 @@ final List<bool> _clicks = List.generate(18, (index) => true);
                         });
                       },
                       style: TextButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            side: const BorderSide(color: Colors.grey),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            side: const BorderSide(color: Color(0xFF938F99)),
                           ),
-                          foregroundColor:
-                              (_clicks[1] == false) ? Colors.black : Colors.white,
-                          //elevation: 2,
-                          backgroundColor:
-                              (_clicks[1] == false) ? Colors.grey : Colors.transparent),
+                          foregroundColor: const Color(0xFFE6E1E5),
+                          backgroundColor: (_clicks[1] == false) ? const Color(0xFFB0A7C0) : const Color(0xFF1C1B1F),
+                      ),
                       child: const Text(
                         'Work',
                         style: TextStyle(fontSize: 20),
@@ -263,14 +263,12 @@ final List<bool> _clicks = List.generate(18, (index) => true);
                       },
                       style: TextButton.styleFrom(
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            side: const BorderSide(color: Colors.grey),
+                            borderRadius: BorderRadius.circular(12),
+                            side: const BorderSide(color: Color(0xFF938F99)),
                           ),
-                          foregroundColor:
-                              (_clicks[2] == false) ? Colors.black : Colors.white,
-                          //elevation: 2,
-                          backgroundColor:
-                              (_clicks[2] == false) ? Colors.grey : Colors.transparent),
+                          foregroundColor: const Color(0xFFE6E1E5),
+                          backgroundColor: (_clicks[2] == false) ? const Color(0xFFB0A7C0) : const Color(0xFF1C1B1F),
+                      ),
                       child: const Text(
                         'Night Out',
                         style: TextStyle(fontSize: 20),
@@ -287,14 +285,12 @@ final List<bool> _clicks = List.generate(18, (index) => true);
                       },
                       style: TextButton.styleFrom(
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            side: const BorderSide(color: Colors.grey),
+                            borderRadius: BorderRadius.circular(12),
+                            side: const BorderSide(color: Color(0xFF938F99)),
                           ),
-                          foregroundColor:
-                              (_clicks[3] == false) ? Colors.black : Colors.white,
-                          //elevation: 2,
-                          backgroundColor:
-                              (_clicks[3] == false) ? Colors.grey : Colors.transparent),
+                          foregroundColor: const Color(0xFFE6E1E5),
+                          backgroundColor: (_clicks[3] == false) ? const Color(0xFFB0A7C0) : const Color(0xFF1C1B1F),
+                      ),
                       child: const Text(
                         'College',
                         style: TextStyle(fontSize: 20),
@@ -311,14 +307,12 @@ final List<bool> _clicks = List.generate(18, (index) => true);
                       },
                       style: TextButton.styleFrom(
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            side: const BorderSide(color: Colors.grey),
+                            borderRadius: BorderRadius.circular(12),
+                            side: const BorderSide(color: Color(0xFF938F99)),
                           ),
-                          foregroundColor:
-                              (_clicks[4] == false) ? Colors.black : Colors.white,
-                          //elevation: 2,
-                          backgroundColor:
-                              (_clicks[4] == false) ? Colors.grey : Colors.transparent),
+                          foregroundColor: const Color(0xFFE6E1E5),
+                          backgroundColor: (_clicks[4] == false) ? const Color(0xFFB0A7C0) : const Color(0xFF1C1B1F),
+                      ),
                       child: const Text(
                         'Gym',
                         style: TextStyle(fontSize: 20),
@@ -335,14 +329,12 @@ final List<bool> _clicks = List.generate(18, (index) => true);
                       },
                       style: TextButton.styleFrom(
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            side: const BorderSide(color: Colors.grey),
+                            borderRadius: BorderRadius.circular(12),
+                            side: const BorderSide(color: Color(0xFF938F99)),
                           ),
-                          foregroundColor:
-                              (_clicks[5] == false) ? Colors.black : Colors.white,
-                          //elevation: 2,
-                          backgroundColor:
-                              (_clicks[5] == false) ? Colors.grey : Colors.transparent),
+                          foregroundColor: const Color(0xFFE6E1E5),
+                          backgroundColor: (_clicks[5] == false) ? const Color(0xFFB0A7C0) : const Color(0xFF1C1B1F),
+                          ),
                       child: const Text(
                         'Wedding',
                         style: TextStyle(fontSize: 20),
@@ -359,14 +351,12 @@ final List<bool> _clicks = List.generate(18, (index) => true);
                       },
                       style: TextButton.styleFrom(
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            side: const BorderSide(color: Colors.grey),
+                            borderRadius: BorderRadius.circular(12),
+                            side: const BorderSide(color: Color(0xFF938F99)),
                           ),
-                          foregroundColor:
-                              (_clicks[6] == false) ? Colors.black : Colors.white,
-                          //elevation: 2,
-                          backgroundColor:
-                              (_clicks[6] == false) ? Colors.grey : Colors.transparent),
+                          foregroundColor: const Color(0xFFE6E1E5),
+                          backgroundColor: (_clicks[6] == false) ? const Color(0xFFB0A7C0) : const Color(0xFF1C1B1F),
+                      ),
                       child: const Text(
                         'Walk',
                         style: TextStyle(fontSize: 20),
@@ -383,14 +373,12 @@ final List<bool> _clicks = List.generate(18, (index) => true);
                       },
                       style: TextButton.styleFrom(
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            side: const BorderSide(color: Colors.grey),
+                            borderRadius: BorderRadius.circular(12),
+                            side: const BorderSide(color: Color(0xFF938F99)),
                           ),
-                          foregroundColor:
-                              (_clicks[7] == false) ? Colors.black : Colors.white,
-                          //elevation: 2,
-                          backgroundColor:
-                              (_clicks[7] == false) ? Colors.grey : Colors.transparent),
+                          foregroundColor: const Color(0xFFE6E1E5),
+                          backgroundColor: (_clicks[7] == false) ? const Color(0xFFB0A7C0) : const Color(0xFF1C1B1F),
+                      ),
                       child: const Text(
                         'Running',
                         style: TextStyle(fontSize: 20),
@@ -407,14 +395,12 @@ final List<bool> _clicks = List.generate(18, (index) => true);
                       },
                       style: TextButton.styleFrom(
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            side: const BorderSide(color: Colors.grey),
+                            borderRadius: BorderRadius.circular(12),
+                            side: const BorderSide(color: Color(0xFF938F99)),
                           ),
-                          foregroundColor:
-                              (_clicks[8] == false) ? Colors.black : Colors.white,
-                          //elevation: 2,
-                          backgroundColor:
-                              (_clicks[8] == false) ? Colors.grey : Colors.transparent),
+                          foregroundColor: const Color(0xFFE6E1E5),
+                          backgroundColor: (_clicks[8] == false) ? const Color(0xFFB0A7C0) : const Color(0xFF1C1B1F),
+                      ),
                       child: const Text(
                         'Items',
                         style: TextStyle(fontSize: 20),
@@ -441,14 +427,12 @@ final List<bool> _clicks = List.generate(18, (index) => true);
                       },
                       style: TextButton.styleFrom(
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            side: const BorderSide(color: Colors.grey),
+                            borderRadius: BorderRadius.circular(12),
+                            side: const BorderSide(color: Color(0xFF938F99)),
                           ),
-                          foregroundColor:
-                              (_clicks[9] == false) ? Colors.black : Colors.white,
-                          //elevation: 2,
-                          backgroundColor:
-                              (_clicks[9] == false) ? Colors.grey : Colors.transparent),
+                          foregroundColor: const Color(0xFFE6E1E5),
+                          backgroundColor: (_clicks[9] == false) ? const Color(0xFFB0A7C0) : const Color(0xFF1C1B1F),
+                      ),
                       child: const Text(
                         'Shirt',
                         style: TextStyle(fontSize: 20),
@@ -465,14 +449,12 @@ final List<bool> _clicks = List.generate(18, (index) => true);
                       },
                       style: TextButton.styleFrom(
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            side: const BorderSide(color: Colors.grey),
+                            borderRadius: BorderRadius.circular(12),
+                            side: const BorderSide(color: Color(0xFF938F99)),
                           ),
-                          foregroundColor:
-                              (_clicks[10] == false) ? Colors.black : Colors.white,
-                          //elevation: 2,
-                          backgroundColor:
-                              (_clicks[10] == false) ? Colors.grey : Colors.transparent),
+                          foregroundColor: const Color(0xFFE6E1E5),
+                          backgroundColor: (_clicks[10] == false) ? const Color(0xFFB0A7C0) : const Color(0xFF1C1B1F),
+                      ),
                       child: const Text(
                         'Dress',
                         style: TextStyle(fontSize: 20),
@@ -489,14 +471,12 @@ final List<bool> _clicks = List.generate(18, (index) => true);
                       },
                       style: TextButton.styleFrom(
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            side: const BorderSide(color: Colors.grey),
+                            borderRadius: BorderRadius.circular(12),
+                            side: const BorderSide(color: Color(0xFF938F99)),
                           ),
-                          foregroundColor:
-                              (_clicks[11] == false) ? Colors.black : Colors.white,
-                          //elevation: 2,
-                          backgroundColor:
-                              (_clicks[11] == false) ? Colors.grey : Colors.transparent),
+                          foregroundColor: const Color(0xFFE6E1E5),
+                          backgroundColor: (_clicks[11] == false) ? const Color(0xFFB0A7C0) : const Color(0xFF1C1B1F),
+                      ),
                       child: const Text(
                         'Jeans',
                         style: TextStyle(fontSize: 20),
@@ -512,15 +492,13 @@ final List<bool> _clicks = List.generate(18, (index) => true);
                         });
                       },
                       style: TextButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            side: const BorderSide(color: Colors.grey),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            side: const BorderSide(color: Color(0xFF938F99)),
                           ),
-                          foregroundColor:
-                              (_clicks[12] == false) ? Colors.black : Colors.white,
-                          //elevation: 2,
-                          backgroundColor:
-                              (_clicks[12] == false) ? Colors.grey : Colors.transparent),
+                          foregroundColor: const Color(0xFFE6E1E5),
+                          backgroundColor: (_clicks[12] == false) ? const Color(0xFFB0A7C0) : const Color(0xFF1C1B1F),  
+                      ),
                       child: const Text(
                         'Skirt',
                         style: TextStyle(fontSize: 20),
@@ -537,14 +515,12 @@ final List<bool> _clicks = List.generate(18, (index) => true);
                       },
                       style: TextButton.styleFrom(
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            side: const BorderSide(color: Colors.grey),
+                            borderRadius: BorderRadius.circular(12),
+                            side: const BorderSide(color: Color(0xFF938F99)),
                           ),
-                          foregroundColor:
-                              (_clicks[13] == false) ? Colors.black : Colors.white,
-                          //elevation: 2,
-                          backgroundColor:
-                              (_clicks[13] == false) ? Colors.grey : Colors.transparent),
+                          foregroundColor: const Color(0xFFE6E1E5),
+                          backgroundColor: (_clicks[13] == false) ? const Color(0xFFB0A7C0) : const Color(0xFF1C1B1F),
+                      ),
                       child: const Text(
                         'Hoodie',
                         style: TextStyle(fontSize: 20),
@@ -561,14 +537,12 @@ final List<bool> _clicks = List.generate(18, (index) => true);
                       },
                       style: TextButton.styleFrom(
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            side: const BorderSide(color: Colors.grey),
+                            borderRadius: BorderRadius.circular(12),
+                            side: const BorderSide(color: Color(0xFF938F99)),
                           ),
-                          foregroundColor:
-                              (_clicks[14] == false) ? Colors.black : Colors.white,
-                          //elevation: 2,
-                          backgroundColor:
-                              (_clicks[14] == false) ? Colors.grey : Colors.transparent),
+                          foregroundColor: const Color(0xFFE6E1E5),
+                          backgroundColor: (_clicks[14] == false) ? const Color(0xFFB0A7C0) : const Color(0xFF1C1B1F),
+                      ),
                       child: const Text(
                         'Leggings',
                         style: TextStyle(fontSize: 20),
@@ -585,14 +559,12 @@ final List<bool> _clicks = List.generate(18, (index) => true);
                       },
                       style: TextButton.styleFrom(
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            side: const BorderSide(color: Colors.grey),
+                            borderRadius: BorderRadius.circular(12),
+                            side: const BorderSide(color: Color(0xFF938F99)),
                           ),
-                          foregroundColor:
-                              (_clicks[15] == false) ? Colors.black : Colors.white,
-                          //elevation: 2,
-                          backgroundColor:
-                              (_clicks[15] == false) ? Colors.grey : Colors.transparent),
+                          foregroundColor: const Color(0xFFE6E1E5),
+                          backgroundColor: (_clicks[15] == false) ? const Color(0xFFB0A7C0) : const Color(0xFF1C1B1F),
+                      ),
                       child: const Text(
                         'Trousers',
                         style: TextStyle(fontSize: 20),
@@ -609,14 +581,12 @@ final List<bool> _clicks = List.generate(18, (index) => true);
                       },
                       style: TextButton.styleFrom(
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            side: const BorderSide(color: Colors.grey),
+                            borderRadius: BorderRadius.circular(12),
+                            side: const BorderSide(color: Color(0xFF938F99)),
                           ),
-                          foregroundColor:
-                              (_clicks[16] == false) ? Colors.black : Colors.white,
-                          //elevation: 2,
-                          backgroundColor:
-                              (_clicks[16] == false) ? Colors.grey : Colors.transparent),
+                          foregroundColor: const Color(0xFFE6E1E5),
+                          backgroundColor: (_clicks[16] == false) ? const Color(0xFFB0A7C0) : const Color(0xFF1C1B1F),
+                      ),
                       child: const Text(
                         'Blazer',
                         style: TextStyle(fontSize: 20),
@@ -633,14 +603,12 @@ final List<bool> _clicks = List.generate(18, (index) => true);
                       },
                       style: TextButton.styleFrom(
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            side: const BorderSide(color: Colors.grey),
+                            borderRadius: BorderRadius.circular(12),
+                            side: const BorderSide(color: Color(0xFF938F99)),
                           ),
-                          foregroundColor:
-                              (_clicks[17] == false) ? Colors.black : Colors.white,
-                          //elevation: 2,
-                          backgroundColor:
-                              (_clicks[17] == false) ? Colors.grey : Colors.transparent),
+                          foregroundColor: const Color(0xFFE6E1E5),
+                          backgroundColor: (_clicks[17] == false) ? const Color(0xFFB0A7C0) : const Color(0xFF1C1B1F),
+                      ),
                       child: const Text(
                         'Coat',
                         style: TextStyle(fontSize: 20),
