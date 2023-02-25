@@ -62,9 +62,23 @@ class _CameraWidgetState extends State<CameraWidget> {
   }
 
   void _goToNext() {
+    // list of the tags that has been selected
+    // false --> selected, true --> not selected
+
+    // List.generate creates a new list of the same length as _clicks
+    // Then we use .where to filter out the -1 values, which corresponds to 'true' values of _clicks
+    // .toList method is used to convert the iterable to a list
+    // 'selectedTags' list contains the positions of the 'false' booleans from _clicks
+    List<int> selectedTags = List.generate(_clicks.length, (index) {
+      if (_clicks[index] == false) {
+        return index;
+      }
+      return -1;
+    }).where((value) => value != -1).toList();
     final details = DateDetails(
       date: DateTime.now(),
       completed: true,
+      tags: selectedTags,
     );
     //var rng = Random().nextInt(100);
     var rng = 3;
@@ -109,13 +123,13 @@ class _CameraWidgetState extends State<CameraWidget> {
         : throw 'Could not launch $googleURL';
   }
 
-// List of booleans with 19 elements that are all "true" 
-final List<bool> _clicks = List.generate(19, (index) => true);
+// List of booleans with 18 elements that are all "true" 
+final List<bool> _clicks = List.generate(18, (index) => true);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 11, 2, 30),
+      backgroundColor: const Color(0xFF1C1B1F),
       appBar: AppBar(
           backgroundColor: Colors.transparent,
           title: const Text('Camera',
@@ -143,34 +157,42 @@ final List<bool> _clicks = List.generate(19, (index) => true);
               // width:MediaQuery.of(context).size.width * 0.8
             ),
             const SizedBox(height: 30),
-            Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 20),
-                child: FloatingActionButton.extended(
-                  // ignore: prefer_const_constructors
-                  label: Text(locationMessage,
-                      // ignore: prefer_const_constructors
-                      style: TextStyle(color: Colors.black)),
-                  backgroundColor: const Color(0xFFD0BCFF),
-                  icon: const Icon(
-                    color: Colors.black,
-                    Icons.add_location,
-                    size: 24.0,
-                  ),
-                  onPressed: () {
-                    _getCurrentLocation().then((value) {
-                      lat = '${value.latitude}';
-                      long = '${value.longitude}';
-                      setState(() {
-                        locationMessage = 'Latitude: $lat , Longitude: $long';
-                      });
-                      _liveLocation();
-                      _openMap(lat, long);
-                    });
-                  },
-                ),
-              )
-            ]),
+            Row(
+              children: [
+                FittedBox(
+                 fit: BoxFit.scaleDown, 
+                 child:
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                   child: 
+                    FloatingActionButton.extended(
+                      label: FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(locationMessage,
+                        style: const TextStyle(color: Color.fromARGB(0xFF, 0x38, 0x1E, 0x72))
+                        ),
+                      ),
+                      backgroundColor: const Color.fromARGB(0xFF, 0xD0, 0xBC, 0xFF),
+                      icon: const Icon(
+                        color: Color.fromARGB(0xFF, 0x38, 0x1E, 0x72),
+                        Icons.add_location,
+                        size: 24.0,
+                      ),
+                      onPressed: () {
+                        _getCurrentLocation().then((value) {
+                          lat = '${value.latitude}';
+                          long = '${value.longitude}';
+                          setState(() {
+                            locationMessage = 'Lat: $lat , Long: $long';
+                          });
+                          _liveLocation();
+                          //_openMap(lat, long);
+                        });
+                      },
+                    ),   
+                  )
+                )
+              ]),
             const SizedBox(height: 30),
             Row(
               children: [
