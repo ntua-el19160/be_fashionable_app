@@ -39,55 +39,48 @@ class _ProfileWidgetState extends State<ProfileWidget> {
 
   void _showOverlay() {
     OverlayState? overlayState = Overlay.of(context);
-    
+
     setState(() {
       overlayDisplayed = true;
     });
-    
+
     overlayEntry = OverlayEntry(builder: (context) {
       return Positioned(
-        top: MediaQuery.of(context).size.height * 0.5,
-        bottom: 0,
-        child: Material(
-          color: const Color(0xFF1C1B1F),
-          child: Column(
-            children: <Widget>[
-              Container(
-                width: MediaQuery.of(context).size.width,
-                alignment: Alignment.topRight,
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 10.0, 20.0, 0),
-                  child: CircleAvatar(
-                    radius: 30.0,
-                    backgroundColor: const Color.fromARGB(0xFF, 0x67, 0x50, 0xA4),
-                    child: IconButton(
-                        onPressed: () {_removeOverlay();},
-                        icon: const Icon(Icons.close),
-                        color: Colors.white,
-                        tooltip: 'Close',
-                      )
-                  )
-                )
-              ),
-              const Padding(
-                padding: EdgeInsets.all(10.0)
-              ),
-              Text('Το BeFashionable δημιουργήθηκε από:\n\nΑνδρέας Λεβής\nandlevis2001@gmail.com\n\nΘεοδώρα Βερναρδάκη\ntheodvern@gmail.com\n\nΧρυσούλα Πανηγυράκη\nchrysoulapan@gmail.com',
-                style: TextStyle(
-                  fontSize: MediaQuery.of(context).size.height * 0.02,
-                  color: Colors.white
-                )
-              ),
-              const Padding(
-                padding: EdgeInsets.all(30.0)
-              ),
-            ],
-          )
-        )
-      );
+          top: MediaQuery.of(context).size.height * 0.5,
+          bottom: 0,
+          child: Material(
+              color: const Color(0xFF1C1B1F),
+              child: Column(
+                children: <Widget>[
+                  Container(
+                      width: MediaQuery.of(context).size.width,
+                      alignment: Alignment.topRight,
+                      child: Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 10.0, 20.0, 0),
+                          child: CircleAvatar(
+                              radius: 30.0,
+                              backgroundColor:
+                                  const Color.fromARGB(0xFF, 0x67, 0x50, 0xA4),
+                              child: IconButton(
+                                onPressed: () {
+                                  _removeOverlay();
+                                },
+                                icon: const Icon(Icons.close),
+                                color: Colors.white,
+                                tooltip: 'Close',
+                              )))),
+                  const Padding(padding: EdgeInsets.all(10.0)),
+                  Text(
+                      'Το BeFashionable δημιουργήθηκε από:\n\nΑνδρέας Λεβής\nandlevis2001@gmail.com\n\nΘεοδώρα Βερναρδάκη\ntheodvern@gmail.com\n\nΧρυσούλα Πανηγυράκη\nchrysoulapan@gmail.com',
+                      style: TextStyle(
+                          fontSize: MediaQuery.of(context).size.height * 0.02,
+                          color: Colors.white)),
+                  const Padding(padding: EdgeInsets.all(30.0)),
+                ],
+              )));
     });
 
-    overlayState?.insert(overlayEntry);
+    overlayState.insert(overlayEntry);
   }
 
   void _removeOverlay() {
@@ -99,7 +92,22 @@ class _ProfileWidgetState extends State<ProfileWidget> {
     }
   }
 
-  final _usernameController = TextEditingController();
+  TextEditingController _usernameController = TextEditingController();
+
+  var _username;
+
+  void _updateText() {
+    setState(() {
+      _username = _usernameController.text;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    _usernameController.addListener((_updateText));
+  }
 
   @override
   void dispose() {
@@ -109,8 +117,8 @@ class _ProfileWidgetState extends State<ProfileWidget> {
 
   void _goToCalendar() {
     _removeOverlay();
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => const CalendarWidget(routeName: 'profile')));
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => const CalendarWidget(routeName: 'profile')));
   }
 
   void _goToMain() {
@@ -135,12 +143,10 @@ class _ProfileWidgetState extends State<ProfileWidget> {
 
   @override
   Widget build(BuildContext context) {
-
-    Color color ;
+    Color color;
     if (overlayDisplayed) {
       color = const Color(0xFF1C1B1F).withOpacity(0.75);
-    }
-    else {
+    } else {
       color = const Color(0xFF1C1B1F);
     }
 
@@ -175,136 +181,166 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                   )),
             ]),
         body: GestureDetector(
-          onTap: () {_removeOverlay();},
-          child: SingleChildScrollView(
-            child: Column(
-          children: <Widget>[
-            Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextFormField(
-                  style: const TextStyle(color: Colors.white, fontSize: 15),
-                  decoration: const InputDecoration(
-                      hintStyle: TextStyle(
-                          color: Color.fromARGB(255, 93, 54, 165),
-                          fontSize: 15),
-                      hintText: 'Username',
-                      border: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              style: BorderStyle.solid, color: Colors.white)),
-                      enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              style: BorderStyle.solid, color: Colors.white))),
-                  controller: _usernameController,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Username cannot be empty!';
-                    }
-                    return null;
-                  },
-                )),
-            const Center(
-              child: Text(
-                'Achievements',
-                style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.white,
-                    fontWeight: FontWeight.normal),
-              ),
-            ),
-            Column(children: const <Widget>[
-              ListTile(
-                  leading: MyBullet(),
-                  title: Text('Upload 5 days in a row',
-                      style: TextStyle(color: Colors.white))),
-              ListTile(
-                  leading: MyBullet(),
-                  title: Text('Uplaod 10 days in a row',
-                      style: TextStyle(color: Colors.white))),
-              ListTile(
-                  leading: MyBullet(),
-                  title: Text('Uplaod 50 days in a row',
-                      style: TextStyle(color: Colors.white))),
-              ListTile(
-                  leading: MyBullet(),
-                  title: Text('Uplaod 100 days in a row',
-                      style: TextStyle(color: Colors.white))),
-              ListTile(
-                  leading: MyBullet(),
-                  title: Text('Uplaod 5 days in total',
-                      style: TextStyle(color: Colors.white))),
-              ListTile(
-                  leading: MyBullet(),
-                  title: Text('Uplaod 10 days in total',
-                      style: TextStyle(color: Colors.white))),
-              ListTile(
-                  leading: MyBullet(),
-                  title: Text('Uplaod 50 days in total',
-                      style: TextStyle(color: Colors.white))),
-              ListTile(
-                  leading: MyBullet(),
-                  title: Text('Uplaod 100 days in total',
-                      style: TextStyle(color: Colors.white))),
-              ListTile(
-                  leading: MyBullet(),
-                  title: Text('Upload 1 outfit for every occasion',
-                      style: TextStyle(color: Colors.white))),
-              ListTile(
-                  leading: MyBullet(),
-                  title: Text('Upload 1 outfit with each item',
-                      style: TextStyle(color: Colors.white))),
-              ListTile(
-                  leading: MyBullet(),
-                  title: Text('Share 1 outfit with your friends',
-                      style: TextStyle(color: Colors.white))),
-              ListTile(
-                  leading: MyBullet(),
-                  title: Text('Share 5 outfits with your friends',
-                      style: TextStyle(color: Colors.white))),
-              ListTile(
-                  leading: MyBullet(),
-                  title: Text('Upload 5 different outfits',
-                      style: TextStyle(color: Colors.white))),
-              ListTile(
-                  leading: MyBullet(),
-                  title: Text('Upload 10 different outfits',
-                      style: TextStyle(color: Colors.white))),
-            ]),
-            const Center(
-              child: Text(
-                'Streak',
-                style: TextStyle(
-                    fontSize: 30,
-                    color: Colors.white,
-                    fontWeight: FontWeight.normal),
-              ),
-            ),
-            const Center(
-              child: Text(
-                'You have X days Streak!',
-                style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.white,
-                    fontWeight: FontWeight.normal),
-              ),
-            ),
-            //const SizedBox(height: 200.0, width: 100.0),
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: Image.asset('assets/images/fire.png', scale: 3)
-            )
-          ],
-        )
-      )
-    ),
+            onTap: () {
+              _removeOverlay();
+            },
+            child: SingleChildScrollView(
+                child: Column(
+              children: <Widget>[
+                Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextFormField(
+                      style: const TextStyle(color: Colors.white, fontSize: 15),
+                      decoration: const InputDecoration(
+                          hintStyle: TextStyle(
+                              color: Color.fromARGB(255, 93, 54, 165),
+                              fontSize: 15),
+                          hintText: 'Username',
+                          border: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  style: BorderStyle.solid,
+                                  color: Colors.white)),
+                          enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  style: BorderStyle.solid,
+                                  color: Colors.white))),
+                      onChanged: (val) {
+                        _updateText();
+                      },
+                      controller: _usernameController,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Username cannot be empty!';
+                        }
+                        return null;
+                      },
+                    )),
+                const SizedBox(height: 20),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20),
+                  child: FloatingActionButton.extended(
+                      // ignore: prefer_const_constructors
+                      label: Text('Submit',
+                          // ignore: prefer_const_constructors
+                          style: const TextStyle(
+                              color: Color.fromARGB(0xFF, 0x38, 0x1E, 0x72))),
+                      backgroundColor:
+                          const Color.fromARGB(0xFF, 0xD0, 0xBC, 0xFF),
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              // Retrieve the text that the user has entered by using the
+                              // TextEditingController.
+                              content: Text(
+                                  'Your User Name is ${_usernameController.text}'),
+                            );
+                          },
+                        );
+                      }),
+                ),
+                const SizedBox(height: 20),
+                const Center(
+                  child: Text(
+                    'Achievements',
+                    style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                        fontWeight: FontWeight.normal),
+                  ),
+                ),
+                Column(children: const <Widget>[
+                  ListTile(
+                      leading: MyBullet(),
+                      title: Text('Upload 5 days in a row',
+                          style: TextStyle(color: Colors.white))),
+                  ListTile(
+                      leading: MyBullet(),
+                      title: Text('Uplaod 10 days in a row',
+                          style: TextStyle(color: Colors.white))),
+                  ListTile(
+                      leading: MyBullet(),
+                      title: Text('Uplaod 50 days in a row',
+                          style: TextStyle(color: Colors.white))),
+                  ListTile(
+                      leading: MyBullet(),
+                      title: Text('Uplaod 100 days in a row',
+                          style: TextStyle(color: Colors.white))),
+                  ListTile(
+                      leading: MyBullet(),
+                      title: Text('Uplaod 5 days in total',
+                          style: TextStyle(color: Colors.white))),
+                  ListTile(
+                      leading: MyBullet(),
+                      title: Text('Uplaod 10 days in total',
+                          style: TextStyle(color: Colors.white))),
+                  ListTile(
+                      leading: MyBullet(),
+                      title: Text('Uplaod 50 days in total',
+                          style: TextStyle(color: Colors.white))),
+                  ListTile(
+                      leading: MyBullet(),
+                      title: Text('Uplaod 100 days in total',
+                          style: TextStyle(color: Colors.white))),
+                  ListTile(
+                      leading: MyBullet(),
+                      title: Text('Upload 1 outfit for every occasion',
+                          style: TextStyle(color: Colors.white))),
+                  ListTile(
+                      leading: MyBullet(),
+                      title: Text('Upload 1 outfit with each item',
+                          style: TextStyle(color: Colors.white))),
+                  ListTile(
+                      leading: MyBullet(),
+                      title: Text('Share 1 outfit with your friends',
+                          style: TextStyle(color: Colors.white))),
+                  ListTile(
+                      leading: MyBullet(),
+                      title: Text('Share 5 outfits with your friends',
+                          style: TextStyle(color: Colors.white))),
+                  ListTile(
+                      leading: MyBullet(),
+                      title: Text('Upload 5 different outfits',
+                          style: TextStyle(color: Colors.white))),
+                  ListTile(
+                      leading: MyBullet(),
+                      title: Text('Upload 10 different outfits',
+                          style: TextStyle(color: Colors.white))),
+                ]),
+                const Center(
+                  child: Text(
+                    'Streak',
+                    style: TextStyle(
+                        fontSize: 30,
+                        color: Colors.white,
+                        fontWeight: FontWeight.normal),
+                  ),
+                ),
+                const Center(
+                  child: Text(
+                    'You have X days Streak!',
+                    style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                        fontWeight: FontWeight.normal),
+                  ),
+                ),
+                //const SizedBox(height: 200.0, width: 100.0),
+                Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: Image.asset('assets/images/fire.png', scale: 3))
+              ],
+            ))),
         bottomNavigationBar: BottomAppBar(
             color: const Color(0xFF1C1B1F),
-            child: Row(mainAxisAlignment: MainAxisAlignment.center, 
-            children: [
+            child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               Padding(
                   padding: const EdgeInsets.only(right: 40),
                   child: CircleAvatar(
                       radius: 30.0,
-                      backgroundColor: const Color.fromARGB(0xFF, 0x67, 0x50, 0xA4),
+                      backgroundColor:
+                          const Color.fromARGB(0xFF, 0x67, 0x50, 0xA4),
                       child: IconButton(
                         tooltip: 'Calendar',
                         icon: const Icon(color: Colors.white, Icons.today),
@@ -327,9 +363,6 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                         color: Colors.white, Icons.camera_alt_outlined),
                     onPressed: _goToPhoto,
                   )),
-            ]
-          )
-        )
-      );
+            ])));
   }
 }
