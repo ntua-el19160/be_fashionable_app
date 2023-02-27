@@ -78,7 +78,6 @@ class _CameraWidgetState extends State<CameraWidget> {
     }).where((value) => value != -1).toList();
     final details = DateDetails(
       date: DateTime.now(),
-      completed: true,
       tags: selectedTags,
       imagePath: widget.imagePath,
       lat: lat,
