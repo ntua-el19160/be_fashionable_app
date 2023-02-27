@@ -40,7 +40,6 @@ class _CalendarWidgetState extends State<CalendarWidget> {
     if ((widget.routeName == 'achievements') ||
         (widget.routeName == 'camera')) {
       fromCamera = true;
-      //debugPrint('Route camera');
     }
     // generate 50 random dates within the past year and set them as dates with photo
     final random = Random();
@@ -626,7 +625,6 @@ class _CalendarWidgetState extends State<CalendarWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
 
     if (fromCamera == true) {
@@ -635,7 +633,6 @@ class _CalendarWidgetState extends State<CalendarWidget> {
       final year = datedetails.date.year;
       final month = datedetails.date.month;
       final day = datedetails.date.day;
-      //final date = DateTime.utc(year, month, day2);
       const hour = 0;
       const minute = 0;
       const second = 0;
@@ -644,14 +641,6 @@ class _CalendarWidgetState extends State<CalendarWidget> {
       final finaldate = DateTime(
           year, month, day, hour, minute, second, millisecond, microsecond);
       _newPhoto(finaldate);
-      //final cor2 = finaldate.toString();
-      //final cor = datedetails.tags;
-      //final cor2 = cor.toString();
-      //debugPrint(cor2);
-      //if (datedetails.lat == ' ') {
-      //debugPrint('Yeah');
-      //}
-      //debugPrint(datedetails.lat);
       fromCamera = false;
     }
 
@@ -699,7 +688,6 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                 Container(
                   padding:
                       const EdgeInsets.symmetric(vertical: 25, horizontal: 20),
-                  //padding: const EdgeInsets.all(16.0),
                   alignment: Alignment.centerLeft,
                   child: Text(
                     DateFormat('MMMM yyyy').format(DateTime(year, month)),
@@ -725,19 +713,13 @@ class _CalendarWidgetState extends State<CalendarWidget> {
             return Column(
               children: [
                 Container(
-                  //padding: const EdgeInsets.only(top: 50.0),
-
-                  //we need to use a boolean
                   //filled box if a photo was taken this day
-                  //padding: const EdgeInsets.symmetric(vertical: 39, horizontal: 30),
                   margin: const EdgeInsets.all(1),
                   padding: EdgeInsets.symmetric(vertical: width * 0.04),
                   decoration: BoxDecoration(
                     color: _colors[date] ?? Colors.transparent,
-                    //color: Color.fromARGB(255, 190, 150, 199),
                   ),
                   alignment: Alignment.center,
-                  //padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 14.0),
                   child: Center(
                     child: Text(
                       DateFormat('d').format(date),
@@ -748,38 +730,12 @@ class _CalendarWidgetState extends State<CalendarWidget> {
               ],
             );
           }, onDayPressed: (day) {
-            /*final cor = day.toString();
-              DateTime dayint = DateTime.now();
-              final year = dayint.year;
-              final month = dayint.month;
-              final day2 = dayint.day;
-              final date = DateTime.utc(year, month, day2);
-              debugPrint(cor);
-              final cor2 = date.toString();
-              debugPrint(cor2);*/
               _removeOverlay();
-              //DateTime now = DateTime.now();
-              //DateTime todaysDate = DateTime(now.year, now.month, now.day);
-              /*if (!day.isAfter(todaysDate)) {
-                _updateDetails(day);
-              }*/
               if (_colors[day] == const Color.fromARGB(255, 208, 188, 255) || _colors[day] == const Color.fromARGB(255, 127, 103, 179)) {
                 _updateDetails(day);
               }
           }),
         ),
-        /*
-          dayBuilder: (context, date) => Container(
-            alignment: Alignment.center,
-            /*decoration: BoxDecoration(
-              color: const Color.fromARGB(255, 169, 141, 174), 
-            ),*/
-            child: Text(
-              date.day.toString(),
-              style: TextStyle(color: Colors.white),
-            ),
-
-          ),*/
         bottomNavigationBar: BottomAppBar(
             color: color,
             child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
