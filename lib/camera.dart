@@ -211,6 +211,7 @@ final List<bool> _clicks = List.generate(18, (index) => true);
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: <Widget>[
+                  /*
                   Padding(
                     padding: const EdgeInsets.only(left: 20, right: 60),
                     child: ElevatedButton(
@@ -233,6 +234,7 @@ final List<bool> _clicks = List.generate(18, (index) => true);
                       ),
                     ),
                   ),
+                  */
                   Padding(
                     padding: const EdgeInsets.only(right: 60),
                     child: ElevatedButton(
@@ -387,6 +389,7 @@ final List<bool> _clicks = List.generate(18, (index) => true);
                       ),
                     ),
                   ),
+                  /*
                   Padding(
                     padding: const EdgeInsets.only(right: 60),
                     child: ElevatedButton(
@@ -409,6 +412,7 @@ final List<bool> _clicks = List.generate(18, (index) => true);
                       ),
                     ),
                   ),
+                  */
                 ],
               ),
             ),
