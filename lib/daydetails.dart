@@ -128,7 +128,7 @@ class _DayDetailsState extends State<DayDetails> {
                       ),
                     ],
                   ),
-                  const Padding(padding: EdgeInsets.all(30.0)),
+                  //const Padding(padding: EdgeInsets.all(30.0)),
                 ],
               )));
     });
