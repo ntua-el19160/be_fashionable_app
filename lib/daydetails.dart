@@ -216,7 +216,6 @@ class _DayDetailsState extends State<DayDetails> {
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          //to image.asset prepei na mpei se sxolia
                           emptyImage
                               ? Image.asset('assets/images/image.png', scale: 2)
                               : Image.file(File(_dateDetails.imagePath),
@@ -240,9 +239,9 @@ class _DayDetailsState extends State<DayDetails> {
                         child: Align(
                           alignment: Alignment.topLeft,
                           child: Text(
-                            'Lat: $latitube , Long: $longitude',
+                            'Lat: $latitube',
                             style: const TextStyle(
-                                color: Colors.white, fontSize: 17.0),
+                                color: Colors.white, fontSize: 20.0),
                           ),
                         ),
                       ),
@@ -260,6 +259,29 @@ class _DayDetailsState extends State<DayDetails> {
                     ),
                   ],
                 ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Visibility(
+                      visible: needspace,
+                      child: const SizedBox(height: 30),
+                    ),
+                    Visibility(
+                      visible: location,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 20),
+                        child: Align(
+                          alignment: Alignment.topLeft,
+                          child: Text(
+                            'Long: $longitude',
+                            style: const TextStyle(
+                                color: Colors.white, fontSize: 20.0),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ]
+                ),
                 Visibility(
                   visible: needspace,
                   child: const SizedBox(height: 30),
@@ -270,7 +292,7 @@ class _DayDetailsState extends State<DayDetails> {
                     scrollDirection: Axis.horizontal,
                     children: <Widget>[
                       const Padding(padding: EdgeInsets.only(left: 20)),
-                      Visibility(
+                      /*Visibility(
                         visible: _tags[0],
                         child: Padding(
                           padding: const EdgeInsets.only(right: 60),
@@ -291,7 +313,7 @@ class _DayDetailsState extends State<DayDetails> {
                             ),
                           ),
                         ),
-                      ),
+                      ),*/
                       Visibility(
                         visible: _tags[1],
                         child: Padding(
@@ -446,7 +468,7 @@ class _DayDetailsState extends State<DayDetails> {
                           ),
                         ),
                       ),
-                      Visibility(
+                      /*Visibility(
                         visible: _tags[8],
                         child: Padding(
                           padding: const EdgeInsets.only(right: 60),
@@ -467,7 +489,7 @@ class _DayDetailsState extends State<DayDetails> {
                             ),
                           ),
                         ),
-                      ),
+                      ),*/
                       Visibility(
                         visible: _tags[9],
                         child: Padding(
@@ -723,7 +745,6 @@ class _DayDetailsState extends State<DayDetails> {
 
 class DateDetails {
   DateTime date;
-  bool? completed;
   bool? favorite;
   List<int>? tags;
   String imagePath;
@@ -732,7 +753,6 @@ class DateDetails {
 
   DateDetails({
     required this.date,
-    this.completed,
     this.favorite,
     this.tags,
     required this.imagePath,

@@ -78,7 +78,6 @@ class _CameraWidgetState extends State<CameraWidget> {
     }).where((value) => value != -1).toList();
     final details = DateDetails(
       date: DateTime.now(),
-      completed: true,
       tags: selectedTags,
       imagePath: widget.imagePath,
       lat: lat,
@@ -236,7 +235,7 @@ final List<bool> _clicks = List.generate(18, (index) => true);
                   ),
                   */
                   Padding(
-                    padding: const EdgeInsets.only(right: 60),
+                    padding: const EdgeInsets.only(left: 20, right: 60),
                     child: ElevatedButton(
                       onPressed: () {
                         setState(() {
