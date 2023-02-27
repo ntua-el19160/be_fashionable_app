@@ -1,7 +1,10 @@
 //import 'dart:html';
 
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:paged_vertical_calendar/paged_vertical_calendar.dart';
+import 'package:paged_vertical_calendar/utils/date_models.dart';
 import 'profile.dart';
 import 'main.dart';
 import 'photo.dart';
@@ -38,6 +41,17 @@ class _CalendarWidgetState extends State<CalendarWidget> {
         (widget.routeName == 'camera')) {
       fromCamera = true;
       //debugPrint('Route camera');
+    }
+    // generate 50 random dates within the past year and set them as dates with photo
+    final random = Random();
+    final startDate = DateTime.now().subtract(const Duration(days: 365));
+    for (int i = 0; i < 50; i++) {
+      final randomDate = startDate.add(Duration(days: random.nextInt(365)));
+      final year = randomDate.year;
+      final month = randomDate.month;
+      final day = randomDate.day;
+      final finaldate = DateTime(year,month, day, 0, 0, 0, 0 , 0);
+      _colors[finaldate] = const Color.fromARGB(255, 208, 188, 255);
     }
   }
 
@@ -557,7 +571,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
       );
     });
 
-    overlayState.insert(overlayEntry);
+    overlayState?.insert(overlayEntry);
   }
 
   void _removeOverlay() {
@@ -743,12 +757,15 @@ class _CalendarWidgetState extends State<CalendarWidget> {
               debugPrint(cor);
               final cor2 = date.toString();
               debugPrint(cor2);*/
-            _removeOverlay();
-            DateTime now = DateTime.now();
-            DateTime todaysDate = DateTime(now.year, now.month, now.day);
-            if (!day.isAfter(todaysDate)) {
-              _updateDetails(day);
-            }
+              _removeOverlay();
+              //DateTime now = DateTime.now();
+              //DateTime todaysDate = DateTime(now.year, now.month, now.day);
+              /*if (!day.isAfter(todaysDate)) {
+                _updateDetails(day);
+              }*/
+              if (_colors[day] == const Color.fromARGB(255, 208, 188, 255) || _colors[day] == const Color.fromARGB(255, 127, 103, 179)) {
+                _updateDetails(day);
+              }
           }),
         ),
         /*
