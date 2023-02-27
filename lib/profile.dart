@@ -80,7 +80,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
               )));
     });
 
-    overlayState.insert(overlayEntry);
+    overlayState?.insert(overlayEntry);
   }
 
   void _removeOverlay() {

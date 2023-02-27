@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 // import 'main.dart';
 // import 'photo.dart';
 import 'package:intl/intl.dart';
-import 'calendar.dart';
+// import 'calendar.dart';
 import 'dart:io';
 
 class DayDetails extends StatefulWidget {
@@ -133,7 +133,7 @@ class _DayDetailsState extends State<DayDetails> {
               )));
     });
 
-    overlayState.insert(overlayEntry);
+    overlayState?.insert(overlayEntry);
   }
 
   void _removeOverlay() {
